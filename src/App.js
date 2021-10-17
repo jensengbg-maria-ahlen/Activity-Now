@@ -1,4 +1,5 @@
-import logo from './logo.svg';
+// @ts-nocheck
+import logo from './assets/logo.svg';
 import './Styles/_app.scss';
 
 function App() {
