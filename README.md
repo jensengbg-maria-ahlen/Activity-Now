@@ -1,3 +1,14 @@
+# Activity Today
+is an app where you can look what activites you can go on this month and you can create your own activities!
+You can follow your favorite activities, like if you like going to the movies you can get a notification every time someone postes a movie activity!
+
+It has an easy calendar where you can see all upcoming activities and sign up to go to them. It is east to create a new activity and you can see how many people how has signed up for the different activities. 
+
+This is an easy and fun way to make new friends and socialize after the restrictions after corona has been liftet! 
+
+# Hope you enjoy the application!
+// Maria & Matilda 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
