@@ -1,10 +1,16 @@
 // @ts-nocheck
-
+import { useState } from "react";
 export const Login = () => {
-<img className="info" src="./assets/info.png" alt="info" />
-          {isShown && (
-            <p className="toggle">
-              Piktro is a website for you who want to do retrospectives in <br /> a simple way on one spot where all your information is stored.
-            </p>
-          )}
+
+    const [isShown, setIsShown] = useState(false);
+
+    <div className="toggleDiv" onMouseEnter={() => setIsShown(true)}
+    onMouseLeave={() => setIsShown(false)}>
+    <img className="info" src="./assets/logo.png" alt="info" />
+    {isShown && (
+      <p className="toggle">
+        Activity Today has no responsiblities for stuff that happens on activities <br /> here is more info
+      </p>
+    )}
+  </div>
 };

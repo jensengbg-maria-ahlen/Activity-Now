@@ -1,5 +1,6 @@
 // @ts-nocheck
 import logo from './assets/logo.png';
+import info from './assets/info.png';
 import './Styles/_app.scss';
 import { useState } from "react";
 
@@ -9,26 +10,16 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+
         <div className="toggleDiv" onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}>
-          <img className="info" src="./assets/info.png" alt="info" />
+          <img className="info" src={info} alt="info" />
           {isShown && (
             <p className="toggle">
-              Piktro is a website for you who want to do retrospectives in <br /> a simple way on one spot where all your information is stored.
+              Activity Today has no responsiblities for stuff that happens on activities <br /> here is more info
             </p>
           )}
         </div>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
