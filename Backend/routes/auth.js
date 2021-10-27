@@ -1,10 +1,9 @@
-
+// @ts-nocheck
 import { Router } from 'express';
 import { db } from './db';
 import bcrypt from 'bcrypt';
 import CryptoJS from 'crypto-js';
 import jwt from 'jsonwebtoken';
-
 
 const router = new Router();
 router.post('/login', async (req, res) => {
