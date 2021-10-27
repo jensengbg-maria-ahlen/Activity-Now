@@ -1,5 +1,5 @@
 // @ts-nocheck
-import logo from './assets/logoAT.png';
+import logo from './assets/logo.png';
 import './Styles/_app.scss';
 
 function App() {
