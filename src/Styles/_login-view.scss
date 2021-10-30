@@ -1,0 +1,77 @@
+.header2 {
+    color: #0C5843;
+    margin: 0;
+    margin-right: 30rem;
+}
+.error {
+    color: rgb(187, 0, 0);
+    margin-top: 0;
+    font-weight: bolder;
+}
+
+.toggleDiv {
+    margin-left: 60rem;
+}
+
+.mainForm {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.formDiv {
+    background-color: #87BA77;
+    border-radius: 10px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+h5 {
+    margin: 0;
+}
+.signup {
+    color: #0C5843;
+}
+
+.google {
+    margin-right: 30rem;
+}
+
+input {
+    border-radius: 5px;
+    min-width: 30rem;
+    border: solid 1px;
+    height: 2rem;
+}
+
+.login-head {
+    display: flex;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.inputDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: .5rem;
+}
+
+.loginBtn {
+    height: 3rem;
+    width: 4rem;
+    margin-top: 1rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    border: solid 1px ;
+}
