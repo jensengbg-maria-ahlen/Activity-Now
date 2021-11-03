@@ -1,6 +1,7 @@
 
 import * as React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import google from '../assets/google.png';
 import facebook from '../assets/facebook.png';
 import '../Styles/_login-view.scss';
@@ -19,8 +20,10 @@ const LoginView: React.FC = () => {
         <>
             <article className="mainForm">
                 <div className="login-head">
-                    <h2 className="header2">Login</h2>
-                    <h5 className="signup">Sign up</h5>
+                    <h2 className="header2">Loginn</h2>
+                    <Link to="/signup">
+                        <h5 className="signup">Sign up</h5>
+                    </Link>
                 </div>
                 <div className="formDiv">
                 <p className="error"> {errorMessage} </p>
