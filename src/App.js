@@ -4,6 +4,7 @@ import './Styles/_app.scss';
 import LoginView from "../src/views/login-view"
 import SingupView from "../src/views/signup-view"
 import LandingView from "../src/views/landing-view"
+import ProfileView from "./views/profile-view"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" component={SingupView}/>
           <Route path="/" exact component={LoginView}/>
           <Route path="/landing" component={LandingView}/>
+          <Route path="/profile" component={ProfileView}/>
         </Switch>
       </Router>
     </div>
