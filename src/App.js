@@ -3,6 +3,7 @@ import logo from './assets/logo.png';
 import './Styles/_app.scss';
 import LoginView from "../src/views/login-view"
 import SingupView from "../src/views/signup-view"
+import LandingView from "../src/views/landing-view"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 
@@ -17,6 +18,7 @@ function App() {
         <Switch>
           <Route path="/signup" component={SingupView}/>
           <Route path="/" exact component={LoginView}/>
+          <Route path="/landing" component={LandingView}/>
         </Switch>
       </Router>
     </div>
