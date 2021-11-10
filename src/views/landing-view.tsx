@@ -1,9 +1,13 @@
 
+import { onAuthStateChanged } from "firebase/auth";
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { auth } from "../firebase-config";
+//import { Link } from "react-router-dom";
 import '../Styles/_landing.scss';
 
 const LandingView: React.FC = () => {
+
 //Make each of the 3 main divs to components?
     return (
         <>
