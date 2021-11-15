@@ -5,6 +5,7 @@ import user from '../assets/user.png';
 import '../Styles/_profile.scss';
 import { signOut } from "firebase/auth"
 import { auth } from '../firebase-config'
+import { Link } from "react-router-dom";
 
 const ProfileView: React.FC = () => {
 
@@ -26,7 +27,9 @@ const ProfileView: React.FC = () => {
                 <p>Add new topic: </p>
             </section>
             <button>Save profile</button>
-            <button onClick={signout}>Sign out</button>
+            <Link to="/">
+                <button onClick={signout}>Sign out</button>
+            </Link>
         </div>
     );
 }
