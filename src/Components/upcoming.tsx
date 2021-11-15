@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import { auth } from "../firebase-config";
 //import { Link } from "react-router-dom";
