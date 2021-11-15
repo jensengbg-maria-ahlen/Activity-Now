@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import YourActivity from "../Components/yourActivities"
 import '../Styles/_landing.scss';
