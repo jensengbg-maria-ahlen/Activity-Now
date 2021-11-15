@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import * as React from "react";
+import React from "react";
 import { useState } from "react";
 import info from '../assets/info.png';
 import google from '../assets/google.png';

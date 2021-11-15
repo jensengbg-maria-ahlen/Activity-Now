@@ -1,5 +1,4 @@
-
-import * as React from "react";
+import React from "react";
 //import { Link } from "react-router-dom";
 import user from '../assets/user.png';
 import '../Styles/_profile.scss';

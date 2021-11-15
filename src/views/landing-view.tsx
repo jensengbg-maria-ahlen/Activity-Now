@@ -1,5 +1,4 @@
-
-import * as React from "react";
+import React from "react";
 import YourActivity from "../Components/yourActivities"
 import '../Styles/_landing.scss';
 import FollowedTopics from "../Components/followedTopics";
