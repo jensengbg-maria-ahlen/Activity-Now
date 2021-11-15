@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import React from "react";
 import { useState } from "react";
 import info from '../assets/info.png';
@@ -13,6 +12,7 @@ const SignupView: React.FC = () => {
     const [isShown, setIsShown] = useState(false);
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
+    const [errors, setErrors] = useState([]);
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     
@@ -28,7 +28,15 @@ const SignupView: React.FC = () => {
         } catch (error) {
           console.log(error.message);
         }
-      };
+    };
+
+    const validateEmail = (email) => {
+        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (regex.test(email)) {
+            return true;
+        }
+        return false;
+    }
 
     return (
         <>
@@ -37,10 +45,30 @@ const SignupView: React.FC = () => {
                 <div className="formDiv">
                     <form className="form">
                         <div className="inputDiv">
-                            <h3>Email</h3>
-                            <input onChange={(event) => {setRegisterEmail(event.target.value);}}/>
-                            <h3>Password</h3>
-                            <input onChange={(event) => { setRegisterPassword(event.target.value);}}/>
+                            <h5>Email</h5>
+                            <input 
+                                type="email" 
+                                onChange={(e) => {
+                                    setRegisterEmail(e.target.value)
+                                }}
+                                onBlur={(e) => {
+                                    let validationErrors: string[] = [...errors].filter(
+                                        (error) => error !== "email-error"
+                                    )
+                                    if (!validateEmail(e.target.value) && validationErrors.indexOf("email-error") === -1) {
+                                        validationErrors.push("email-error");
+                                    } else {
+                                        validationErrors === validationErrors.filter((error) => error !== "email-error")
+                                    }
+                                    setErrors(validationErrors);                                    
+                                }}
+                            />
+                            {errors.includes("email-error") ? (
+                                <span>Not a valid email</span>
+                            ) : null}
+
+                            <h5>Password</h5>
+                            <input type="password" onChange={(event) => { setRegisterPassword(event.target.value);}}/>
 
                             <button className="loginBtn" onClick={register}> Create User</button>
                         </div>
