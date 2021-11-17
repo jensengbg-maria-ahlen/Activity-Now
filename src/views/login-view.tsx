@@ -5,14 +5,19 @@ import { Link } from "react-router-dom";
 import googleImg from '../assets/google.png';
 import facebookImg from '../assets/facebook.png';
 import '../Styles/_login-view.scss';
-import { getAuth, signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
+import {  
+    signInWithPopup, 
+    signInWithEmailAndPassword, 
+    GoogleAuthProvider, 
+    FacebookAuthProvider 
+} from "firebase/auth";
+import { auth } from '../firebase-config'
 
 const LoginView: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const [loginEmail, setLoginEmail] = useState('')
     const [loginPwd, setLoginPassword] = useState('')
     const [errors, setErrors] = useState([]);
-    const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
     
@@ -40,7 +45,7 @@ const LoginView: React.FC = () => {
 
             // The signed-in user info.
             const user = result.user;
-            // ...
+
         }).catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
@@ -51,7 +56,6 @@ const LoginView: React.FC = () => {
 
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
         })
       }
 

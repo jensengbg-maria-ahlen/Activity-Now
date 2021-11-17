@@ -1,6 +1,5 @@
 // @ts-nocheck
 import React from "react";
-//import { Link } from "react-router-dom";
 import user from '../assets/user.png';
 import '../Styles/_profile.scss';
 import { signOut } from "firebase/auth"

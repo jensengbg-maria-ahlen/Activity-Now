@@ -12,10 +12,7 @@ const SignupView: React.FC = () => {
     const [isShown, setIsShown] = useState(false);
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
-    const [errors, setErrors] = useState([]);
-    const [emailError, setEmailError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    
+    const [errors, setErrors] = useState([]);    
 
     const register = async () => {
         try {

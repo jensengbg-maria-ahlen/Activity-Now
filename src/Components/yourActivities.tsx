@@ -1,12 +1,8 @@
 // @ts-nocheck
 import React from "react";
-import { auth } from "../firebase-config";
-//import { Link } from "react-router-dom";
 import '../Styles/_landing.scss';
 
-
 const YourActivity: React.FC = () => {
-
     return (
         <>
             <div>
