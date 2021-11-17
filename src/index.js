@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Styles/_index.scss';
+import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

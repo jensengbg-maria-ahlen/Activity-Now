@@ -1,9 +1,10 @@
 // @ts-nocheck
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import info from '../assets/info.png';
-import google from '../assets/google.png';
-import facebook from '../assets/facebook.png';
+import googleImg from '../assets/google.png';
+import facebookImg from '../assets/facebook.png';
 import '../Styles/_login-view.scss';
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from '../firebase-config'
@@ -12,18 +13,18 @@ const SignupView: React.FC = () => {
     const [isShown, setIsShown] = useState(false);
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
-    const [errors, setErrors] = useState([]);    
+    const [errors, setErrors] = useState([]);
 
     const register = async () => {
         try {
-          const user = await createUserWithEmailAndPassword(
-            auth,
-            registerEmail,
-            registerPassword
-          );
-          console.log(user);
+            const user = await createUserWithEmailAndPassword(
+                auth,
+                registerEmail,
+                registerPassword
+            );
+            console.log(user);
         } catch (error) {
-          console.log(error.message);
+            console.log(error.message);
         }
     };
 
@@ -36,15 +37,20 @@ const SignupView: React.FC = () => {
     }
 
     return (
-        <>
-            <article className="mainForm">
-                <h2 className="header2">Signup</h2>
-                <div className="formDiv">
-                    <form className="form">
-                        <div className="inputDiv">
-                            <h5>Email</h5>
-                            <input 
-                                type="email" 
+        <React.Fragment>
+            <article className="login-view">
+                <div className="login-view__header">
+                    <h1 className="title title--h1 title--bold">Signup</h1>
+                    <Link className="link" to="/">
+                        <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Login</p>
+                    </Link>
+                </div>
+                <div className="login-view__form-div">
+                    <form className="login-view__form">
+                        <div className="login-view__input-form">
+                            <p className="caption">Email</p>
+                            <input
+                                type="email"
                                 onChange={(e) => {
                                     setRegisterEmail(e.target.value)
                                 }}
@@ -57,36 +63,48 @@ const SignupView: React.FC = () => {
                                     } else {
                                         validationErrors === validationErrors.filter((error) => error !== "email-error")
                                     }
-                                    setErrors(validationErrors);                                    
+                                    setErrors(validationErrors);
                                 }}
                             />
                             {errors.includes("email-error") ? (
                                 <span>Not a valid email</span>
                             ) : null}
-
-                            <h5>Password</h5>
-                            <input type="password" onChange={(event) => { setRegisterPassword(event.target.value);}}/>
-
-                            <button className="loginBtn" onClick={register}> Create User</button>
                         </div>
-                        
+                        <div className="login-view__input-form">
+                            <p className="caption">Password</p>
+                            <input
+                                type="password"
+                                onChange={(event) => {
+                                    setRegisterPassword(event.target.value)
+                                }} />
+                        </div>
                     </form>
                 </div>
-                <div className="google">
-                    <img className="info" src={google} alt="google" />
-                    <img className="info" src={facebook} alt="facebook" />
-                </div>
-                <div className="toggleDiv" onMouseEnter={() => setIsShown(true)}
-                    onMouseLeave={() => setIsShown(false)}>
-                    <img className="info" src={info} alt="info" />
-                    {isShown && (
-                        <p className="toggle">
-                            info about activity today, stuff you agrre too when signing up
-                        </p>
-                    )}
+                <div className="login-view__buttons">
+                    <button className="google-btn">
+                        <img src={googleImg} alt="google" />
+                    </button>
+                    <button className="facebook-btn" >
+                        <img src={facebookImg} alt="facebook" />
+                    </button>
+                    <button className="create-btn" onClick={register}> Create User</button>
                 </div>
             </article>
-        </>
+            <div className="toggle-info"
+                onClick={() => setIsShown(!isShown)}
+            >
+                <img className="toggle-info__info-img" src={info} alt="info" />
+                {isShown && (
+                    <div className="toggle-info__info-text">
+                        <p className=".caption caption--bold">
+                            info about activity today, stuff you agree too when signing up
+                        </p>
+                    </div>
+
+                )}
+            </div>
+        </React.Fragment>
+
     );
 }
 export default SignupView;

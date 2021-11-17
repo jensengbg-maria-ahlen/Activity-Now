@@ -5,22 +5,22 @@ import { Link } from "react-router-dom";
 import googleImg from '../assets/google.png';
 import facebookImg from '../assets/facebook.png';
 import '../Styles/_login-view.scss';
-import {  
-    signInWithPopup, 
-    signInWithEmailAndPassword, 
-    GoogleAuthProvider, 
-    FacebookAuthProvider 
+import {
+    signInWithPopup,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    FacebookAuthProvider
 } from "firebase/auth";
 import { auth } from '../firebase-config'
 
-const LoginView: React.FC = () => {
+const LoginView = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const [loginEmail, setLoginEmail] = useState('')
     const [loginPwd, setLoginPassword] = useState('')
     const [errors, setErrors] = useState([]);
     const googleProvider = new GoogleAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
-    
+
 
     const loginWithCredentials = async () => {
         try {
@@ -37,7 +37,7 @@ const LoginView: React.FC = () => {
         setErrorMessage('User does not exist');
     }
 
-    const loginWithGoogle = ()  =>{
+    const loginWithGoogle = () => {
         signInWithPopup(auth, googleProvider).then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -57,9 +57,9 @@ const LoginView: React.FC = () => {
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
         })
-      }
+    }
 
-    const loginWithFacebook = () => {     
+    const loginWithFacebook = () => {
         signInWithPopup(auth, facebookProvider).then((result) => {
             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
             const credential = FacebookAuthProvider.credentialFromResult(result);
@@ -90,22 +90,24 @@ const LoginView: React.FC = () => {
     }
 
     return (
-        <>
-            <article className="mainForm">
-                <div className="login-head">
-                    <h2 className="header2">Login</h2>
-                    <Link to="/signup">
-                        <h5 className="signup">Sign up</h5>
+        <React.Fragment>
+            <article className="login-view">
+                <div className="login-view__header">
+                    <h1 className="title title--h1 title--bold">Login</h1>
+                    <Link className="link" to="/signup">
+                        <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Sign up</p>
                     </Link>
                 </div>
-                <div className="formDiv">
-                    <p className="error"> {errorMessage} </p>
-                    <form className="form" onSubmit={(e) => onLoginClicked(e)}>
-                        <div className="inputDiv">
-                            <h5>Email</h5>
-                            <input 
-                                type="email" 
-                                className="inpName" 
+                <div className="login-view__form-div">
+                    {errorMessage ?
+                        <p className="paragraph paragraph--bold paragraph--error">{errorMessage}</p>
+                        : null
+                    }
+                    <form className="login-view__form" onSubmit={(e) => onLoginClicked(e)}>
+                        <div className="login-view__input-form">
+                            <p className="caption">Email</p>
+                            <input
+                                type="email"
                                 onChange={(e) => {
                                     setLoginEmail(e.target.value)
                                 }}
@@ -118,32 +120,46 @@ const LoginView: React.FC = () => {
                                     } else {
                                         validationErrors === validationErrors.filter((error) => error !== "email-error")
                                     }
-                                    setErrors(validationErrors);                                    
+                                    setErrors(validationErrors);
                                 }}
                             />
                             {errors.includes("email-error") ? (
                                 <span>Not a valid email</span>
                             ) : null}
                         </div>
-                        <div className="inputDiv">
-                            <h5>Password</h5>
-                            <input type="password" className="inpName" onChange={(event) => {
+                        <div className="login-view__input-form">
+                            <p className="caption">Password</p>
+                            <input type="password" onChange={(event) => {
                                 setLoginPassword(event.target.value);
                             }} ></input>
                         </div>
-                        <h5>Forgot password</h5>
-
-                        <button className="loginBtn" onClick={loginWithCredentials} type="submit">Login</button>
-
+                        <p className="caption caption--bold">Forgot password</p>
                     </form>
                 </div>
-
-                <div className="google">
-                    <img className="info" src={googleImg} alt="google" onClick={loginWithGoogle} />
-                    <img className="info" src={facebookImg} alt="facebook" onClick={() => loginWithFacebook()} />
+                <div className="login-view__buttons">
+                    <button className="google-btn" onClick={loginWithGoogle}>
+                        <img src={googleImg} alt="google" />
+                    </button>
+                    <button className="facebook-btn" onClick={loginWithFacebook}>
+                        <img src={facebookImg} alt="facebook" />
+                    </button>
+                    <button className="login-btn" onClick={loginWithCredentials} type="submit">Login</button>
                 </div>
             </article>
-        </>
+            <div className="toggle-info"
+                onClick={() => setIsShown(!isShown)}
+            >
+                <img className="toggle-info__info-img" src={info} alt="info" />
+                {isShown && (
+                    <div className="toggle-info__info-text">
+                        <p className=".caption caption--bold">
+                            info about activity today, stuff you agree too when signing up
+                        </p>
+                    </div>
+
+                )}
+            </div>
+        </React.Fragment>
     );
 }
 export default LoginView;
