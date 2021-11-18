@@ -1,35 +1,26 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React, { useState } from "react"
 import { Link } from "react-router-dom";
-
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import {
+    sendPasswordResetEmail
+} from "firebase/auth";
 import { auth } from '../firebase-config'
 
 import infoImg from '../assets/info.png';
-import googleImg from '../assets/google.png';
-import facebookImg from '../assets/facebook.png';
 
 import '../Styles/_login-view.scss';
 import "../Styles/_toggle-info.scss";
 
-const SignupView: React.FC = () => {
-    const [isShown, setIsShown] = useState(false);
-    const [registerEmail, setRegisterEmail] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
-    const [errors, setErrors] = useState([]);
 
-    const register = async () => {
-        try {
-            const user = await createUserWithEmailAndPassword(
-                auth,
-                registerEmail,
-                registerPassword
-            );
-            console.log(user);
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
+const ForgotPasswordPage = () => {
+    const [isShown, setIsShown] = useState(false);
+    const [errors, setErrors] = useState([]);
+    const [loginEmail, setLoginEmail] = useState('')
+
+    const forgotPass = async () => {
+        const sendMail = await sendPasswordResetEmail(auth, loginEmail)
+        console.log(sendMail)
+    }
 
     const validateEmail = (email) => {
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -43,7 +34,7 @@ const SignupView: React.FC = () => {
         <React.Fragment>
             <article className="login-view">
                 <div className="login-view__header">
-                    <h1 className="title title--h1 title--bold">Signup</h1>
+                    <h1 className="title title--h1 title--bold">Forgot password</h1>
                     <Link className="link" to="/">
                         <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Login</p>
                     </Link>
@@ -55,8 +46,8 @@ const SignupView: React.FC = () => {
                             <input
                                 type="email"
                                 onChange={(e) => {
-                                    setRegisterEmail(e.target.value)
-                                }}
+                                    setLoginEmail(e.target.value)
+                                }} 
                                 onBlur={(e) => {
                                     let validationErrors: string[] = [...errors].filter(
                                         (error) => error !== "email-error"
@@ -73,26 +64,13 @@ const SignupView: React.FC = () => {
                                 <span>Not a valid email</span>
                             ) : null}
                         </div>
-                        <div className="login-view__input-form">
-                            <p className="caption">Password</p>
-                            <input
-                                type="password"
-                                onChange={(event) => {
-                                    setRegisterPassword(event.target.value)
-                                }} />
-                        </div>
                     </form>
                 </div>
                 <div className="login-view__buttons">
-                    <button className="google-btn">
-                        <img src={googleImg} alt="google" />
-                    </button>
-                    <button className="facebook-btn" >
-                        <img src={facebookImg} alt="facebook" />
-                    </button>
-                    <button className="create-btn" onClick={register}> Create User</button>
+                    <button className="forgot-btn" onClick={forgotPass}>Reset password</button>
                 </div>
             </article>
+
             <div className="toggle-info"
                 onClick={() => setIsShown(!isShown)}
             >
@@ -103,11 +81,10 @@ const SignupView: React.FC = () => {
                             info about activity today, stuff you agree too when signing up
                         </p>
                     </div>
-
                 )}
             </div>
         </React.Fragment>
-
-    );
+    )
 }
-export default SignupView;
+
+export default ForgotPasswordPage;

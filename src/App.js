@@ -1,16 +1,18 @@
 // @ts-nocheck
-import logo from './assets/logo.png';
-import './Styles/_app.scss';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+
 import LoginView from "../src/views/login-view"
 import SingupView from "../src/views/signup-view"
+import ForgotPasswordPage from "./views/forgot-password-view"
 import LandingView from "../src/views/landing-view"
 import ProfileView from "./views/profile-view"
 import CalendarView from "./views/calendar-view"
 import NewActivityView from "./views/newActivity-view"
 import EditView from "./views/editActivity-view"
 import YourActivities from "./views/yourActivities"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
+import logo from './assets/logo.png';
+import './Styles/_app.scss';
 
 function App() {
   return (
@@ -20,8 +22,9 @@ function App() {
       </header>
       <Router>
         <Switch>
-          <Route exact path="/signup" component={SingupView}/>
           <Route exact path="/"  component={LoginView}/>
+          <Route exact path="/signup" component={SingupView}/>
+          <Route exact path="/forgot" component={ForgotPasswordPage} />
           <Route exact path="/landing" component={LandingView}/>
           <Route exact path="/profile" component={ProfileView}/>
           <Route exact path="/calendar" component={CalendarView}/>

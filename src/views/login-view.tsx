@@ -1,10 +1,7 @@
 // @ts-nocheck
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import googleImg from '../assets/google.png';
-import facebookImg from '../assets/facebook.png';
-import '../Styles/_login-view.scss';
+
 import {
     signInWithPopup,
     signInWithEmailAndPassword,
@@ -13,7 +10,15 @@ import {
 } from "firebase/auth";
 import { auth } from '../firebase-config'
 
+import infoImg from '../assets/info.png';
+import googleImg from '../assets/google.png';
+import facebookImg from '../assets/facebook.png';
+
+import '../Styles/_login-view.scss';
+import "../Styles/_toggle-info.scss";
+
 const LoginView = () => {
+    const [isShown, setIsShown] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [loginEmail, setLoginEmail] = useState('')
     const [loginPwd, setLoginPassword] = useState('')
@@ -100,7 +105,9 @@ const LoginView = () => {
                 </div>
                 <div className="login-view__form-div">
                     {errorMessage ?
-                        <p className="paragraph paragraph--bold paragraph--error">{errorMessage}</p>
+                        <div className="error-messages">
+                            <p className="paragraph paragraph--bold paragraph--error">{errorMessage}</p>
+                        </div>
                         : null
                     }
                     <form className="login-view__form" onSubmit={(e) => onLoginClicked(e)}>
@@ -133,7 +140,9 @@ const LoginView = () => {
                                 setLoginPassword(event.target.value);
                             }} ></input>
                         </div>
-                        <p className="caption caption--bold">Forgot password</p>
+                        <Link className="link" to="/forgot">
+                            <p className="caption caption--bold">Forgot password</p>
+                        </Link>
                     </form>
                 </div>
                 <div className="login-view__buttons">
@@ -149,7 +158,7 @@ const LoginView = () => {
             <div className="toggle-info"
                 onClick={() => setIsShown(!isShown)}
             >
-                <img className="toggle-info__info-img" src={info} alt="info" />
+                <img className="toggle-info__info-img" src={infoImg} alt="info" />
                 {isShown && (
                     <div className="toggle-info__info-text">
                         <p className=".caption caption--bold">

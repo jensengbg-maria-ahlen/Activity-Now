@@ -1,18 +1,23 @@
 @import "./colors";
+@import "./breakpoints";
 
 .login-view {
     margin: 0 auto;
-    max-width: 350px;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     
     &__header {
+        width: 500px;
         display: flex;
         justify-content: space-between;
-        width: 120%;
+        @include breakpoint ("md", "down") {
+            width: 350px;
+        }
+        @include breakpoint ("sm", "down") {
+            width: 250px;
+        }
         .link {
             text-decoration: none;
             margin-top: 12px;
@@ -24,96 +29,63 @@
     }
 
     &__form-div {
+        width: 500px;
         background-color: $light-green;
         border-radius: 10px;
-        width: 100%;
         padding: 30px;
         display: flex;
         flex-direction: column;
         margin-bottom: 10px;
+        @include breakpoint ("md", "down") {
+            width: 300px;
+        }
+        @include breakpoint ("sm", "down") {
+            width: 200px;
+        }
     }
 
     &__form {
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         align-items: flex-end;
+        .link {
+            text-decoration: none;
+            margin-top: 12px;
+        }
     }
 
     &__input-form {
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         margin-bottom: 16px;
-        width: 100%;
 
         input {
+            width: 100%;
             border-radius: 5px;
             border: solid 1px;
             height: 2rem;
-            width: 100%;
+
         }
     }
     &__buttons {
+        width: 500px;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         margin: 0;
-        width: 120%;
+        @include breakpoint ("md", "down") {
+            width: 350px;
+        }
+        @include breakpoint ("sm", "down") {
+            width: 250px;
+        }
         
-        .login-btn, .create-btn {
+        .login-btn, .create-btn, .forgot-btn {
             margin-left: auto;
-        }
-    }
-}
-
-.toggle-info {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    &__info-img {
-        width: 50px;
-        height: 50px;
-        margin-left: auto;
-    }
-    &__info-text {
-        margin-left: auto;
-        background: $white;
-        position: absolute;
-        border-radius: 8px;
-        z-index: 2;
-        padding: 4px;
-        top: -100px;
-        right: 10px;
-        width: 300px;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-        transition: transform 0.25 ease;
-        border: 1px solid #dcdcdc;
-        &::after {
-            content: "";
-            position: absolute;
-            bottom: -15px;
-            width: 0;
-            height: 0;
-            right: 5px;
-            border-style: solid;
-            border-width: 8px 8px 0 8px;
-            border-color: $white transparent transparent transparent;
-            transform: translateY(-100%) translateX(-50%);
-        }
-        &::before {
-            content: "";
-            position: absolute;
-            bottom: -17px;
-            width: 0;
-            height: 0;
-            right: 5px;
-            border-style: solid;
-            border-width: 8.5px 8.5px 0 8.5px;
-            border-color: $background transparent transparent transparent;
-            transform: translateY(-100%) translateX(-50%);
-            z-index: 0;
         }
     }
 }

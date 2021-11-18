@@ -1,6 +1,6 @@
 @import "./colors";
 
-.login-btn, .create-btn {
+.login-btn, .create-btn, .forgot-btn {
     appearance: none;
     text-align: center;
     cursor: pointer;
@@ -20,6 +20,11 @@
         transform: translateY(-2px);
     }
 }
+
+.forgot-btn {
+    width: 140px;
+}
+
 
 .google-btn, .facebook-btn {
     margin: 0;
