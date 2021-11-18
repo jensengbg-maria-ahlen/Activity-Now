@@ -68,7 +68,10 @@
             border-radius: 5px;
             border: solid 1px;
             height: 2rem;
+        }
 
+        .paragraph {
+            color: $error-text;
         }
     }
     &__buttons {

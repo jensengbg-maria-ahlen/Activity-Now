@@ -19,10 +19,10 @@ import "../Styles/_toggle-info.scss";
 
 const LoginView = () => {
     const [isShown, setIsShown] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
     const [loginEmail, setLoginEmail] = useState('')
     const [loginPwd, setLoginPassword] = useState('')
     const [errors, setErrors] = useState([]);
+    const [disabled, setDisabled] = useState(true);
     const googleProvider = new GoogleAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
 
@@ -32,14 +32,13 @@ const LoginView = () => {
             const user = await signInWithEmailAndPassword(auth, loginEmail, loginPwd)
             console.log(user)
         } catch (error) {
-            console.log(error)
+            console.log(error.message)
+            if(error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
+                let validationErrors = [];
+                validationErrors.push("password-no-match");
+                setErrors(validationErrors);
+            }
         }
-    }
-
-    let onLoginClicked = async (formEvent: React.FormEvent) => {
-        setErrorMessage(" ")
-        formEvent.preventDefault();
-        setErrorMessage('User does not exist');
     }
 
     const loginWithGoogle = () => {
@@ -104,41 +103,49 @@ const LoginView = () => {
                     </Link>
                 </div>
                 <div className="login-view__form-div">
-                    {errorMessage ?
-                        <div className="error-messages">
-                            <p className="paragraph paragraph--bold paragraph--error">{errorMessage}</p>
-                        </div>
-                        : null
-                    }
-                    <form className="login-view__form" onSubmit={(e) => onLoginClicked(e)}>
+                    <form className="login-view__form">
                         <div className="login-view__input-form">
                             <p className="caption">Email</p>
                             <input
+                                style={{
+                                    border: errors.includes("email-not-valid") ? 
+                                    "2px solid #BB0101" : "1px solid black"
+                                }}
                                 type="email"
                                 onChange={(e) => {
                                     setLoginEmail(e.target.value)
-                                }}
-                                onBlur={(e) => {
                                     let validationErrors: string[] = [...errors].filter(
-                                        (error) => error !== "email-error"
+                                        (error) => error !== "email-not-valid"
                                     )
-                                    if (!validateEmail(e.target.value) && validationErrors.indexOf("email-error") === -1) {
-                                        validationErrors.push("email-error");
+                                    if (!validateEmail(e.target.value) && validationErrors.indexOf("email-not-valid") === -1) {
+                                        validationErrors.push("email-not-valid");
+                                        setDisabled(true);
                                     } else {
-                                        validationErrors === validationErrors.filter((error) => error !== "email-error")
+                                        validationErrors === validationErrors.filter((error) => error !== "email-not-valid")
+                                        setDisabled(false);
                                     }
                                     setErrors(validationErrors);
                                 }}
                             />
-                            {errors.includes("email-error") ? (
-                                <span>Not a valid email</span>
+                            {errors.includes("email-not-valid") ? (
+                                <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Not a valid email</p>
                             ) : null}
                         </div>
                         <div className="login-view__input-form">
                             <p className="caption">Password</p>
-                            <input type="password" onChange={(event) => {
-                                setLoginPassword(event.target.value);
-                            }} ></input>
+                            <input
+                                style={{
+                                    border: errors.includes("password-no-match") ? 
+                                    "2px solid #BB0101" : "1px solid black"
+                                }} 
+                                type="password" 
+                                onChange={(event) => {
+                                    setLoginPassword(event.target.value);
+                                }}
+                            ></input>
+                            {errors.includes("password-no-match") ? (
+                                <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Email or password is incorrect</p>
+                            ) : null}
                         </div>
                         <Link className="link" to="/forgot">
                             <p className="caption caption--bold">Forgot password</p>
@@ -152,7 +159,7 @@ const LoginView = () => {
                     <button className="facebook-btn" onClick={loginWithFacebook}>
                         <img src={facebookImg} alt="facebook" />
                     </button>
-                    <button className="login-btn" onClick={loginWithCredentials} type="submit">Login</button>
+                    <button disabled={disabled} className="login-btn" onClick={loginWithCredentials} type="submit">Login</button>
                 </div>
             </article>
             <div className="toggle-info"

@@ -10,6 +10,7 @@ import CalendarView from "./views/calendar-view"
 import NewActivityView from "./views/newActivity-view"
 import EditView from "./views/editActivity-view"
 import YourActivities from "./views/yourActivities"
+import ErrorUrl from "./views/errorUrl"
 
 import logo from './assets/logo.png';
 import './Styles/_app.scss';
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/createactivity" component={NewActivityView}/>
           <Route exact path="/edit" component={EditView}/>
           <Route exact path="/youractivities" component={YourActivities} />
+          <Route exact path="/404" component={ErrorUrl} />
         </Switch>
       </Router>
     </div>
