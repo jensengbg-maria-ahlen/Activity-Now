@@ -1,7 +1,4 @@
-// @ts-nocheck
-import { initializeApp } from "firebase/app";
 
-import {getAuth} from 'firebase/auth'
 
 const firebaseConfig = {
     apiKey: "AIzaSyAylF1mA1FSK_BAmpwKj4XYu8lfv3pffSE",
@@ -13,5 +10,4 @@ const firebaseConfig = {
     measurementId: "G-YW066HKM62"
   };
 
-  const app = initializeApp(firebaseConfig);
-  export const auth = getAuth(app);
+  export default firebaseConfig;

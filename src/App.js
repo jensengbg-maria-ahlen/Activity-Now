@@ -9,6 +9,7 @@ import CalendarView from "./views/calendar-view"
 import NewActivityView from "./views/newActivity-view"
 import EditView from "./views/editActivity-view"
 import YourActivities from "./views/yourActivities"
+import ForgotPasswordPage from "./views/forgotpwd"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/createactivity" component={NewActivityView}/>
           <Route exact path="/edit" component={EditView}/>
           <Route exact path="/youractivities" component={YourActivities} />
+          <Route exact path="/p" component={ForgotPasswordPage} />
         </Switch>
       </Router>
     </div>

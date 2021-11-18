@@ -3,15 +3,12 @@ import React from "react";
 //import { Link } from "react-router-dom";
 import user from '../assets/user.png';
 import '../Styles/_profile.scss';
-import { signOut } from "firebase/auth"
-import { auth } from '../firebase-config'
+
+
 import { Link } from "react-router-dom";
 
 const ProfileView: React.FC = () => {
 
-    const signout = async () => {
-        await signOut(auth)
-    }
 
     return (
         <div className="profileDiv">
@@ -28,7 +25,7 @@ const ProfileView: React.FC = () => {
             </section>
             <button>Save profile</button>
             <Link to="/">
-                <button onClick={signout}>Sign out</button>
+                <button >Sign out</button>
             </Link>
         </div>
     );

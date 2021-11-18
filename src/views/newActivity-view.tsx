@@ -1,11 +1,10 @@
 // @ts-nocheck
 import React from "react";
-import { Link } from "react-router-dom";
 import '../Styles/_activity.scss';
+import { getFirestore  } from "firebase/firestore"
 
 
 const NewActivityView: React.FC = () => {
-
 
     return (
         <div className="newActivityDiv">
