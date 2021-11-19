@@ -23,8 +23,10 @@
         cursor: auto;
         background: #dddddd;
         color: $text-color;
+        box-shadow: none;
         &:hover {
             color: $text-color;
+            box-shadow: none;
         }
     }
 }
@@ -42,4 +44,8 @@
     width: 50px;
     height: 50px;
     margin-right: 10px;
+    img {
+        width: 48px;
+        height: 48px;
+    }
 }

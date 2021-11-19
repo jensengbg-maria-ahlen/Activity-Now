@@ -1,9 +1,10 @@
 // @ts-nocheck
 import React from "react";
 import YourActivity from "../Components/yourActivities"
-import '../Styles/_landing.scss';
 import FollowedTopics from "../Components/followedTopics";
 import HotTopics from "../Components/hotTopics";
+
+import '../Styles/_landing.scss';
 
 const LandingView: React.FC = () => {
     return (

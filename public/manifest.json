@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Activity Today",
+  "name": "Activity Today",
   "icons": [
     {
       "src": "favicon.ico",
@@ -16,9 +16,16 @@
       "src": "logo.png",
       "type": "image/png",
       "sizes": "512x512"
+    }, 
+    {
+      "purpose": "any maskable",
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "scope": "/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

@@ -2,13 +2,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import {
-    signInWithPopup,
-    signInWithEmailAndPassword,
-    GoogleAuthProvider,
-    FacebookAuthProvider
-} from "firebase/auth";
-import { auth } from '../firebase-config'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, signInWithGoogle, signInWithFacebook } from '../firebase-config'
 
 import googleImg from '../assets/google.png';
 import facebookImg from '../assets/facebook.png';
@@ -22,8 +17,6 @@ const LoginView = () => {
     const [loginPwd, setLoginPassword] = useState('')
     const [errors, setErrors] = useState([]);
     const [disabled, setDisabled] = useState(true);
-    const googleProvider = new GoogleAuthProvider();
-    const facebookProvider = new FacebookAuthProvider();
 
     const loginWithCredentials = async () => {
         try {
@@ -31,56 +24,12 @@ const LoginView = () => {
             console.log(user)
         } catch (error) {
             console.log(error.message)
-            if(error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
+            if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
                 let validationErrors = [];
-                validationErrors.push("password-no-match");
+                validationErrors.push("password-no-match", "email-no-match");
                 setErrors(validationErrors);
             }
         }
-    }
-
-    const loginWithGoogle = () => {
-        signInWithPopup(auth, googleProvider).then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-
-            // The signed-in user info.
-            const user = result.user;
-
-        }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-
-            // The email of the user's account used.
-            const email = error.email;
-
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-        })
-    }
-
-    const loginWithFacebook = () => {
-        signInWithPopup(auth, facebookProvider).then((result) => {
-            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-            const credential = FacebookAuthProvider.credentialFromResult(result);
-            const accessToken = credential.accessToken;
-
-            // The signed-in user info.
-            const user = result.user;
-
-        }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-
-            // The email of the user's account used.
-            const email = error.email;
-
-            // The AuthCredential type that was used.
-            const credential = FacebookAuthProvider.credentialFromError(error);
-        })
     }
 
     const validateEmail = (email) => {
@@ -103,44 +52,50 @@ const LoginView = () => {
                 <div className="login-view__form-div">
                     <form className="login-view__form">
                         <div className="login-view__input-form">
-                            <p className="caption">Email</p>
-                            <input
-                                style={{
-                                    border: errors.includes("email-not-valid") ? 
-                                    "2px solid #BB0101" : "1px solid black"
-                                }}
-                                type="email"
-                                onChange={(e) => {
-                                    setLoginEmail(e.target.value)
-                                    let validationErrors: string[] = [...errors].filter(
-                                        (error) => error !== "email-not-valid"
-                                    )
-                                    if (!validateEmail(e.target.value) && validationErrors.indexOf("email-not-valid") === -1) {
-                                        validationErrors.push("email-not-valid");
-                                        setDisabled(true);
-                                    } else {
-                                        validationErrors === validationErrors.filter((error) => error !== "email-not-valid")
-                                        setDisabled(false);
-                                    }
-                                    setErrors(validationErrors);
-                                }}
-                            />
+                            <label className="caption">
+                                Email
+                                <input
+                                    style={{
+                                        border: errors.includes("email-not-valid" && "email-no-match") ?
+                                            "2px solid #BB0101" : "1px solid black"
+                                    }}
+                                    type="email"
+                                    onChange={(e) => {
+                                        setLoginEmail(e.target.value)
+                                        let validationErrors: string[] = [...errors].filter(
+                                            (error) => error !== "email-not-valid"
+                                        )
+                                        if (!validateEmail(e.target.value) && validationErrors.indexOf("email-not-valid") === -1) {
+                                            validationErrors.push("email-not-valid");
+                                            setDisabled(true);
+                                        } else {
+                                            validationErrors === validationErrors.filter((error) => error !== "email-not-valid")
+                                            setDisabled(false);
+                                        }
+                                        setErrors(validationErrors);
+                                    }}
+                                />
+                            </label>
+
                             {errors.includes("email-not-valid") ? (
                                 <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Not a valid email</p>
                             ) : null}
                         </div>
                         <div className="login-view__input-form">
-                            <p className="caption">Password</p>
-                            <input
-                                style={{
-                                    border: errors.includes("password-no-match") ? 
-                                    "2px solid #BB0101" : "1px solid black"
-                                }} 
-                                type="password" 
-                                onChange={(event) => {
-                                    setLoginPassword(event.target.value);
-                                }}
-                            ></input>
+                            <label className="caption">
+                                Password
+                                <input
+                                    style={{
+                                        border: errors.includes("password-no-match") ?
+                                            "2px solid #BB0101" : "1px solid black"
+                                    }}
+                                    type="password"
+                                    onChange={(event) => {
+                                        setLoginPassword(event.target.value);
+                                    }}
+                                />
+                            </label>
+
                             {errors.includes("password-no-match") ? (
                                 <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Email or password is incorrect</p>
                             ) : null}
@@ -151,10 +106,10 @@ const LoginView = () => {
                     </form>
                 </div>
                 <div className="login-view__buttons">
-                    <button className="google-btn" onClick={loginWithGoogle}>
+                    <button className="google-btn" onClick={signInWithGoogle}>
                         <img src={googleImg} alt="google" />
                     </button>
-                    <button className="facebook-btn" onClick={loginWithFacebook}>
+                    <button className="facebook-btn" onClick={signInWithFacebook}>
                         <img src={facebookImg} alt="facebook" />
                     </button>
                     <button disabled={disabled} className="login-btn" onClick={loginWithCredentials} type="submit">Login</button>

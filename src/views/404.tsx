@@ -1,12 +1,11 @@
-import React from "react";
 import errorImg from "../assets/404.jpg";
-import "../Styles/_error-url.scss";
+import "../Styles/_not-found.scss";
 
-const ErrorUrl = () => {
+const NotFound = () => {
     return (
-        <article className="error-url">
+        <article className="not-found">
             <h1 className="title title--h1 title--bold">404 Page not found</h1>
-            <div className="error-url__image">
+            <div className="not-found__image">
                 <img src={errorImg} alt="404 error" />
             </div>
             <button className="go-back-btn">Go Back</button>
@@ -14,4 +13,4 @@ const ErrorUrl = () => {
     )
 }
 
-export default ErrorUrl;
+export default NotFound;

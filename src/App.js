@@ -10,7 +10,7 @@ import CalendarView from "./views/calendar-view"
 import NewActivityView from "./views/newActivity-view"
 import EditView from "./views/editActivity-view"
 import YourActivities from "./views/yourActivities"
-import ErrorUrl from "./views/errorUrl"
+import NotFound from "./views/404"
 
 import logo from './assets/logo.png';
 import './Styles/_app.scss';
@@ -23,16 +23,17 @@ function App() {
       </header>
       <Router>
         <Switch>
-          <Route exact path="/"  component={LoginView}/>
+          <Route exact path="/" component={LoginView}/>
           <Route exact path="/signup" component={SingupView}/>
           <Route exact path="/forgot" component={ForgotPasswordPage} />
-          <Route exact path="/landing" component={LandingView}/>
+
+              
           <Route exact path="/profile" component={ProfileView}/>
           <Route exact path="/calendar" component={CalendarView}/>
           <Route exact path="/createactivity" component={NewActivityView}/>
           <Route exact path="/edit" component={EditView}/>
           <Route exact path="/youractivities" component={YourActivities} />
-          <Route exact path="/404" component={ErrorUrl} />
+          <Route exact path="*" component={NotFound} />
         </Switch>
       </Router>
     </div>

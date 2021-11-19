@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAylF1mA1FSK_BAmpwKj4XYu8lfv3pffSE",
@@ -16,5 +15,26 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const auth = getAuth(app);
-  
+
 export { auth, db }
+
+
+const provider = new GoogleAuthProvider()
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, provider).then((result) => {
+    console.log(result)
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+}
+
+const providerFb = new FacebookAuthProvider()
+export const signInWithFacebook = () => {
+  signInWithPopup(auth, providerFb).then((result) => {
+    console.log(result)
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+}

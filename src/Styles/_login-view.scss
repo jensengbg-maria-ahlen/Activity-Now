@@ -63,11 +63,15 @@
         align-items: flex-start;
         margin-bottom: 16px;
 
-        input {
+        label {
             width: 100%;
-            border-radius: 5px;
-            border: solid 1px;
-            height: 2rem;
+
+            input {
+                width: 100%;
+                border-radius: 5px;
+                border: solid 1px;
+                height: 2rem;
+            }
         }
 
         .paragraph {
