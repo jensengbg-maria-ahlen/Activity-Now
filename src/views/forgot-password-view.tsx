@@ -4,14 +4,10 @@ import { Link } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from '../firebase-config'
 
-import infoImg from '../assets/info.png';
-
+import ToggleInfo from "../Components/toggleInfo";
 import '../Styles/_login-view.scss';
-import "../Styles/_toggle-info.scss";
-
 
 const ForgotPasswordPage = () => {
-    const [isShown, setIsShown] = useState(false);
     const [errors, setErrors] = useState([]);
     const [loginEmail, setLoginEmail] = useState('');
     const [disabled, setDisabled] = useState(true);
@@ -94,19 +90,7 @@ const ForgotPasswordPage = () => {
                     <button disabled={disabled} className="forgot-btn" onClick={forgotPass}>Reset password</button>
                 </div>
             </article>
-
-            <div className="toggle-info"
-                onClick={() => setIsShown(!isShown)}
-            >
-                <img className="toggle-info__info-img" src={infoImg} alt="info" />
-                {isShown && (
-                    <div className="toggle-info__info-text">
-                        <p className=".caption caption--bold">
-                            info about activity today, stuff you agree too when signing up
-                        </p>
-                    </div>
-                )}
-            </div>
+            <ToggleInfo toggleText="Check your trash folder if no email has been received." />
         </React.Fragment>
     )
 }

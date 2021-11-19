@@ -5,19 +5,18 @@ import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from '../firebase-config'
 
-import infoImg from '../assets/info.png';
 import googleImg from '../assets/google.png';
 import facebookImg from '../assets/facebook.png';
 
+import ToggleInfo from "../Components/toggleInfo";
 import '../Styles/_login-view.scss';
-import "../Styles/_toggle-info.scss";
 
 const SignupView: React.FC = () => {
-    const [isShown, setIsShown] = useState(false);
     const [registerEmail, setRegisterEmail] = useState("");
     const [password, setPassword] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [disabled, setDisabled] = useState(true);
 
     const validateEmail = (email) => {
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -75,15 +74,16 @@ const SignupView: React.FC = () => {
                                 type="email"
                                 onChange={(e) => {
                                     setRegisterEmail(e.target.value)
-                                }}
-                                onBlur={(e) => {
+
                                     let validationErrors: string[] = [...errors].filter(
                                         (error) => error !== "email-not-valid"
                                     )
                                     if (!validateEmail(e.target.value) && validationErrors.indexOf("email-not-valid") === -1) {
                                         validationErrors.push("email-not-valid");
+                                        setDisabled(true);
                                     } else {
                                         validationErrors === validationErrors.filter((error) => error !== "email-not-valid")
+                                        setDisabled(false);
                                     }
                                     setErrors(validationErrors);
                                 }}
@@ -130,24 +130,11 @@ const SignupView: React.FC = () => {
                     <button className="facebook-btn" >
                         <img src={facebookImg} alt="facebook" />
                     </button>
-                    <button className="create-btn" onClick={register}> Create User</button>
+                    <button disabled={disabled} className="create-btn" onClick={register}> Create User</button>
                 </div>
             </article>
-            <div className="toggle-info"
-                onClick={() => setIsShown(!isShown)}
-            >
-                <img className="toggle-info__info-img" src={infoImg} alt="info" />
-                {isShown && (
-                    <div className="toggle-info__info-text">
-                        <p className=".caption caption--bold">
-                            info about activity today, stuff you agree too when signing up
-                        </p>
-                    </div>
-
-                )}
-            </div>
+            <ToggleInfo toggleText="info about activity today, stuff you agree too when signing up" />
         </React.Fragment>
-
     );
 }
 export default SignupView;
