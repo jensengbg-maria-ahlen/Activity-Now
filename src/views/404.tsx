@@ -1,3 +1,6 @@
+// @ts-nocheck
+import React from "react";
+
 import errorImg from "../assets/404.jpg";
 import "../Styles/_not-found.scss";
 
