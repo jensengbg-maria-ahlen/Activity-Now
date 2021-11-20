@@ -1,81 +1,119 @@
-.header2 {
-    color: #0C5843;
-    margin: 0;
-    margin-right: 30rem;
-}
-.error {
-    color: rgb(187, 0, 0);
-    margin-top: 0;
-    font-weight: bolder;
-}
+@import "./colors";
 
-.toggleDiv {
-    margin-left: 60rem;
-}
-
-a {
-    text-decoration: none;
-}
-
-.mainForm {
-    margin-top: 4rem;
+.login-view {
+    margin: 0 auto;
+    max-width: 350px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        width: 120%;
+        .link {
+            text-decoration: none;
+            margin-top: 12px;
+        }
+        .title,
+        .paragraph {
+            color: $dark-green;
+        }
+    }
+
+    &__form-div {
+        background-color: $light-green;
+        border-radius: 10px;
+        width: 100%;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
+    &__input-form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 16px;
+        width: 100%;
+
+        input {
+            border-radius: 5px;
+            border: solid 1px;
+            height: 2rem;
+            width: 100%;
+        }
+    }
+    &__buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin: 0;
+        width: 120%;
+        
+        .login-btn, .create-btn {
+            margin-left: auto;
+        }
+    }
 }
 
-.formDiv {
-    background-color: #87BA77;
-    border-radius: 10px;
-    padding: 3rem;
+.toggle-info {
+    position: relative;
     display: flex;
-    flex-direction: column;
-}
-h5 {
-    margin: 0;
-}
-.signup {
-    color: #0C5843;
-}
-
-.google {
-    margin-right: 30rem;
-}
-
-input {
-    border-radius: 5px;
-    min-width: 30rem;
-    border: solid 1px;
-    height: 2rem;
-}
-
-.login-head {
-    display: flex;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-end;
-}
-
-.inputDiv {
-    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin-top: .5rem;
-}
-
-.loginBtn {
-    height: 3rem;
-    width: 6rem;
-    margin-top: 1rem;
-    text-align: center;
-    cursor: pointer;
-    background-color: white;
-    border-radius: 5px;
-    font-weight: bold;
-    border: solid 1px ;
+    &__info-img {
+        width: 50px;
+        height: 50px;
+        margin-left: auto;
+    }
+    &__info-text {
+        margin-left: auto;
+        background: $white;
+        position: absolute;
+        border-radius: 8px;
+        z-index: 2;
+        padding: 4px;
+        top: -100px;
+        right: 10px;
+        width: 300px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        transition: transform 0.25 ease;
+        border: 1px solid #dcdcdc;
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            width: 0;
+            height: 0;
+            right: 5px;
+            border-style: solid;
+            border-width: 8px 8px 0 8px;
+            border-color: $white transparent transparent transparent;
+            transform: translateY(-100%) translateX(-50%);
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: -17px;
+            width: 0;
+            height: 0;
+            right: 5px;
+            border-style: solid;
+            border-width: 8.5px 8.5px 0 8.5px;
+            border-color: $background transparent transparent transparent;
+            transform: translateY(-100%) translateX(-50%);
+            z-index: 0;
+        }
+    }
 }

@@ -2,9 +2,7 @@
 import React from "react";
 import '../Styles/_landing.scss';
 
-
 const YourActivity: React.FC = () => {
-
     return (
         <>
             <div>

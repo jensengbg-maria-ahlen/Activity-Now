@@ -1,0 +1,70 @@
+@import "./colors";
+@import url('https://fonts.googleapis.com/css2?family=Saira');
+
+.title {
+    color: $text-color;
+    font-family: 'Saira', sans-serif;
+    font-weight: normal;
+    line-height: normal;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    &--h1 {
+        font-size: 26px;
+    }
+    &--h2 {
+        font-size: 22px;
+    }
+    &--h3 {
+        font-size: 18px;
+    }
+    &--bold {
+        font-weight: bold;
+    }
+    &--no-spacing {
+        margin-bottom: 0;
+    }
+}
+
+.paragraph {
+    color: $text-color;
+    font-family: 'Saira', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: normal;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    &--bold {
+        font-weight: bold;
+    }
+    &--italic {
+        font-style: italic;
+    }
+    &--small {
+        font-size: 14px;
+    }
+    &--no-spacing {
+        margin-bottom: 0;
+    }
+    &--error {
+        color: $error-text;
+    }
+}
+
+.caption {
+    color: $text-color;
+    font-family: 'Saira', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: normal;
+    margin-bottom: 8px;
+    margin-top: 0px;
+    &--bold {
+        font-weight: bold;
+    }
+    &--italic {
+        font-style: italic;
+    }
+    &--no-spacing {
+        margin-bottom: 0;
+    }
+}

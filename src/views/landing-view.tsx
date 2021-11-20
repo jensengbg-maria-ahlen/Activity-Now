@@ -6,7 +6,6 @@ import FollowedTopics from "../Components/followedTopics";
 import HotTopics from "../Components/hotTopics";
 
 const LandingView: React.FC = () => {
-
     return (
         <>
             <article className="mainLand">

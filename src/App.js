@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import logo from './assets/logo.png';
 import './Styles/_app.scss';
 import LoginView from "../src/views/login-view"
@@ -10,15 +10,20 @@ import NewActivityView from "./views/newActivity-view"
 import EditView from "./views/editActivity-view"
 import YourActivities from "./views/yourActivities"
 import ForgotPasswordPage from "./views/forgotpwd"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Redirect, useLocation } from "react-router-dom"
+import { useAuth } from './contexts/authContext'
 
 
 function App() {
-
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('.../sw.js ')
+    .then( (reg) => console.log('service worker registered', reg))
+    .catch( (err) => console.log('service worker not registered', err))
+}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="app">
+      <header className="app__header">
+        <img src={logo} className="app__logo" alt="logo" />
       </header>
       <Router>
         <Switch>
@@ -36,5 +41,8 @@ function App() {
     </div>
   );
 }
+
+
+
 
 export default App;

@@ -2,10 +2,7 @@
 import React from "react";
 import '../Styles/_activity.scss';
 
-
 const EditView: React.FC = () => {
-
-
     return (
         <div className="newActivityDiv">
             <section>

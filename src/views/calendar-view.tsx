@@ -3,10 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import '../Styles/_activity.scss';
 
-
 const CalendarView: React.FC = () => {
-
-
     return (
         <div className="calendarDiv">
             <section>

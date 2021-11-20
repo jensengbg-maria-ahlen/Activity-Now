@@ -1,16 +1,29 @@
 // @ts-nocheck
-import { useState } from "react"
+import {
+    sendPasswordResetEmail
+} from "firebase/auth";
+import { auth } from '../firebase-config'
+import {useState} from "react"
 
-
-
-// i dont get an email, but no errors 
 export default function ForgotPasswordPage() {
 
-   
+    const [loginEmail, setLoginEmail] = useState('')
+    //forgotPass works ok
+    const forgotPass = async () => {
+        const sendMail = await sendPasswordResetEmail(auth, loginEmail)
+        console.log(sendMail)
+    }
+
+
     return (
         <>
             <form id='email'>
-                <h2>forgot password</h2>
+                <input
+                    type="email"
+                    onChange={(e) => {
+                        setLoginEmail(e.target.value)
+                    }} />
+                <button onClick={forgotPass}>forgot password</button>
             </form>
         </>
     )
