@@ -8,8 +8,6 @@ import GetFromBackend from "../hooks/getFromBackend";
 const YourActivities: React.FC = () => {
     const { docs } = GetFromBackend("activities");  
     
-    //Need to send props with id?  
-
     return (
         <>
             <article className="mainLand">

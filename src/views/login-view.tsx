@@ -1,13 +1,10 @@
 // @ts-nocheck
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useHistory } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, signInWithGoogle, signInWithFacebook } from '../firebase-config'
-
 import googleImg from '../assets/google.png';
 import facebookImg from '../assets/facebook.png';
-
 import ToggleInfo from "../Components/toggleInfo";
 import '../Styles/_login-view.scss';
 
@@ -16,11 +13,12 @@ const LoginView = () => {
     const [loginPwd, setLoginPassword] = useState('')
     const [errors, setErrors] = useState([]);
     const [disabled, setDisabled] = useState(true);
+    const history = useHistory()
 
     const loginWithCredentials = async () => {
         try {
-            const user = await signInWithEmailAndPassword(auth, loginEmail, loginPwd)
-            console.log(user)
+            await signInWithEmailAndPassword(auth, loginEmail, loginPwd)
+            history.push("/landing")            
         } catch (error) {
             console.log(error.message)
             if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {

@@ -1,5 +1,3 @@
-//FUNKA
-
 // @ts-nocheck
 import React from "react";
 import {useState} from "react"
@@ -22,7 +20,6 @@ const NewActivityView: React.FC = () => {
         console.log("The new ID is: " + docRef.id);
         setTopic(""), setDesc("")
     }
-
 
     return (
         <div className="newActivityDiv">

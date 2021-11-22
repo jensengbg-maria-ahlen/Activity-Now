@@ -1,13 +1,10 @@
 // @ts-nocheck
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth, signInWithGoogle, signInWithFacebook } from '../firebase-config'
-
 import googleImg from '../assets/google.png';
 import facebookImg from '../assets/facebook.png';
-
 import ToggleInfo from "../Components/toggleInfo";
 import '../Styles/_login-view.scss';
 
@@ -46,6 +43,7 @@ const SignupView: React.FC = () => {
                     registerEmail,
                     registerPassword
                 );
+                setDisabled(true)
                 console.log(user);
             } catch (error) {
                 console.log(error.message);

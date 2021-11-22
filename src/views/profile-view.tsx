@@ -2,13 +2,9 @@
 import React from "react";
 import user from '../assets/user.png';
 import '../Styles/_profile.scss';
-
-
 import { Link } from "react-router-dom";
 
 const ProfileView: React.FC = () => {
-
-
     return (
         <div className="profileDiv">
             <article className="profileArt">
