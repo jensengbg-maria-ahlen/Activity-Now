@@ -1,8 +1,7 @@
 // @ts-nocheck
-import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Authentication } from "./hooks/authentication"
-import PrivateRoute from "./Components/protectedRoute";
+import { PrivateRoute } from "./Components/PrivateRoute";
 
 import LoginView from "../src/views/login-view"
 import SingupView from "../src/views/signup-view"
@@ -30,14 +29,15 @@ function App() {
             <Route exact path="/" component={LoginView}/>
             <Route exact path="/signup" component={SingupView}/>
             <Route exact path="/forgot" component={ForgotPasswordPage} />
-            <Route exact path="*" component={NotFound} />
             
             <PrivateRoute exact path="/landing" component={LandingView} />
             <PrivateRoute exact path="/profile" component={ProfileView} />
             <PrivateRoute exact path="/calendar" component={CalendarView} />
             <PrivateRoute exact path="/createactivity" component={NewActivityView} />
-            <PrivateRoute exact path="/edit" component={EditView} />
+            <PrivateRoute exact path="/edit/:id" component={EditView} />
             <PrivateRoute exact path="/youractivities" component={YourActivities} />
+
+            <Route exact path="*" component={NotFound} />
             
           </Switch>
         </Authentication>

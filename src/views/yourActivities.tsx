@@ -7,6 +7,7 @@ import GetFromBackend from "../hooks/getFromBackend";
 
 const YourActivities: React.FC = () => {
     const { docs } = GetFromBackend("activities");  
+    console.log(docs)
     
     return (
         <>

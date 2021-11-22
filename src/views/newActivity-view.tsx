@@ -18,7 +18,8 @@ const NewActivityView: React.FC = () => {
         const payload = { topic, location, date, description, name};
         const docRef = await addDoc(collectionRef, payload);
         console.log("The new ID is: " + docRef.id);
-        setTopic(""), setDesc("")
+        setTopic("")
+        setDesc("")
     }
 
     return (
@@ -28,20 +29,35 @@ const NewActivityView: React.FC = () => {
             </section>
             <form className="greenArt" onSubmit={handleSubmit}>
             <h4>Name:</h4>
-                <input value={name} 
-                onChange={(e) => setName(e.target.value)}  type="text" />
+                <input 
+                    value={name} 
+                    onChange={(e) => setName(e.target.value)} 
+                    type="text"
+                />
                 <h4>Date:</h4>
-                <input value={date} 
-                onChange={(e) => setDate(e.target.value)}  type="text" />
+                <input 
+                    value={date} 
+                    onChange={(e) => setDate(e.target.value)} 
+                    type="text" 
+                />
                 <h4>Location:</h4>
-                <input value={location} 
-                onChange={(e) => setLocation(e.target.value)}  type="text" />
+                <input 
+                    value={location} 
+                    onChange={(e) => setLocation(e.target.value)} 
+                    type="text" 
+                />
                 <h4>Topic:</h4>
-                <input value={topic} 
-                onChange={(e) => setTopic(e.target.value)}  type="text" />
+                <input 
+                    value={topic} 
+                    onChange={(e) => setTopic(e.target.value)}  
+                    type="text" 
+                />
                 <h4>Description:</h4> 
-                <input value={description} 
-                onChange={(e) => setDesc(e.target.value)}  type="text" />
+                <input 
+                    value={description} 
+                    onChange={(e) => setDesc(e.target.value)} 
+                    type="text"
+                />
                 <button className="createBtn">Create activity</button>
             </form>
         </div>

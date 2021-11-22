@@ -1,5 +1,4 @@
 // @ts-nocheck
-import React from "react";
 import { useState }  from "react";
 import infoImg from '../assets/info.png';
 import "../Styles/_toggle-info.scss";
@@ -14,7 +13,7 @@ const ToggleInfo = ({toggleText} : {toggleText: any}) => {
             <img className="toggle-info__info-img" src={infoImg} alt="info" />
             {isShown && (
                 <div className="toggle-info__info-text">
-                    <p className=".caption caption--bold">
+                    <p className="caption caption--bold">
                         {toggleText}
                     </p>
                 </div>
