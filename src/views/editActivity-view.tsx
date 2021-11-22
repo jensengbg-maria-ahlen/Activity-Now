@@ -4,15 +4,24 @@ import '../Styles/_activity.scss';
 import { useState } from "react";
 import GetFromBackend from "../hooks/getFromBackend";
 import { db } from "../firebase-config";
-import { setDoc, doc } from "@firebase/firestore";
+import { setDoc, doc, deleteDoc } from "@firebase/firestore";
 
 const EditView: React.FC = () => {
     const [topic, setTopic] = useState("")
+
     const handleEdit = async(id) => {
         const docRef = doc(db, "activities", id);
         const payload = { topic }
         setDoc(docRef, payload);
-    }//Cannot find id "n.indexOf is not a function"
+
+        
+    }
+    const handleCancel = async (id) => {
+            const docRef = doc(db, "activities", id)
+            await deleteDoc(docRef);
+        }
+        
+        //Cannot find id "n.indexOf is not a function"
     return (
         <div className="newActivityDiv">
             <section>
@@ -27,7 +36,7 @@ const EditView: React.FC = () => {
                 onChange={(e) => setTopic(e.target.value)}/>
                 <h4>Description:</h4>
                 <section className="buttonSection">
-                    <button className="cancelBtn">Cancel activity</button>
+                    <button className="cancelBtn" onClick={handleCancel}>Cancel activity</button>
                     <button className="editBtn">Stop editing</button>
                     <button className="editBtn" onClick={handleEdit}>Save activity</button>
                 </section>
