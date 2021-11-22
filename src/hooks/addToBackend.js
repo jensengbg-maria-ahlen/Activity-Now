@@ -2,11 +2,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { db } from "../firebase-config";
-import { collection, addDoc, Timestamp } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore"; 
 
 const AddToBackend = (file) => {
-    const date = Timestamp.fromDate(new Date());
-
     useEffect(() => {
         const collectionRef = addDoc(collection(db, "activities"), {
             name: file.name,

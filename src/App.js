@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import { Authentication } from "./hooks/authentication"
 import { PrivateRoute } from "./Components/PrivateRoute";
 
@@ -21,17 +21,19 @@ import './Styles/_app.scss';
 function App() {
   return (
     <div className="app">
-      <header className="app__header">
-        <img src={logo} className="app__logo" alt="logo" />
-      </header>
       <Router>
+        <header className="app__header">
+          <Link to="/">
+            <img src={logo} className="app__logo" alt="logo" />
+          </Link>
+        </header>
         <Authentication>
           <Switch>
-            <Route exact path="/" component={LoginView}/>
-            <Route exact path="/signup" component={SingupView}/>
+            <Route exact path="/login" component={LoginView} />
+            <Route exact path="/signup" component={SingupView} />
             <Route exact path="/forgot" component={ForgotPasswordPage} />
-            
-            <PrivateRoute exact path="/landing" component={LandingView} />
+
+            <PrivateRoute exact path="/" component={LandingView} />
             <PrivateRoute exact path="/profile" component={ProfileView} />
             <PrivateRoute exact path="/calendar" component={CalendarView} />
             <PrivateRoute exact path="/createactivity" component={NewActivityView} />

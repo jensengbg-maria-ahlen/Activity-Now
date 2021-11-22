@@ -8,6 +8,7 @@ import facebookImg from '../assets/facebook.png';
 import ToggleInfo from "../Components/toggleInfo";
 import '../Styles/_login-view.scss';
 
+
 const LoginView = () => {
     const [loginEmail, setLoginEmail] = useState('')
     const [loginPwd, setLoginPassword] = useState('')
@@ -18,7 +19,7 @@ const LoginView = () => {
     const loginWithCredentials = async () => {
         try {
             await signInWithEmailAndPassword(auth, loginEmail, loginPwd)
-            history.push("/landing")            
+            history.push("/")            
         } catch (error) {
             console.log(error.message)
             if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
