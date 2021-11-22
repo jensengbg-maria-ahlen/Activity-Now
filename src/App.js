@@ -36,7 +36,7 @@ function App() {
           <Route exact path="/profile" component={ProfileView}/>
           <Route exact path="/calendar" component={CalendarView}/>
           <Route exact path="/createactivity" component={NewActivityView}/>
-          <Route exact path="/edit/${id}" component={EditView}/>
+          <Route exact path="/edit/:id" component={EditView}/>
           <Route exact path="/youractivities" component={YourActivities} />
           <Route exact path="*" component={NotFound} />
         </Switch>
