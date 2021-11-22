@@ -1,4 +1,5 @@
 // @ts-nocheck
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Authentication } from "./hooks/authentication"
 import { PrivateRoute } from "./Components/PrivateRoute";
@@ -38,7 +39,6 @@ function App() {
             <PrivateRoute exact path="/youractivities" component={YourActivities} />
 
             <Route exact path="*" component={NotFound} />
-            
           </Switch>
         </Authentication>
       </Router>
