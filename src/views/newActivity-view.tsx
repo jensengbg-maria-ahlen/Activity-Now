@@ -1,11 +1,9 @@
-//FUNKA
-
 // @ts-nocheck
 import React from "react";
 import {useState} from "react"
 import '../Styles/_activity.scss';
 import { db } from "../firebase-config";
-import { collection, addDoc, setDoc, doc } from "@firebase/firestore";
+import { collection, addDoc } from "@firebase/firestore";
 
 const NewActivityView: React.FC = () => {
     const [topic, setTopic] = useState("")
@@ -22,7 +20,6 @@ const NewActivityView: React.FC = () => {
         console.log("The new ID is: " + docRef.id);
         setTopic(""), setDesc("")
     }
-
 
     return (
         <div className="newActivityDiv">

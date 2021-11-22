@@ -3,7 +3,6 @@ import React from "react";
 import '../Styles/_landing.scss';
 
 const FollowedTopics: React.FC = () => {
-
     return (
         <>
             <div>

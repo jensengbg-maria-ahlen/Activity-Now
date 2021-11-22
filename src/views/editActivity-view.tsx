@@ -2,7 +2,6 @@
 import React from "react";
 import '../Styles/_activity.scss';
 import { useState } from "react";
-import GetFromBackend from "../hooks/getFromBackend";
 import { db } from "../firebase-config";
 import { setDoc, doc } from "@firebase/firestore";
 
@@ -12,7 +11,8 @@ const EditView: React.FC = () => {
         const docRef = doc(db, "activities", id);
         const payload = { topic }
         setDoc(docRef, payload);
-    }//Cannot find id "n.indexOf is not a function"
+    }
+    
     return (
         <div className="newActivityDiv">
             <section>

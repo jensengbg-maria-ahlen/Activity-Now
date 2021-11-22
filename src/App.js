@@ -1,7 +1,8 @@
 // @ts-nocheck
 import React from "react";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { Authentication } from "./hooks/authentication"
+import PrivateRoute from "./Components/protectedRoute";
 
 import LoginView from "../src/views/login-view"
 import SingupView from "../src/views/signup-view"
@@ -18,36 +19,31 @@ import logo from './assets/logo.png';
 import './Styles/_app.scss';
 
 function App() {
-  if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('.../sw.js ')
-    .then( (reg) => console.log('service worker registered', reg))
-    .catch( (err) => console.log('service worker not registered', err))
-}
   return (
     <div className="app">
       <header className="app__header">
         <img src={logo} className="app__logo" alt="logo" />
       </header>
       <Router>
-        <Switch>
-          <Route exact path="/" component={LoginView}/>
-          <Route exact path="/signup" component={SingupView}/>
-          <Route exact path="/forgot" component={ForgotPasswordPage} />
-
-              
-          <Route exact path="/profile" component={ProfileView}/>
-          <Route exact path="/calendar" component={CalendarView}/>
-          <Route exact path="/createactivity" component={NewActivityView}/>
-          <Route exact path="/edit/${id}" component={EditView}/>
-          <Route exact path="/youractivities" component={YourActivities} />
-          <Route exact path="*" component={NotFound} />
-        </Switch>
+        <Authentication>
+          <Switch>
+            <Route exact path="/" component={LoginView}/>
+            <Route exact path="/signup" component={SingupView}/>
+            <Route exact path="/forgot" component={ForgotPasswordPage} />
+            <Route exact path="*" component={NotFound} />
+            
+            <PrivateRoute exact path="/landing" component={LandingView} />
+            <PrivateRoute exact path="/profile" component={ProfileView} />
+            <PrivateRoute exact path="/calendar" component={CalendarView} />
+            <PrivateRoute exact path="/createactivity" component={NewActivityView} />
+            <PrivateRoute exact path="/edit" component={EditView} />
+            <PrivateRoute exact path="/youractivities" component={YourActivities} />
+            
+          </Switch>
+        </Authentication>
       </Router>
     </div>
   );
 }
-
-
-
 
 export default App;

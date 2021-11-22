@@ -4,13 +4,10 @@ import {Link} from "react-router-dom"
 import '../Styles/_landing.scss';
 import Upcoming from "../Components/upcoming";
 import GetFromBackend from "../hooks/getFromBackend";
-import { db } from "../firebase-config";
-import { setDoc, doc } from "@firebase/firestore";
 
 const YourActivities: React.FC = () => {
     const { docs } = GetFromBackend("activities");  
-    //Need to send props with id?  
-
+    
     return (
         <>
             <article className="mainLand">
