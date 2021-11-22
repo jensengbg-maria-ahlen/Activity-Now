@@ -10,11 +10,11 @@ const EditView: React.FC = () => {
     let { id } = useParams()
     const { docs } = GetFromBackend("activities");
     const [activity, setActivity] = useState(null)
-    const [name, setName] = useState(null)
-    const [topic, setTopic] = useState(null)
-    const [location, setLocation] = useState(null)
-    const [date, setDate] = useState(null)
-    const [description, setDesc] = useState(null)
+    const [name, setName] = useState("")
+    const [topic, setTopic] = useState("")
+    const [location, setLocation] = useState("")
+    const [date, setDate] = useState("")
+    const [description, setDesc] = useState("")
     
     const handleEdit = async () => {
         const docRef = doc(db, "activities", id);
