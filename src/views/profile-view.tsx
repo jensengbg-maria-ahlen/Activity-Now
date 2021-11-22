@@ -17,6 +17,7 @@ const ProfileView: React.FC = () => {
             </article>
             <section className="profileSect">
                 <p>Username:</p>
+                <input type="text" />
                 <p>Change password: </p>
                 <p>Your upcoming activities</p>
                 <p>Your topics: </p>

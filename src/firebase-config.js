@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from 'firebase/auth'
@@ -16,7 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const auth = getAuth(app);
-  
 export { auth, db }
 
 
@@ -38,5 +36,4 @@ export const signInWithFacebook = () => {
   .catch((error) => {
     console.log(error)
   })
-} 
-
+}

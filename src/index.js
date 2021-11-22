@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import * as serviceWorkerRegistration from '../src/serviceWorkerRegistration';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration.js';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,3 +23,4 @@ serviceWorkerRegistration.unregister();
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
+serviceWorkerRegistration.register();

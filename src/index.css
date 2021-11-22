@@ -1,19 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Saira");
+* { 
+  padding: 0; 
+  margin: 0; 
+}
 
 body, html {
   margin: 0;
   padding: 0;
-  height: 100%;
-  font-family: "Saira", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#root {
+  position: absolute;
   width: 100%;
   height: 100%;
 }
 
-code {
+@font-face {
   font-family: "Saira", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+  src: url("https://fonts.googleapis.com/css2?family=Saira");
 }

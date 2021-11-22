@@ -1,11 +1,15 @@
 // @ts-nocheck
 import React from "react";
+import {Link} from "react-router-dom"
 import '../Styles/_landing.scss';
 import Upcoming from "../Components/upcoming";
 import GetFromBackend from "../hooks/getFromBackend";
+import { db } from "../firebase-config";
+import { setDoc, doc } from "@firebase/firestore";
 
 const YourActivities: React.FC = () => {
-    const { docs } = GetFromBackend("activities");    
+    const { docs } = GetFromBackend("activities");  
+    //Need to send props with id?  
 
     return (
         <>
@@ -14,12 +18,16 @@ const YourActivities: React.FC = () => {
                 <div>
                     In Backend: 
                     {docs && docs.map((doc) => (
-                        <div key={doc.id}>
+                        <div className="temp" key={doc.id}>
                             <h1>Name: {doc.name}</h1>
                             <h3>Desc: {doc.description}</h3>
                             <h3> topic: {doc.topic}</h3>
+                            <Link to="/edit/${id}">
+                                <button >edit</button>
+                            </Link>
                         </div>
                     ))}
+                    
                 </div>
             </article>
         </>
