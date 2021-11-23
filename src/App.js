@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import { Authentication } from "./hooks/authentication"
 import { PrivateRoute } from "./Components/PrivateRoute";
 
+import NavBar from "./Components/NavBar/NavBar";
 import LoginView from "../src/views/login-view"
 import SingupView from "../src/views/signup-view"
 import ForgotPasswordPage from "./views/forgot-password-view"
@@ -22,12 +23,14 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <header className="app__header">
-          <Link to="/">
-            <img src={logo} className="app__logo" alt="logo" />
-          </Link>
-        </header>
         <Authentication>
+          <header className="app__header">
+            <Link to="/">
+              <img src={logo} className="app__logo" alt="logo" />
+            </Link>
+            <PrivateRoute component={NavBar}/>
+            
+          </header>
           <Switch>
             <Route exact path="/login" component={LoginView} />
             <Route exact path="/signup" component={SingupView} />
