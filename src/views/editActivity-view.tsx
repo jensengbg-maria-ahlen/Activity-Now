@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import GetFromBackend from "../hooks/getFromBackend";
 import { db } from "../firebase-config";
 import { setDoc, doc, deleteDoc } from "@firebase/firestore";
@@ -24,7 +24,6 @@ const EditView: React.FC = () => {
     const handleCancel = async () => {
         const docRef = doc(db, "activities", id)
         await deleteDoc(docRef);
-        console.log(docRef, 'this is docref')
     }
 
     useEffect(() => {
@@ -80,7 +79,9 @@ const EditView: React.FC = () => {
 
                         <section className="buttonSection">
                             <button className="cancelBtn" onClick={handleCancel}>Cancel activity</button>
-                            <button className="editBtn">Stop editing</button>
+                            <Link to="/youractivities"> 
+                                <button className="editBtn">Stop editing</button>
+                            </Link>
                             <button className="editBtn" onClick={handleEdit}>Save activity</button>
                         </section>
                     </article>

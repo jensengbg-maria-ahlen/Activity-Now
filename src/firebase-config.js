@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider, 
   FacebookAuthProvider, 
   signInWithPopup, 
+  signOut
 } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -22,6 +23,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const auth = getAuth(app);
 
+export const logout = () => {
+  signOut(auth)
+  }
 
 const provider = new GoogleAuthProvider()
 export const signInWithGoogle = () => {

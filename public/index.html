@@ -15,6 +15,12 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira" as="font">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Activity Today</title>
+    <script>
+      var host = "www.URL.com" || "URL.com";
+      if ((host == window.location.host) && (window.location.protocol != "https:")){
+      window.location.protocol = "https";
+      }
+      </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
