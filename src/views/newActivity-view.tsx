@@ -38,7 +38,7 @@ const NewActivityView: React.FC = () => {
                 <input 
                     value={date} 
                     onChange={(e) => setDate(e.target.value)} 
-                    type="text" 
+                    type="datetime-local" 
                 />
                 <h4>Location:</h4>
                 <input 
