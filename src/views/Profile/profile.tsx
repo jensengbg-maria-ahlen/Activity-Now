@@ -1,17 +1,17 @@
 // @ts-nocheck
 import React from "react";
-import user from '../assets/user.png';
-import '../Styles/_profile.scss';
 import { Link } from "react-router-dom";
-import {useAuth} from '../hooks/authentication'
-import {logout} from '../firebase-config'
+import {useAuth} from '../../hooks/authentication'
+import {logout} from '../../firebase-config'
+import userImg from '../../assets/user.png';
+import '../../Styles/_profile.scss';
 
-const ProfileView: React.FC = () => {
+const Profile: React.FC = () => {
     const currentUser = useAuth();
     return (
         <div className="profileDiv">
             <article className="profileArt">
-               <img className="userLogo" src={currentUser?.photoURL || user } alt="user" />
+               <img className="userLogo" src={currentUser?.photoURL || userImg } alt="user" />
                <p className="clickable">Pick new profile photo</p>
             </article>
             <section className="profileSect">
@@ -29,4 +29,4 @@ const ProfileView: React.FC = () => {
         </div>
     );
 }
-export default ProfileView;
+export default Profile;

@@ -2,13 +2,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth, signInWithGoogle, signInWithFacebook } from '../firebase-config'
-import googleImg from '../assets/google.png';
-import facebookImg from '../assets/facebook.png';
-import ToggleInfo from "../Components/toggleInfo";
-import '../Styles/_login-view.scss';
+import { auth, signInWithGoogle, signInWithFacebook } from '../../firebase-config'
+import googleImg from '../../assets/google.png';
+import facebookImg from '../../assets/facebook.png';
+import ToggleInfo from "../../Components/toggleInfo";
+import '../../Styles/_login-view.scss';
 
-const SignupView: React.FC = () => {
+const Signup: React.FC = () => {
     const [registerEmail, setRegisterEmail] = useState("");
     const [password, setPassword] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
@@ -155,4 +155,4 @@ const SignupView: React.FC = () => {
         </React.Fragment>
     );
 }
-export default SignupView;
+export default Signup;

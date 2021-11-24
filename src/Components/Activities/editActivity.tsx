@@ -1,12 +1,12 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import GetFromBackend from "../hooks/getFromBackend";
-import { db } from "../firebase-config";
 import { setDoc, doc, deleteDoc } from "@firebase/firestore";
-import '../Styles/_activity.scss';
+import GetFromBackend from "../../hooks/getFromBackend";
+import { db } from "../../firebase-config";
+import '../../Styles/_activity.scss';
 
-const EditView: React.FC = () => {
+const EditActivity: React.FC = () => {
     let { id } = useParams()
     const { docs } = GetFromBackend("activities");
     const [activity, setActivity] = useState(null)
@@ -90,4 +90,4 @@ const EditView: React.FC = () => {
         </React.Fragment>
     );
 }
-export default EditView;
+export default EditActivity;

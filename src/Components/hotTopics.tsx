@@ -2,7 +2,7 @@
 import React from "react";
 import '../Styles/_landing.scss';
 
-const HotTopics = () => {
+const HotTopics: React.FC = () => {
     return (
         <>
             <div>

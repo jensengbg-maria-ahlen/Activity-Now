@@ -1,11 +1,10 @@
 // @ts-nocheck
-import React from "react";
-import {useState} from "react"
-import '../Styles/_activity.scss';
-import { db } from "../firebase-config";
+import React, {useState} from "react";
 import { collection, addDoc } from "@firebase/firestore";
+import { db } from "../../firebase-config";
+import '../../Styles/_activity.scss';
 
-const NewActivityView: React.FC = () => {
+const NewActivity: React.FC = () => {
     const [topic, setTopic] = useState("")
     const [location, setLocation] = useState("")
     const [date, setDate] = useState("")
@@ -63,4 +62,4 @@ const NewActivityView: React.FC = () => {
         </div>
     );
 }
-export default NewActivityView;
+export default NewActivity;

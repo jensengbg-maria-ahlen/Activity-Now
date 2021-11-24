@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from "react";
-import GetFromBackend from "../hooks/getFromBackend";
 import { Link } from "react-router-dom"
+import GetFromBackend from "../hooks/getFromBackend";
 import '../Styles/_landing.scss';
 
 const Upcoming: React.FC = () => {

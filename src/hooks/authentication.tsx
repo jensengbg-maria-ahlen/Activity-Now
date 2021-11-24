@@ -1,7 +1,7 @@
-import { createContext, useContext, useState, useEffect } from "react"
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { auth } from "../firebase-config"
 import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from "../firebase-config"
 
 export const AuthContext = createContext(auth);
 
@@ -10,7 +10,7 @@ export const useAuth = () => {
     return { ...auth2, isAuthenticated: auth2 != null }
 }
 
-export const Authentication = ({ children }: any ) => {
+export const Authentication: React.FC = ({ children }: any ) => {
     const [currentUser, setCurrentUser] = useState(auth)
     const [loading, setLoading] = useState(true)
     const history = useHistory()
