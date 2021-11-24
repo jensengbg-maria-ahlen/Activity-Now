@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState }  from "react";
-import infoImg from '../assets/info.png';
-import "../Styles/_toggle-info.scss";
+import infoImg from '../../assets/info.png';
+import "./_toggle-info.scss";
 
 const ToggleInfo: React.FC = ({toggleText} : {toggleText: any}) => {
     const [isShown, setIsShown] = useState(false);

@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth, signInWithGoogle, signInWithFacebook } from '../../firebase-config'
 import googleImg from '../../assets/google.png';
 import facebookImg from '../../assets/facebook.png';
-import ToggleInfo from "../../Components/toggleInfo";
+import ToggleInfo from "../../Components/ToggleInfo/toggleInfo";
 import '../../Styles/_login-view.scss';
 
 const Signup: React.FC = () => {

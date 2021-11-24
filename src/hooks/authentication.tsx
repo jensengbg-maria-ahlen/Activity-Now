@@ -19,9 +19,14 @@ export const Authentication: React.FC = ({ children }: any ) => {
         const unsub = onAuthStateChanged(auth, (user: any) => {
             setCurrentUser(user)
             setLoading(false)
-            if (user) {
+            if (user && 
+                    (history.location.pathname === "/login" 
+                    || history.location.pathname === "/signup" 
+                    || history.location.pathname === "/forgot"
+                )) {
                 history.push("/") 
-            } else {
+            } 
+            if (!user) {
                 history.push("/login") 
             }            
         })
