@@ -1,6 +1,7 @@
 @import "./typography";
 @import "./colors";
 @import "./breakpoints";
+@import "./keyframes";
 
 .nav-bar {
   display: flex;
@@ -40,6 +41,7 @@
     align-items: center;
     justify-content: space-around;
     @include breakpoint("sm", "down") { 
+      animation: slide-down-fade-in 0.25s ease forwards;
       display: flex;
       flex-direction: column;
       position: absolute;

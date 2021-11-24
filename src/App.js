@@ -1,5 +1,4 @@
 // @ts-nocheck
-import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import { Authentication } from "./hooks/authentication"
 import { PrivateRoute } from "./Components/PrivateRoute";
@@ -18,6 +17,7 @@ import NotFound from "./views/404"
 
 import logo from './assets/logo.png';
 import './Styles/_app.scss';
+
 
 function App() {
   return (
