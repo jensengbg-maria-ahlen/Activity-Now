@@ -1,9 +1,8 @@
 // @ts-nocheck
 import React from "react";
 import { Link } from "react-router-dom"
-import GetFromBackend from "../hooks/getFromBackend";
-import '../Styles/_landing.scss';
-import "../Styles/_buttons.scss";
+import GetFromBackend from "../../hooks/getFromBackend";
+import "../../Styles/_buttons.scss";
 
 const Upcoming: React.FC = () => {
     const { docs } = GetFromBackend("activities");

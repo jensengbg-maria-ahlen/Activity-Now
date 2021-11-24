@@ -1,7 +1,8 @@
-import NavLinks from "./NavLinks";
-import { CgMenu, CgClose } from "react-icons/cg"
-import "../../Styles/_nav.scss"
 import { useState } from "react";
+import { CgMenu, CgClose } from "react-icons/cg"
+import NavLinks from "./NavLinks";
+import "./_nav.scss"
+
 
 const MobileNavigation = () => {
     const [active, setActive] = useState(false)

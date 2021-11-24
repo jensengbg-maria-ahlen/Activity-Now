@@ -6,7 +6,7 @@ import { auth, signInWithGoogle, signInWithFacebook } from '../../firebase-confi
 import googleImg from '../../assets/google.png';
 import facebookImg from '../../assets/facebook.png';
 import ToggleInfo from "../../Components/ToggleInfo/toggleInfo";
-import '../../Styles/_login-view.scss';
+import './_auth.scss';
 
 const Signup: React.FC = () => {
     const [registerEmail, setRegisterEmail] = useState("");
@@ -92,12 +92,17 @@ const Signup: React.FC = () => {
                                         setErrors(validationErrors);
                                     }}
                                 />
-
                             </label>
 
                             {errors.includes("email-not-valid") ? (
                                 <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Not a valid email</p>
                             ) : null}
+                        </div>
+                        <div className="login-view__input-form">
+                            <label className="caption caption--bold">
+                                Username
+                                <input/>
+                            </label>
                         </div>
                         
                         <div className="login-view__input-form">

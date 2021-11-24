@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {useAuth} from '../../hooks/authentication'
 import {logout} from '../../firebase-config'
 import userImg from '../../assets/user.png';
-import '../../Styles/_profile.scss';
+import './_profile.scss';
 
 const Profile: React.FC = () => {
     const currentUser = useAuth();

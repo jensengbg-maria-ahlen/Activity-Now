@@ -6,7 +6,7 @@ import { auth, signInWithGoogle, signInWithFacebook } from '../../firebase-confi
 import googleImg from '../../assets/google.png';
 import facebookImg from '../../assets/facebook.png';
 import ToggleInfo from "../../Components/ToggleInfo/toggleInfo";
-import '../../Styles/_login-view.scss';
+import './_auth.scss';
 
 
 const Login: React.FC = () => {

@@ -1,7 +1,6 @@
 // @ts-nocheck
 import React from "react";
 import { Link } from "react-router-dom";
-import '../../Styles/_activity.scss';
 
 const Calendar: React.FC = () => {
     return (

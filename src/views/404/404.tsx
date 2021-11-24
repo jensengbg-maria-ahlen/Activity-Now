@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from "react";
 import errorImg from "../../assets/404.jpg";
-import "../../Styles/_not-found.scss";
+import "./_not-found.scss";
 
 const NotFound: React.FC = () => {
     return (

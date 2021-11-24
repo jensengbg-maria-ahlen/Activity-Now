@@ -2,7 +2,8 @@
 @import "../../Styles/keyframes";
 
 .confirm-deletion {
-    
+    margin-right: 10px;
+    margin-bottom: 10px;
     &__content {
         animation: slide-down-fade-in 0.25s ease forwards;
         margin-left: auto;

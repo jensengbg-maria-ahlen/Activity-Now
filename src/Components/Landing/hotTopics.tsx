@@ -1,6 +1,5 @@
 // @ts-nocheck
 import React from "react";
-import '../Styles/_landing.scss';
 
 const HotTopics: React.FC = () => {
     return (

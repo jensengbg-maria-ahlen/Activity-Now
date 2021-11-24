@@ -1,15 +1,14 @@
 // @ts-nocheck
 import React from "react";
-import '../Styles/_landing.scss';
 
-const YourActivity: React.FC = () => {
+const FollowedTopics: React.FC = () => {
     return (
         <>
             <div>
-                    <h3 className="orangeHeader">Your activities</h3>
-                    <div className="greenDiv">
+                    <h3 className="greenHeader">Topics you follow</h3>
+                    <div className="midDiv">
                         <article className="landingArt">
-                            <h4>11/11</h4>
+                            <h4 className="redHeader">11/11</h4>
                             <p className="activity">Tea-party!</p>
                         </article>
                     </div>
@@ -17,4 +16,4 @@ const YourActivity: React.FC = () => {
         </>
     );
 }
-export default YourActivity;
+export default FollowedTopics;

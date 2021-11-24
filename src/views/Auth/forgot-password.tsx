@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from '../../firebase-config'
 import ToggleInfo from "../../Components/ToggleInfo/toggleInfo";
-import '../../Styles/_login-view.scss';
+import './_auth.scss';
 
 const ForgotPassword: React.FC = () => {
     const [errors, setErrors] = useState([]);

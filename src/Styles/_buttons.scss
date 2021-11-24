@@ -35,9 +35,15 @@ button {
     }
 }
 
-
 .forgot-btn {
     width: 140px;
+}
+
+.cancel-btn {
+    &:hover {
+        background-color: $orange;
+        color: $white;
+    } 
 }
 
 .delete-btn, .remove-btn {

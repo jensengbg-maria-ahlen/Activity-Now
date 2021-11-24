@@ -1,5 +1,5 @@
 import NavLinks from "./NavLinks";
-import "../../Styles/_nav.scss"
+import "./_nav.scss"
 
 const Navigation = () => {
     return (

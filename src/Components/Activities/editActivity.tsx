@@ -5,7 +5,7 @@ import { setDoc, doc, deleteDoc } from "@firebase/firestore";
 import GetFromBackend from "../../hooks/getFromBackend";
 import { db } from "../../firebase-config";
 import ConfirmDeletion from "../HandleConfirm/confirmDeletetion";
-import '../../Styles/_activity.scss';
+import "./_activity.scss";
 import "../../Styles/_buttons.scss";
 
 const EditActivity: React.FC = () => {
@@ -45,51 +45,65 @@ const EditActivity: React.FC = () => {
     return (
         <React.Fragment >
             {activity ? (
-                <div className="newActivityDiv" >
-                    <section>
-                        <h2>Edit activity, {activity.name}</h2>
-                    </section>
-                    <article className="greenArt">
-                        <h4>Name:</h4>
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <h4>Date:</h4>
-                        <input
-                            type="text"
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                        />
-                        <h4>Location:</h4>
-                        <input
-                            type="text"
-                            value={location}
-                            onChange={(e) => setLocation(e.target.value)}
-                        />
-                        <h4>Topic:</h4>
-                        <input
-                            type="text"
-                            value={topic}
-                            onChange={(e) => setTopic(e.target.value)}
-                        />
-                        <h4>Description:</h4>
-                        <input
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDesc(e.target.value)}
-                        />
-                        <section className="buttonSection">
+                <div className="activity">
+                    <div className="activity__content">
+                        <h2 className="title title--h2">Edit activity:
+                            <span className="title--bold"> {activity.name}</span>
+                        </h2>
+                        <form className="activity__form">
+                            <label className="activity__form--item">
+                                <p className="paragraph paragraph--bold">Name:</p>
+                                <input
+                                    type="text"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                            </label>
+                            <label className="activity__form--item">
+                                <p className="paragraph paragraph--bold">Date:</p>
+                                <input
+                                    type="text"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                />
+                            </label>
+                            <label className="activity__form--item">
+                                <p className="paragraph paragraph--bold">Location:</p>
+                                <input
+                                    type="text"
+                                    value={location}
+                                    onChange={(e) => setLocation(e.target.value)}
+                                />
+                            </label>
+                            <label className="activity__form--item">
+                                <p className="paragraph paragraph--bold">Topic:</p>
+                                <input
+                                    type="text"
+                                    value={topic}
+                                    onChange={(e) => setTopic(e.target.value)}
+                                />
+                            </label>
+                            <label className="activity__form--item">
+                                <p className="paragraph paragraph--bold">Description:</p>
+                                <input
+                                    type="text"
+                                    value={description}
+                                    onChange={(e) => setDesc(e.target.value)}
+                                />
+                            </label>
+                        </form>
+                        <div className="activity__buttons">
                             <ConfirmDeletion setConfirmed={handleCancel} />
-                            <Link to="/youractivities">
-                                <button className="edit-btn">Stop editing</button>
-                            </Link>
-                            <Link to="/youractivities">
-                                <button className="edit-btn" onClick={handleEdit}>Save activity</button>
-                            </Link>
-                        </section>
-                    </article>
+                            <div className="activity__buttons--edit">
+                                <Link to="/youractivities">
+                                    <button className="edit-btn">Stop editing</button>
+                                </Link>
+                                <Link to="/youractivities">
+                                    <button className="edit-btn" onClick={handleEdit}>Save activity</button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             ) : null}
         </React.Fragment>

@@ -1,7 +1,6 @@
 // @ts-nocheck
 import React from "react";
-import Upcoming from "../../Components/upcoming";
-import '../../Styles/_landing.scss';
+import Upcoming from "../../Components/Upcoming/upcoming";
 
 
 const YourActivities: React.FC = () => {    
