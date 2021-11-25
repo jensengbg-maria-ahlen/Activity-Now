@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth, signInWithGoogle, signInWithFacebook } from '../../firebase-config'
 import googleImg from '../../assets/google.png';
@@ -14,6 +14,7 @@ const Signup: React.FC = () => {
     const [registerPassword, setRegisterPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [disabled, setDisabled] = useState(true);
+    const history = useHistory();
 
     const validateEmail = (email) => {
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -38,15 +39,14 @@ const Signup: React.FC = () => {
         }
         if (valid && password === registerPassword) {
             try {
-                const user = await createUserWithEmailAndPassword(
+                await createUserWithEmailAndPassword(
                     auth,
                     registerEmail,
                     registerPassword
                 );
                 setDisabled(true)
-                console.log(user);
+                history.push("/profile")
             } catch (error) {
-                console.log(error.message);
                 if (error.message === "auth/weak-password") {
                     let validationErrors = [];
                     validationErrors.push("password-is-weak");
@@ -98,13 +98,7 @@ const Signup: React.FC = () => {
                                 <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Not a valid email</p>
                             ) : null}
                         </div>
-                        <div className="login-view__input-form">
-                            <label className="caption caption--bold">
-                                Username
-                                <input/>
-                            </label>
-                        </div>
-                        
+                                                
                         <div className="login-view__input-form">
                             <label className="caption caption--bold">
                                 Password

@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import "firebase/auth"
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import { 
   getAuth, 
   GoogleAuthProvider, 
@@ -22,6 +23,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const auth = getAuth(app);
+const projectStorage = getStorage();
 
 export const logout = () => {
   signOut(auth)
@@ -47,4 +49,4 @@ export const signInWithFacebook = () => {
   })
 }
 
-export {auth, db, app}
+export {auth, db, app, projectStorage}
