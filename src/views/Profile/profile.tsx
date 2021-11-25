@@ -40,6 +40,7 @@ const Profile: React.FC = () => {
     const handleSubmit = async () => {
         if (itemExist) {
             const docRef = doc(db, "profiles", uid)
+            console.log(file);
             const payload = { 
                 file: {
                     name: file.name,
@@ -47,8 +48,9 @@ const Profile: React.FC = () => {
                 }, 
                 displayName: displayName
             };
-            const collRef = await setDoc(docRef, payload);
-            return collRef;
+            console.log("docRef körs", payload);
+            // const collRef = await setDoc(docRef, payload);
+            //return collRef;
         } else {
             const collectionRef = collection(db, "profiles")
             const payload = { 
@@ -59,6 +61,7 @@ const Profile: React.FC = () => {
                 displayName: displayName, 
                 uid: uid,
             };
+            console.log("collectionRef körs", payload);
             const docRef = await addDoc(collectionRef, payload);
             return docRef;
         }
@@ -73,7 +76,7 @@ const Profile: React.FC = () => {
                 setDisplayName(currentUser.displayName);
             }
         }
-        if (itemExist) {
+        if (itemExist.uid) {
             if (itemExist.displayName || itemExist.file) {
                 setDisplayName(itemExist.displayName)
                 setCurrentImg(itemExist.file.url)
