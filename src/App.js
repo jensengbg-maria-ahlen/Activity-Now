@@ -9,7 +9,7 @@ import Singup from "./views/Auth/signup"
 import ForgotPassword from "./views/Auth/forgot-password"
 import Home from "./views/HomePage/home"
 import Profile from "./views/Profile/profile"
-import Calendar from "./views/Calendar/calendar"
+import CalendarView from "./views/Calendar/calendar"
 import NewActivity from "./Components/Activities/newActivity"
 import EditActivity from "./Components/Activities/editActivity"
 import YourActivities from "./views/Activities/yourActivities"
@@ -39,7 +39,7 @@ function App() {
 
             <PrivateRoute exact path="/" component={Home} />
             <PrivateRoute exact path="/profile" component={Profile} />
-            <PrivateRoute exact path="/calendar" component={Calendar} />
+            <PrivateRoute exact path="/calendar" component={CalendarView} />
             <PrivateRoute exact path="/createactivity" component={NewActivity} />
             <PrivateRoute exact path="/edit/:id" component={EditActivity} />
             <PrivateRoute exact path="/youractivities" component={YourActivities} />

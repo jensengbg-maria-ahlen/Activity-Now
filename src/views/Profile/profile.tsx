@@ -76,7 +76,7 @@ const Profile: React.FC = () => {
                 setDisplayName(currentUser.displayName);
             }
         }
-        if (itemExist.uid) {
+        if (itemExist) {
             if (itemExist.displayName || itemExist.file) {
                 setDisplayName(itemExist.displayName)
                 setCurrentImg(itemExist.file.url)
@@ -86,7 +86,7 @@ const Profile: React.FC = () => {
 
     return (
         <div className="profile">
-            {!itemExist && !currentUser.displayName ? (
+            {!itemExist || !currentUser.displayName ? (
                 <div className="profile__welcome">
                     <h2 className="title title--h2">Welcome new user</h2>
                     <p className="paragraph paragraph--bold">Please set a username before continue</p>
