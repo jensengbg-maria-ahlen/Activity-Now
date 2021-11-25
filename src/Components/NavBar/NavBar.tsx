@@ -1,7 +1,6 @@
 import MobileNavigation from "./MobileNavigation";
 import Navigation from "./Navigation";
-
-import "../../Styles/_nav.scss";
+import "./_nav.scss";
 
 const NavBar = () => {
   return (

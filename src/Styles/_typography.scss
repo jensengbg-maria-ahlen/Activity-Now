@@ -66,3 +66,11 @@
         margin-bottom: 0;
     }
 }
+
+input[type="text"], input[type="email"] {
+    color: $text-color;
+    font-family: 'Saira', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: normal;
+}

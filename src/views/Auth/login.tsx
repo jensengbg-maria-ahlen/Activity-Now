@@ -2,14 +2,14 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, signInWithGoogle, signInWithFacebook } from '../firebase-config'
-import googleImg from '../assets/google.png';
-import facebookImg from '../assets/facebook.png';
-import ToggleInfo from "../Components/toggleInfo";
-import '../Styles/_login-view.scss';
+import { auth, signInWithGoogle, signInWithFacebook } from '../../firebase-config'
+import googleImg from '../../assets/google.png';
+import facebookImg from '../../assets/facebook.png';
+import ToggleInfo from "../../Components/ToggleInfo/toggleInfo";
+import './_auth.scss';
 
 
-const LoginView = () => {
+const Login: React.FC = () => {
     const [loginEmail, setLoginEmail] = useState('')
     const [loginPwd, setLoginPassword] = useState('')
     const [errors, setErrors] = useState([]);
@@ -117,4 +117,4 @@ const LoginView = () => {
         </React.Fragment>
     );
 }
-export default LoginView;
+export default Login;

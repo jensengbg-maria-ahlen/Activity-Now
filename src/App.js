@@ -1,24 +1,24 @@
 // @ts-nocheck
-import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import { Authentication } from "./hooks/authentication"
-import { PrivateRoute } from "./Components/PrivateRoute";
+import { PrivateRoute } from "./hooks/PrivateRoute";
 
 import NavBar from "./Components/NavBar/NavBar";
-import LoginView from "../src/views/login-view"
-import SingupView from "../src/views/signup-view"
-import ForgotPasswordPage from "./views/forgot-password-view"
-import LandingView from "../src/views/landing-view"
-import ProfileView from "./views/profile-view"
-import CalendarView from "./views/calendar-view"
-import NewActivityView from "./views/newActivity-view"
-import EditView from "./views/editActivity-view"
-import YourActivities from "./views/yourActivities"
-import NotFound from "./views/404"
-import Location from './views/Location'
+import Login from "./views/Auth/login"
+import Singup from "./views/Auth/signup"
+import ForgotPassword from "./views/Auth/forgot-password"
+import Home from "./views/HomePage/home"
+import Profile from "./views/Profile/profile"
+import CalendarView from "./views/Calendar/calendar"
+import NewActivity from "./Components/Activities/newActivity"
+import EditActivity from "./Components/Activities/editActivity"
+import YourActivities from "./views/Activities/yourActivities"
+import NotFound from "./views/404/404"
+import Location from "./views/Location";
 
 import logo from './assets/logo.png';
 import './Styles/_app.scss';
+
 
 function App() {
   return (
@@ -33,15 +33,15 @@ function App() {
             
           </header>
           <Switch>
-            <Route exact path="/login" component={LoginView} />
-            <Route exact path="/signup" component={SingupView} />
-            <Route exact path="/forgot" component={ForgotPasswordPage} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Singup} />
+            <Route exact path="/forgot" component={ForgotPassword} />
 
-            <PrivateRoute exact path="/" component={LandingView} />
-            <PrivateRoute exact path="/profile" component={ProfileView} />
+            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute exact path="/profile" component={Profile} />
             <PrivateRoute exact path="/calendar" component={CalendarView} />
-            <PrivateRoute exact path="/createactivity" component={NewActivityView} />
-            <PrivateRoute exact path="/edit/:id" component={EditView} />
+            <PrivateRoute exact path="/createactivity" component={NewActivity} />
+            <PrivateRoute exact path="/edit/:id" component={EditActivity} />
             <PrivateRoute exact path="/youractivities" component={YourActivities} />
             <Route exact path="/location" component={Location} />
             <Route exact path="*" component={NotFound} />

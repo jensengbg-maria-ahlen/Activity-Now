@@ -1,5 +1,4 @@
 // @ts-nocheck
-import '../Styles/_landing.scss';
 import React from "react";
 import { useState } from "react";
 import PlacesAutocomplete, {

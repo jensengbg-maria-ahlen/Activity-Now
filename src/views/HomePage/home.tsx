@@ -1,13 +1,13 @@
 // @ts-nocheck
 import React from "react";
-import YourActivity from "../Components/yourActivities"
-import FollowedTopics from "../Components/followedTopics";
-import HotTopics from "../Components/hotTopics";
-import {useAuth} from '../hooks/authentication'
+import YourActivity from "../../Components/Landing/yourActivities"
+import FollowedTopics from "../../Components/Landing/followedTopics";
+import HotTopics from "../../Components/Landing/hotTopics";
+import { useAuth } from '../../hooks/authentication'
 
-import '../Styles/_landing.scss';
+import './_home.scss';
 
-const LandingView: React.FC = () => {
+const Home: React.FC = () => {
     const currentUser = useAuth();
     return (
         <>
@@ -21,4 +21,4 @@ const LandingView: React.FC = () => {
         </>
     );
 }
-export default LandingView;
+export default Home;

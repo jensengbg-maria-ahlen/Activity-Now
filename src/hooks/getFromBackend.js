@@ -1,8 +1,7 @@
 // @ts-nocheck
-import React from "react";
-import { useState, useEffect } from "react"; 
-import { db } from "../firebase-config";
+import React, { useState, useEffect } from "react";
 import { collection, query, onSnapshot } from "firebase/firestore"; 
+import { db } from "../firebase-config";
 
 const GetFromBackend = (coll) => {
     const [docs, setDocs] = useState([]);

@@ -1,8 +1,7 @@
 // @ts-nocheck
-import React from "react";
-import { useState, useEffect } from "react";
-import { db } from "../firebase-config";
+import React, { useEffect } from "react";
 import { collection, addDoc } from "firebase/firestore"; 
+import { db } from "../firebase-config";
 
 const AddToBackend = (file) => {
     useEffect(() => {

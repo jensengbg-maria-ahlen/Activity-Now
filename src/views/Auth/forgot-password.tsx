@@ -2,11 +2,11 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from '../firebase-config'
-import ToggleInfo from "../Components/toggleInfo";
-import '../Styles/_login-view.scss';
+import { auth } from '../../firebase-config'
+import ToggleInfo from "../../Components/ToggleInfo/toggleInfo";
+import './_auth.scss';
 
-const ForgotPasswordPage = () => {
+const ForgotPassword: React.FC = () => {
     const [errors, setErrors] = useState([]);
     const [loginEmail, setLoginEmail] = useState('');
     const [disabled, setDisabled] = useState(true);
@@ -97,4 +97,4 @@ const ForgotPasswordPage = () => {
     )
 }
 
-export default ForgotPasswordPage;
+export default ForgotPassword;
