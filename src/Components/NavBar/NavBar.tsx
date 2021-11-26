@@ -1,3 +1,4 @@
+// @ts-nocheck
 import MobileNavigation from "./MobileNavigation";
 import Navigation from "./Navigation";
 import "./_nav.scss";

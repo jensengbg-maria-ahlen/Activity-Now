@@ -1,5 +1,6 @@
 @import "../../Styles/colors";
 @import "../../Styles/keyframes";
+@import "../../Styles/breakpoints";
 
 .confirm-deletion {
     margin-right: 10px;
@@ -16,7 +17,11 @@
         box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
         transition: transform 0.25 ease;
         border: 1px solid #dcdcdc;
-        bottom: 40px;
+        @include breakpoint("sm", "down") {
+            width: 200px;
+            animation: slide-up-fade-in 0.25s ease forwards;
+            top: 529px;
+        }
 
         &::after {
             content: "";
@@ -29,6 +34,11 @@
             border-width: 0px 8px 8px 8px;
             border-color:  transparent transparent $white transparent;
             transform: translateY(-100%) translateX(-50%);
+            @include breakpoint("sm", "down") {
+                border-width: 8px 8px 0 8px;
+                border-color:  $white transparent transparent transparent;
+                top: 167px;
+            }
         }
         &::before {
             content: "";
@@ -42,6 +52,11 @@
             border-color: transparent transparent $background transparent;
             transform: translateY(-100%) translateX(-50%);
             z-index: 0;
+            @include breakpoint("sm", "down") {
+                border-width: 8px 8px 0 8px;
+                border-color:  $background transparent transparent transparent;
+                top: 167px;
+            }
         }
     }
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import NavLinks from "./NavLinks";
 import "./_nav.scss"
 
