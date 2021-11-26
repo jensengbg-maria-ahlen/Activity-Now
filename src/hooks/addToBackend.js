@@ -1,9 +1,9 @@
 // @ts-nocheck
-import React, { useEffect } from "react";
-import { collection, addDoc } from "firebase/firestore"; 
+import { useEffect } from "react";
+import { collection, addDoc} from "firebase/firestore"; 
 import { db } from "../firebase-config";
 
-const AddToBackend = (file) => {
+const AddActivityToBackend = (file) => {
     useEffect(() => {
         const collectionRef = addDoc(collection(db, "activities"), {
             name: file.name,
@@ -17,4 +17,4 @@ const AddToBackend = (file) => {
     }, [file, collection, addDoc])
 }
 
-export default AddToBackend;
+export default AddActivityToBackend

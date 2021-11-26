@@ -17,6 +17,8 @@ const NewActivity: React.FC = () => {
         e.preventDefault()
         const collectionRef = collection(db, "activities")
         const payload = { topic, location, date, description, name };
+        console.log("collectionRef", collectionRef);
+        console.log("payload", payload);
         const docRef = await addDoc(collectionRef, payload);
         console.log("The new ID is: " + docRef.id);
         setTopic("")

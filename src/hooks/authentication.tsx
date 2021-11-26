@@ -32,7 +32,7 @@ export const Authentication: React.FC = ({ children }: any ) => {
         })
 
         return unsub
-    }, [currentUser, loading])
+    }, [currentUser, loading, history])
 
 
     return (

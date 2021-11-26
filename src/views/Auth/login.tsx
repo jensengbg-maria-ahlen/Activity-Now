@@ -50,7 +50,7 @@ const Login: React.FC = () => {
                 <div className="login-view__form-div">
                     <form className="login-view__form">
                         <div className="login-view__input-form">
-                            <label className="caption">
+                            <label className="caption caption--bold">
                                 Email
                                 <input
                                     style={{
@@ -80,7 +80,7 @@ const Login: React.FC = () => {
                             ) : null}
                         </div>
                         <div className="login-view__input-form">
-                            <label className="caption">
+                            <label className="caption caption--bold">
                                 Password
                                 <input
                                     style={{

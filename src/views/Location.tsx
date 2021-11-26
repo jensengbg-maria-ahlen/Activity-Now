@@ -1,10 +1,7 @@
 // @ts-nocheck
 import React from "react";
 import { useState } from "react";
-import PlacesAutocomplete, {
-    geocodyByAdress
-} from 'react-places-autocomplete'
-
+import PlacesAutocomplete, {geocodeByAddress} from 'react-places-autocomplete';
 
 const Location: React.FC = () => {
     const [address, setAddress] = useState("")
