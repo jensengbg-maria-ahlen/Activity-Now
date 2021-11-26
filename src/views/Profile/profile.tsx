@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import { setDoc, doc, collection, addDoc } from "@firebase/firestore";
 import { useAuth } from '../../hooks/authentication'
 import GetFromBackend from "../../hooks/getFromBackend";
@@ -11,6 +12,7 @@ import "../../Styles/_buttons.scss";
 
 const Profile: React.FC = () => {
     const currentUser = useAuth();
+    const history = useHistory();
     const { docs } = GetFromBackend("profiles");
     const [error, setError] = useState("")
     const [uid, setUid] = useState("")
@@ -47,8 +49,14 @@ const Profile: React.FC = () => {
                 },
                 displayName: displayName
             };
-            const collRef = await setDoc(docRef, payload);
-            return collRef;
+            try {
+                const collRef = await setDoc(docRef, payload);
+                if (collRef) {
+                    history.push("/")
+                }
+            } catch (error) {
+                console.log(error)
+            }
         } else {
             const collectionRef = collection(db, "profiles")
             const payload = {
@@ -59,8 +67,14 @@ const Profile: React.FC = () => {
                 displayName: displayName,
                 uid: uid,
             };
-            const docRef = await addDoc(collectionRef, payload);
-            return docRef;
+            try {
+                const docRef = await addDoc(collectionRef, payload);
+                if (docRef) {
+                    history.push("/")
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
@@ -91,7 +105,7 @@ const Profile: React.FC = () => {
                 {!itemExist && !currentUser.displayName ? (
                     <div className="profile__welcome">
                         <h2 className="title title--h2">Welcome new user</h2>
-                        <p className="paragraph paragraph--bold">Please set a username before continue</p>
+                        <p className="paragraph paragraph--bold">Please set a username before continuing</p>
                     </div>
                 ) : null}
                 <article className="profile__photo-settings">
@@ -99,7 +113,7 @@ const Profile: React.FC = () => {
                     {error && <p className="paragraph paragraph--bold">{error}</p>}
                     <img src={currentImg} alt="user image" className="profile__image" />
                     <label className="profile__pick-image">
-                        <p className="paragraph paragraph--no-spacing">Upload picture</p>
+                        <p className="paragraph paragraph--bold paragraph--small paragraph--no-spacing">Upload picture</p>
                         <input type="file" onChange={handleUploadPicture} />
                     </label>
                 </article>

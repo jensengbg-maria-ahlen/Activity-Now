@@ -11,13 +11,10 @@ const Home: React.FC = () => {
     const currentUser = useAuth();
     return (
         <>
-            <h3>Welcome, { currentUser?.email }</h3>
-            <article className="mainLand">
-               
-                <YourActivity />
-                <FollowedTopics />
-                <HotTopics />
-            </article>
+            <h3>Welcome, {currentUser?.email}</h3>
+            <YourActivity />
+            <FollowedTopics />
+            <HotTopics />
         </>
     );
 }
