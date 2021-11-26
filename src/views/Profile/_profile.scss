@@ -1,0 +1,88 @@
+@import "../../Styles/colors";
+@import "../../Styles/breakpoints";
+
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+
+    &__welcome {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 500px;
+        margin-bottom: 10px;
+        @include breakpoint ("md", "down") {
+            width: 350px;
+        }
+        @include breakpoint ("sm", "down") {
+            width: 250px;
+        }
+    }
+    &__photo-settings {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 500px;
+        @include breakpoint ("md", "down") {
+            width: 350px;
+        }
+        @include breakpoint ("sm", "down") {
+            width: 250px;
+        }
+    }
+    &__image {
+        max-width: 200px;
+        margin-bottom: 10px;
+    }
+
+    &__pick-image {
+        background-color: $white;
+        width: 136px;
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+        p {
+          color: $dark-green;  
+        }
+        &:hover {
+            p {
+                color: $white;
+            }
+            background-color: lighten($dark-green, 8%);
+        }
+
+        input {
+            width: 0;
+            height: 0;
+            opacity: 0;
+            position: absolute;
+        }
+    }
+}
+
+
+
+
+.profileSect {
+ border: 2px solid #0C5843;
+ border-radius: 10px;
+ box-shadow: #0c584271 1px 1px 3px 3px;
+ min-width: 25rem;
+ display: flex;
+ flex-direction: column;
+ align-items: flex-start;
+ padding-left: 1rem;
+}

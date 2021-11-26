@@ -1,6 +1,14 @@
 import { initializeApp } from "firebase/app";
+import "firebase/auth"
 import { getFirestore } from "firebase/firestore";
-import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from 'firebase/auth'
+import { getStorage } from "firebase/storage";
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  FacebookAuthProvider, 
+  signInWithPopup, 
+  signOut
+} from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAylF1mA1FSK_BAmpwKj4XYu8lfv3pffSE",
@@ -15,9 +23,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const auth = getAuth(app);
+const projectStorage = getStorage();
 
-export { auth, db }
-
+export const logout = () => {
+  signOut(auth)
+  }
 
 const provider = new GoogleAuthProvider()
 export const signInWithGoogle = () => {
@@ -38,3 +48,5 @@ export const signInWithFacebook = () => {
     console.log(error)
   })
 }
+
+export {auth, db, app, projectStorage}

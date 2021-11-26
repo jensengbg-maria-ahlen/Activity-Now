@@ -1,6 +1,6 @@
 @import "./colors";
 
-.login-btn, .create-btn, .forgot-btn, .go-back-btn {
+button {
     appearance: none;
     text-align: center;
     cursor: pointer;
@@ -14,6 +14,10 @@
     outline: none;
     text-decoration: none;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    
+}
+
+.login-btn, .create-btn, .forgot-btn, .go-back-btn, .cancel-btn, .edit-btn {
     &:hover {
         background-color: lighten($dark-green, 8%);
         color: $white;
@@ -35,6 +39,26 @@
     width: 140px;
 }
 
+.cancel-btn {
+    &:hover {
+        background-color: $orange;
+        color: $white;
+    } 
+}
+
+.delete-btn, .remove-btn {
+    &:hover {
+        background-color: darken($red, 10%);
+        color: $white;
+    }
+    &:disabled {
+        cursor: auto;
+        background: #dddddd;
+        color: $text-color;
+        box-shadow: none; 
+    }
+}
+
 
 .google-btn, .facebook-btn {
     margin: 0;
@@ -44,6 +68,9 @@
     width: 50px;
     height: 50px;
     margin-right: 10px;
+    box-shadow: none;
+    border: none;
+    padding: 0;
     img {
         width: 48px;
         height: 48px;

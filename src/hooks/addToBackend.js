@@ -1,12 +1,9 @@
 // @ts-nocheck
-import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { collection, addDoc} from "firebase/firestore"; 
 import { db } from "../firebase-config";
-import { collection, addDoc, Timestamp } from "firebase/firestore"; 
 
-const AddToBackend = (file) => {
-    const date = Timestamp.fromDate(new Date());
-
+const AddActivityToBackend = (file) => {
     useEffect(() => {
         const collectionRef = addDoc(collection(db, "activities"), {
             name: file.name,
@@ -20,4 +17,4 @@ const AddToBackend = (file) => {
     }, [file, collection, addDoc])
 }
 
-export default AddToBackend;
+export default AddActivityToBackend
