@@ -12,7 +12,11 @@ import "./_calendar.scss";
 import GetFromBackend from "../../hooks/getFromBackend";
 
 const CalendarView: React.FC = () => {
-    const { docs } = GetFromBackend("activities");
+
+    function fetchEvents() {
+
+    }
+    const { docs } = GetFromBackend("cattest");
     const locales = {
         "en-eu": require("date-fns/locale/en-GB")
     }
@@ -22,7 +26,7 @@ const CalendarView: React.FC = () => {
 
     const events = [
         {
-            name: "Big Meeting",
+            title: "Big Meeting",
             allDay: true,
             start: new Date(2021, 11, 0),
             end: new Date(2021, 11, 0),
