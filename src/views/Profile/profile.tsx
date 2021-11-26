@@ -26,7 +26,7 @@ const Profile: React.FC = () => {
     
 
     const handleUploadPicture = (e) => {
-        const types = ["image/png", "image/jpeg"];
+        const types = ["image/png", "image/jpeg", "image/jpg"];
         let selectedImg = e.target.files[0]
         if (selectedImg && types.includes(selectedImg.type)) {
             setfile(selectedImg)
@@ -86,7 +86,7 @@ const Profile: React.FC = () => {
 
     return (
         <div className="profile">
-            {!itemExist || !currentUser.displayName ? (
+            {!itemExist && !currentUser.displayName ? (
                 <div className="profile__welcome">
                     <h2 className="title title--h2">Welcome new user</h2>
                     <p className="paragraph paragraph--bold">Please set a username before continue</p>
@@ -94,7 +94,8 @@ const Profile: React.FC = () => {
             ) : null}
             <article className="profile__photo-settings">
                 <img src={currentImg} alt="user image" className="profile__image" />
-                {file ? ( <ProgressBar file={file} setCurrentImg={setCurrentImg} /> ) : null }                
+                {file ? ( <ProgressBar file={file} setCurrentImg={setCurrentImg} /> ) : null } 
+                {error && <p className="paragraph paragraph--bold">{error}</p> }               
                 <label className="profile__pick-image">
                     <p className="paragraph paragraph--no-spacing">Upload picture</p>
                     <input type="file" onChange={handleUploadPicture} />
