@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Route, Redirect } from "react-router-dom"
 import { useAuth } from "./authentication"
 
