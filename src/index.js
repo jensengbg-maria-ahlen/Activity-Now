@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PreLoader from "./Components/PreLoader/preLoader";
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration.js';
 import App from './App';
@@ -8,6 +9,7 @@ import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
+    <PreLoader />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
@@ -22,5 +24,3 @@ serviceWorkerRegistration.unregister();
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-serviceWorkerRegistration.register();
