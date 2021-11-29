@@ -1,0 +1,46 @@
+@import "../../Styles/breakpoints";
+@import "../../Styles/colors";
+
+.activities {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    height: 25rem;
+    margin: 0 20px 20px;
+    h2 {
+        color: $dark-green;
+    }
+    @include breakpoint ("md", "down") {
+        width: 500px
+    }
+    @include breakpoint ("sm", "down") {
+        width: 300px
+    }
+    @include breakpoint ("xs", "down") {
+        width: 200px
+    }
+
+    &__content {
+        background-color: darken($background, 10px);
+        box-shadow: rgba(0, 0, 0, 0.25) 3px 10px 20px;
+        border: 2px solid darken($background, 20px);
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+
+        &--green {
+            background-color: $light-green;
+            border: 2px solid darken($light-green, 10px);
+        }
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        .span {
+            font-weight: normal;
+        }
+    }
+}

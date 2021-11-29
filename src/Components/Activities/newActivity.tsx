@@ -2,11 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { collection, addDoc } from "@firebase/firestore";
+import { useAuth } from '../../hooks/authentication'
 import { db } from "../../firebase-config";
 import "./_activity.scss";
 import "../../Styles/_buttons.scss";
 
 const NewActivity: React.FC = () => {
+    const currentUser = useAuth();
     const [topic, setTopic] = useState("")
     const [location, setLocation] = useState("")
     const [date, setDate] = useState("")
@@ -18,7 +20,7 @@ const NewActivity: React.FC = () => {
     const handleSubmit = async e => {
         e.preventDefault()
         const collectionRef = collection(db, "activities")
-        const payload = { topic, location, date, description, name };
+        const payload = { topic, location, date, description, name, uid: currentUser.uid };
         const docRef = await addDoc(collectionRef, payload);
         history.push("/youractivities");
         return docRef;
@@ -33,7 +35,7 @@ const NewActivity: React.FC = () => {
             name !== "") {
             setDisabled(false);
         }
-    })
+    },[topic, location, date, description, name, setDisabled])
 
     return (
         <div className="activity">

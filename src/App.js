@@ -4,6 +4,7 @@ import { Authentication } from "./hooks/authentication"
 import { PrivateRoute } from "./hooks/PrivateRoute";
 
 import NavBar from "./Components/NavBar/NavBar";
+import Footer from "./Components/Footer/footer";
 import Login from "./views/Auth/login"
 import Singup from "./views/Auth/signup"
 import ForgotPassword from "./views/Auth/forgot-password"
@@ -30,7 +31,6 @@ function App() {
               <img src={logo} className="app__logo" alt="logo" />
             </Link>
             <PrivateRoute component={NavBar}/>
-            
           </header>
           <Switch>
             <Route exact path="/login" component={Login} />
@@ -46,6 +46,9 @@ function App() {
             <Route exact path="/location" component={Location} />
             <Route exact path="*" component={NotFound} />
           </Switch>
+          <footer>
+            <PrivateRoute component={Footer} />
+          </footer>
         </Authentication>
       </Router>
     </div>

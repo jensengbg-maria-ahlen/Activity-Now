@@ -111,7 +111,7 @@ const Profile: React.FC = () => {
                 <article className="profile__photo-settings">
                     {file ? (<ProgressBar file={file} setCurrentImg={setCurrentImg} />) : null}
                     {error && <p className="paragraph paragraph--bold">{error}</p>}
-                    <img src={currentImg} alt="user image" className="profile__image" />
+                    <img src={currentImg} alt="user" className="profile__image" />
                     <label className="profile__pick-image">
                         <p className="paragraph paragraph--bold paragraph--small paragraph--no-spacing">Upload picture</p>
                         <input type="file" onChange={handleUploadPicture} />
