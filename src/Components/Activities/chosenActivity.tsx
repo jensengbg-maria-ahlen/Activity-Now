@@ -54,17 +54,14 @@ const ChosenActivity: React.FC = () => {
             setTopic(activity.topic)
             setLocation(activity.location)
             setDesc(activity.description)
-            setDate(activity.startDate)
+            setDate(activity.start)
             setTime(activity.time)
 
             const isJoined = activity.join.find((obj) => { return obj === currentUser.uid })
             if (isJoined) {
                 setJoin(true)
             }
-        }
-
-        
-        
+        }        
     }, [activity, docs, id])
 
     return (

@@ -27,8 +27,8 @@ const EditActivity: React.FC = () => {
         const payload = {
             topic: topic,
             location: location,
-            startDate: date,
-            endDate: date,
+            start: date,
+            end: date,
             time: time,
             description: description,
             title: title,
@@ -51,7 +51,7 @@ const EditActivity: React.FC = () => {
             setTopic(activity.topic)
             setLocation(activity.location)
             setDesc(activity.description)
-            setDate(activity.startDate)
+            setDate(activity.start)
             setTime(activity.time)
         }
     }, [activity, docs, id])

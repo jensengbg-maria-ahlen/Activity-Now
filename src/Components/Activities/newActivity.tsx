@@ -24,8 +24,8 @@ const NewActivity: React.FC = () => {
         const payload = { 
             topic: topic, 
             location: location, 
-            startDate: date, 
-            endDate: date, 
+            start: date, 
+            end: date, 
             time: time, 
             description: description, 
             title: title, 

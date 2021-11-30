@@ -15,7 +15,7 @@ const HotTopics: React.FC = () => {
                     <article className="activities__item" key={doc.id}>
                         <Link to={`/chosen/${doc.id}`}>
                             <p className="paragraph paragraph--bold paragraph--no-spacing">
-                                {doc.startDate} -
+                                {doc.start} -
                                 <span className="paragraph--small span"> {doc.title}</span>
                             </p>
                         </Link>
