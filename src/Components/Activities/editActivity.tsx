@@ -85,7 +85,8 @@ const EditActivity: React.FC = () => {
                             </label>
                             <label className="activity__form--item">
                                 <p className="paragraph paragraph--bold">Description:</p>
-                                <input
+                                <textarea
+                                    rows="5"
                                     type="text"
                                     value={description}
                                     onChange={(e) => setDesc(e.target.value)}

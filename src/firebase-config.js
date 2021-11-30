@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { initializeApp } from "firebase/app";
 import "firebase/auth"
 import { getFirestore } from "firebase/firestore";
@@ -32,20 +33,20 @@ export const logout = () => {
 const provider = new GoogleAuthProvider()
 export const signInWithGoogle = () => {
   signInWithPopup(auth, provider).then((result) => {
-    console.log(result)
+    return result
   })
   .catch((error) => {
-    console.log(error)
+    return error
   })
 }
 
 const providerFb = new FacebookAuthProvider()
 export const signInWithFacebook = () => {
   signInWithPopup(auth, providerFb).then((result) => {
-    console.log(result)
+    return result
   })
   .catch((error) => {
-    console.log(error)
+    return error
   })
 }
 

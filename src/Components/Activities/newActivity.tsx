@@ -1,29 +1,41 @@
 // @ts-nocheck
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { collection, addDoc } from "@firebase/firestore";
+import { useAuth } from '../../hooks/authentication'
 import { db } from "../../firebase-config";
 import "./_activity.scss";
 import "../../Styles/_buttons.scss";
 
 const NewActivity: React.FC = () => {
+    const currentUser = useAuth();
     const [topic, setTopic] = useState("")
     const [location, setLocation] = useState("")
     const [date, setDate] = useState("")
     const [description, setDesc] = useState("")
     const [name, setName] = useState("")
+    const [disabled, setDisabled] = useState(true);
+    const history = useHistory();
 
     const handleSubmit = async e => {
         e.preventDefault()
         const collectionRef = collection(db, "activities")
-        const payload = { topic, location, date, description, name };
-        console.log("collectionRef", collectionRef);
-        console.log("payload", payload);
+        const payload = { topic, location, date, description, name, uid: currentUser.uid };
         const docRef = await addDoc(collectionRef, payload);
-        console.log("The new ID is: " + docRef.id);
-        setTopic("")
-        setDesc("")
+        history.push("/youractivities");
+        return docRef;
     }
+
+    useEffect(() => {
+        if (
+            topic !== "" &&
+            location !== "" &&
+            date !== "" &&
+            description !== "" &&
+            name !== "") {
+            setDisabled(false);
+        }
+    },[topic, location, date, description, name, setDisabled])
 
     return (
         <div className="activity">
@@ -64,7 +76,8 @@ const NewActivity: React.FC = () => {
                     </label>
                     <label className="activity__form--item">
                         <p className="paragraph paragraph--bold">Description:</p>
-                        <input
+                        <textarea
+                            rows="5"
                             value={description}
                             onChange={(e) => setDesc(e.target.value)}
                             type="text"
@@ -75,7 +88,7 @@ const NewActivity: React.FC = () => {
                     <Link to="/youractivities">
                         <button className="cancel-btn">Cancel</button>
                     </Link>
-                    <button className="create-btn" onClick={handleSubmit}>Create activity</button>
+                    <button disabled={disabled} className="create-btn" onClick={handleSubmit}>Create activity</button>
                 </div>
             </div>
         </div>

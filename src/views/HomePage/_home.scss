@@ -1,63 +1,22 @@
-.mainLand {
-    margin-top: 4rem;
-    margin-left: 5rem;
-    margin-right: 5rem;
+@import "../../Styles/breakpoints";
+
+.home {
     display: flex;
-    justify-content: space-around;
-}
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    height: 100%;
+    width: 100%;
 
-.landingArt {
-    display: flex;
-    justify-content: space-around;
-}
-
-.orangeHeader {
-    color: #F07143;
-}
-
-.greenHeader {
-    color: #0C5843;
-}
-
-.greenDiv {
-    background-color: #87BA77;
-    border-radius: 10px;
-    box-shadow: #517048 1px 1px 3px 3px;
-    min-width: 15rem;
-    min-height: 20rem;
-}
-
-.midDiv {
-    background-color: #dec8b788;
-    border-radius: 10px;
-    box-shadow: #7a6f6588 1px 1px 3px 3px;
-    min-width: 15rem;
-    min-height: 20rem;
-}
-
-.activity {
-    margin-top: 1.3rem;
-}
-
-.redHeader {
-    color: #F75031;
-}
-
-h4 {
-    color: #171E20;
-}
-
-.editActivity {
-    margin: auto;
-    width: 3rem;
-    height: 2rem;
-}
-
-.date {
-    margin-right: 20px;
-    margin-left: 1rem;
-}
-
-.temp {
-    border: black solid 2rem;
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        @include breakpoint ("md", "down") {
+            flex-direction: column;
+            word-break: break-word;
+        }
+    }
 }
