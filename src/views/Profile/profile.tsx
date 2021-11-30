@@ -82,11 +82,12 @@ const Profile: React.FC = () => {
                 setCurrentImg(itemExist.file.url)
             }
         }
+        console.log(itemExist, 'item exists')
     }, [currentUser, itemExist])
 
     return (
         <div className="profile">
-            {!itemExist || !currentUser.displayName ? (
+            {!itemExist && !currentUser.displayName ? (
                 <div className="profile__welcome">
                     <h2 className="title title--h2">Welcome new user</h2>
                     <p className="paragraph paragraph--bold">Please set a username before continue</p>
