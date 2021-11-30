@@ -1,7 +1,8 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { setDoc, doc, deleteDoc } from "@firebase/firestore";
+import { useAuth } from '../../hooks/authentication'
 import GetFromBackend from "../../hooks/getFromBackend";
 import { db } from "../../firebase-config";
 import ConfirmDeletion from "../HandleConfirm/confirmDeletetion";
@@ -11,34 +12,47 @@ import "../../Styles/_buttons.scss";
 const EditActivity: React.FC = () => {
     const history = useHistory()
     let { id } = useParams()
+    const currentUser = useAuth()
     const { docs } = GetFromBackend("activities");
     const [activity, setActivity] = useState(null)
-    const [name, setName] = useState("")
+    const [title, setTitle] = useState("")
     const [topic, setTopic] = useState("")
+    const [time, setTime] = useState("")
     const [location, setLocation] = useState("")
     const [date, setDate] = useState("")
     const [description, setDesc] = useState("")
 
     const handleEdit = async () => {
         const docRef = doc(db, "activities", id);
-        const payload = { topic, location, date, description, name }
+        const payload = {
+            topic: topic,
+            location: location,
+            startDate: date,
+            endDate: date,
+            time: time,
+            description: description,
+            title: title,
+            creator: currentUser.uid
+        };
         setDoc(docRef, payload);
+        history.goBack
     }
     const handleCancel = async () => {
         const docRef = doc(db, "activities", id)
         await deleteDoc(docRef)
-        history.push("/youractivities")
+        history.goBack
     }
 
     useEffect(() => {
         const obj = [...docs].find((obj) => { return obj.id === id })
         setActivity(obj)
         if (activity) {
-            setName(activity.name)
+            setTitle(activity.title)
             setTopic(activity.topic)
             setLocation(activity.location)
             setDesc(activity.description)
-            setDate(activity.date)
+            setDate(activity.startDate)
+            setTime(activity.time)
         }
     }, [activity, docs, id])
 
@@ -55,8 +69,8 @@ const EditActivity: React.FC = () => {
                                 <p className="paragraph paragraph--bold">Name:</p>
                                 <input
                                     type="text"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
                                 />
                             </label>
                             <label className="activity__form--item">
@@ -65,6 +79,14 @@ const EditActivity: React.FC = () => {
                                     type="text"
                                     value={date}
                                     onChange={(e) => setDate(e.target.value)}
+                                />
+                            </label>
+                            <label className="activity__form--item">
+                                <p className="paragraph paragraph--bold">Time:</p>
+                                <input
+                                    value={time}
+                                    onChange={(e) => setTime(e.target.value)}
+                                    type="time"
                                 />
                             </label>
                             <label className="activity__form--item">
@@ -96,12 +118,8 @@ const EditActivity: React.FC = () => {
                         <div className="activity__buttons">
                             <ConfirmDeletion setConfirmed={handleCancel} />
                             <div className="activity__buttons--edit">
-                                <Link to="/youractivities">
-                                    <button className="edit-btn">Stop editing</button>
-                                </Link>
-                                <Link to="/youractivities">
-                                    <button className="edit-btn" onClick={handleEdit}>Save activity</button>
-                                </Link>
+                                <button className="edit-btn" onClick={history.goBack}>Stop editing</button>
+                                <button className="edit-btn" onClick={handleEdit}>Save activity</button>
                             </div>
                         </div>
                     </div>

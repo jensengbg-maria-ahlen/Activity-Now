@@ -22,7 +22,7 @@ const CalendarView: React.FC = () => {
 
     const events = [
         {
-            name: "Big Meeting",
+            title: "Big Meeting",
             allDay: true,
             start: new Date(2021, 11, 0),
             end: new Date(2021, 11, 0),

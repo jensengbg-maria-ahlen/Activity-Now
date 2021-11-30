@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from "react";
+import { Link } from "react-router-dom";
 import GetFromBackend from "../../hooks/getFromBackend";
 import "./_activities.scss"
 
@@ -12,10 +13,12 @@ const HotTopics: React.FC = () => {
             <div className="activities__content activities__content--green">
                 {docs && docs?.map((doc) => (
                     <article className="activities__item" key={doc.id}>
-                        <p className="paragraph paragraph--bold paragraph--no-spacing">
-                            {doc.name} -
-                            <span className="paragraph--small span"> {doc.topic}</span>
-                        </p>
+                        <Link to={`/chosen/${doc.id}`}>
+                            <p className="paragraph paragraph--bold paragraph--no-spacing">
+                                {doc.startDate} -
+                                <span className="paragraph--small span"> {doc.title}</span>
+                            </p>
+                        </Link>
                     </article>
                 ))}
             </div>
