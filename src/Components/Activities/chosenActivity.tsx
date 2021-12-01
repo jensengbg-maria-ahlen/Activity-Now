@@ -26,7 +26,7 @@ const ChosenActivity: React.FC = () => {
     const handleCancel = async () => {
         const docRef = doc(db, "activities", id)
         await deleteDoc(docRef)
-        history.goBack
+        history.goBack()
     }
 
     const handleJoin = async () => {

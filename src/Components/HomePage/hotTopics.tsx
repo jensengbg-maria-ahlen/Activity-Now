@@ -9,7 +9,7 @@ const HotTopics: React.FC = () => {
 
     return (
         <div className="activities">
-            <h2 className="title title--h2 title--bold">Hot topics</h2>
+            <h2 className="title title--h2 title--bold">Popular activities</h2>
             <div className="activities__content activities__content--green">
                 {docs && docs?.map((doc) => (
                     <article className="activities__item" key={doc.id}>
