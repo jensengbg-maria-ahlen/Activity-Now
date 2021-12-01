@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { doc, collection, addDoc, updateDoc } from "@firebase/firestore";
+import { deleteUser, reauthenticateWithCredential } from "firebase/auth";
 import { useAuth } from '../../hooks/authentication'
 import GetFromBackend from "../../hooks/getFromBackend";
 import { logout, db } from '../../firebase-config'
 import { MdDone } from "react-icons/md";
+import ConfirmDeletetion from "../../Components/HandleConfirm/confirmDeletetion";
 import userImg from '../../assets/user.png';
 import ProgressBar from "../../Components/Progress/progressBar"
 import './_profile.scss';
@@ -39,6 +41,16 @@ const Profile: React.FC = () => {
             setfile(null);
             setError("Please select an image file (png or jpeg)");
         }
+    }
+
+    const handleRemoveAccount = async () => {
+        deleteUser(currentUser).then(() => {
+            console.log("user deleted")
+        }).catch((error) => {
+            console.log(error)
+        })
+
+
     }
 
     const handleSubmit = async () => {
@@ -113,7 +125,7 @@ const Profile: React.FC = () => {
                 ) : null}
                 {saved ? (
                     <div className="profile__saved">
-                       <h2 className="title title--h2 title--bold">Profile saved! <MdDone /></h2> 
+                        <h2 className="title title--h2 title--bold">Profile saved! <MdDone /></h2>
                     </div>
                 ) : null}
                 <article className="profile__photo-settings">
@@ -168,6 +180,7 @@ const Profile: React.FC = () => {
                     </label>
                 </form>
                 <div className="profile__buttons">
+                    <ConfirmDeletetion setConfirmed={handleRemoveAccount} />
                     <button className="login-btn" onClick={logout}>Sign out</button>
                     <button className="create-btn" onClick={handleSubmit}>Save profile</button>
                 </div>
