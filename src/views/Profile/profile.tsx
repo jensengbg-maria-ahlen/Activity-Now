@@ -1,10 +1,11 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { setDoc, doc, collection, addDoc } from "@firebase/firestore";
+import { doc, collection, addDoc, updateDoc } from "@firebase/firestore";
 import { useAuth } from '../../hooks/authentication'
 import GetFromBackend from "../../hooks/getFromBackend";
 import { logout, db } from '../../firebase-config'
+import { MdDone } from "react-icons/md";
 import userImg from '../../assets/user.png';
 import ProgressBar from "../../Components/Progress/progressBar"
 import './_profile.scss';
@@ -20,10 +21,11 @@ const Profile: React.FC = () => {
     const [currentImg, setCurrentImg] = useState(userImg)
     const [displayName, setDisplayName] = useState("")
     const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("*******");
-    const [activities, setActivities] = useState([]);
-    const [topics, setTopics] = useState([]);
-    const [newTopic, setNewTopic] = useState("");
+    const [password, setPassword] = useState("*******")
+    const [activities, setActivities] = useState([])
+    const [topics, setTopics] = useState([])
+    const [newTopic, setNewTopic] = useState("")
+    const [saved, setSaved] = useState(false)
     const itemExist = docs.find((doc) => doc.uid === uid);
 
 
@@ -50,9 +52,9 @@ const Profile: React.FC = () => {
                 displayName: displayName
             };
             try {
-                const collRef = await setDoc(docRef, payload);
+                const collRef = await updateDoc(docRef, payload);
                 if (collRef) {
-                    history.push("/")
+                    setSaved(true)
                 }
             } catch (error) {
                 console.log(error)
@@ -70,7 +72,7 @@ const Profile: React.FC = () => {
             try {
                 const docRef = await addDoc(collectionRef, payload);
                 if (docRef) {
-                    history.push("/")
+                    setSaved(true)
                 }
             } catch (error) {
                 console.log(error)
@@ -107,6 +109,11 @@ const Profile: React.FC = () => {
                     <div className="profile__welcome">
                         <h2 className="title title--h2">Welcome new user</h2>
                         <p className="paragraph paragraph--bold">Please set a username before continuing</p>
+                    </div>
+                ) : null}
+                {saved ? (
+                    <div className="profile__saved">
+                       <h2 className="title title--h2 title--bold">Profile saved! <MdDone /></h2> 
                     </div>
                 ) : null}
                 <article className="profile__photo-settings">

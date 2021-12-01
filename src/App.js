@@ -13,6 +13,7 @@ import Profile from "./views/Profile/profile"
 import CalendarView from "./views/Calendar/calendar";
 import NewActivity from "./Components/Activities/newActivity"
 import EditActivity from "./Components/Activities/editActivity"
+import ChosenActivity from "./Components/Activities/chosenActivity";
 import YourActivities from "./views/Activities/yourActivities"
 import NotFound from "./views/404/404"
 import Location from "./views/Location";
@@ -44,6 +45,7 @@ function App() {
             <PrivateRoute exact path="/createactivity" component={NewActivity} />
             <PrivateRoute exact path="/chosen/:id" component={ChosenActivity} />
             <PrivateRoute exact path="/edit/:id" component={EditActivity} />
+            <PrivateRoute exact path="/chosen/:id" component={ChosenActivity} />
             <PrivateRoute exact path="/youractivities" component={YourActivities} />
             <Route exact path="/location" component={Location} />
             <Route exact path="*" component={NotFound} />

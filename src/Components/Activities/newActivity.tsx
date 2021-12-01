@@ -12,15 +12,26 @@ const NewActivity: React.FC = () => {
     const [topic, setTopic] = useState("")
     const [location, setLocation] = useState("")
     const [date, setDate] = useState("")
+    const [time, setTime] = useState("")
     const [description, setDesc] = useState("")
-    const [name, setName] = useState("")
+    const [title, setTitle] = useState("")
     const [disabled, setDisabled] = useState(true);
     const history = useHistory();
 
     const handleSubmit = async e => {
         e.preventDefault()
         const collectionRef = collection(db, "activities")
-        const payload = { topic, location, date, description, name, uid: currentUser.uid };
+        const payload = { 
+            topic: topic, 
+            location: location, 
+            startDate: date, 
+            endDate: date, 
+            time: time, 
+            description: description, 
+            title: title, 
+            creator: currentUser.uid,
+            join: []
+        };
         const docRef = await addDoc(collectionRef, payload);
         history.push("/youractivities");
         return docRef;
@@ -31,11 +42,12 @@ const NewActivity: React.FC = () => {
             topic !== "" &&
             location !== "" &&
             date !== "" &&
+            time !== "" &&
             description !== "" &&
-            name !== "") {
+            title !== "") {
             setDisabled(false);
         }
-    },[topic, location, date, description, name, setDisabled])
+    },[topic, location, date, time, description, title, setDisabled])
 
     return (
         <div className="activity">
@@ -45,8 +57,8 @@ const NewActivity: React.FC = () => {
                     <label className="activity__form--item">
                         <p className="paragraph paragraph--bold">Name:</p>
                         <input
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                             type="text"
                         />
                     </label>
@@ -55,7 +67,15 @@ const NewActivity: React.FC = () => {
                         <input
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
-                            type="datetime-local"
+                            type="date"
+                        />
+                    </label>
+                    <label className="activity__form--item">
+                        <p className="paragraph paragraph--bold">Time:</p>
+                        <input
+                            value={time}
+                            onChange={(e) => setTime(e.target.value)}
+                            type="time"
                         />
                     </label>
                     <label className="activity__form--item">
@@ -85,9 +105,7 @@ const NewActivity: React.FC = () => {
                     </label>
                 </form>
                 <div className="activity__buttons">
-                    <Link to="/youractivities">
-                        <button className="cancel-btn">Cancel</button>
-                    </Link>
+                    <button className="cancel-btn" onClick={history.goBack}>Cancel</button>
                     <button disabled={disabled} className="create-btn" onClick={handleSubmit}>Create activity</button>
                 </div>
             </div>

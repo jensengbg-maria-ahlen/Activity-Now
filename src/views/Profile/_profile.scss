@@ -36,6 +36,13 @@
       width: 230px;
     }
   }
+
+  &__saved {
+    h2 {
+      color: $dark-green;
+    }
+  }
+
   &__photo-settings {
     display: flex;
     align-items: center;
