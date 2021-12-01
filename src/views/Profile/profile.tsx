@@ -21,6 +21,7 @@ import "../../Styles/_buttons.scss";
 const Profile: React.FC = () => {
     const auth = getAuth();
     const user = auth.currentUser;
+    const { docs } = GetFromBackend("topics");
     const history = useHistory();
     const [error, setError] = useState("")
     const [uid, setUid] = useState("")
@@ -32,8 +33,8 @@ const Profile: React.FC = () => {
     const [password, setPassword] = useState("*******")
 
     const [activities, setActivities] = useState([])
-    const [topics, setTopics] = useState([])
-    const [newTopic, setNewTopic] = useState("")
+    const [yourTopics, setYourTopics] = useState([])
+    const [allTopics, setAllTopics] = useState([])
     const [saved, setSaved] = useState(false)
 
 
@@ -75,6 +76,13 @@ const Profile: React.FC = () => {
     }
 
     useEffect(() => {
+        if (docs) {
+            const topics = [...docs].map((obj) => {
+                return obj.topic
+            })
+            setAllTopics([...topics])
+        }
+
         if (user) {
             setUid(user.uid);
             setEmail(user.email);
@@ -84,10 +92,8 @@ const Profile: React.FC = () => {
             if (user.displayName) {
                 setDisplayName(user.displayName);
             }
-
-
         }
-    }, [user])
+    }, [user, docs])
 
     return (
         <div className="profile">
@@ -143,15 +149,16 @@ const Profile: React.FC = () => {
                     </div>
                     <div className="profile__form--item">
                         <p className="caption caption--bold">Your topics:</p>
-                        <div>{topics}</div>
+                        <div>{yourTopics}</div>
                     </div>
                     <label className="profile__form--item">
                         <p className="caption caption--bold">Add new topic: </p>
-                        <input
-                            type="text"
-                            value={newTopic}
-                            onChange={(e) => setNewTopic(e.target.value)}
-                        />
+                        <select name="topics" onChange={(e) => setYourTopics(e.target.value)}>
+                            <option value="empty"></option>
+                            {allTopics?.map((topic) => (
+                                <option value={topic}>{topic}</option>
+                            ))}
+                        </select>
                     </label>
                 </form>
                 <div className="profile__buttons">
