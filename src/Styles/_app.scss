@@ -29,7 +29,11 @@
     pointer-events: none;
   }
 
-  input {
+  footer {
+    margin-top: auto;
+  }
+
+  input, select {
     width: 100%;
     border-radius: 5px;
     border: solid 1px;
@@ -40,6 +44,10 @@
     font-size: 15px;
     font-weight: bold;
     line-height: normal;
+    background-color: $white;
+  }
+  select {
+    height: 38px;
   }
 
   textarea {

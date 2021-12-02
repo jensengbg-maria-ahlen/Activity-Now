@@ -1,15 +1,18 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { collection, addDoc } from "@firebase/firestore";
+import { useHistory } from "react-router-dom";
+import { collection, addDoc, doc, updateDoc, arrayUnion } from "@firebase/firestore";
 import { useAuth } from '../../hooks/authentication'
 import { db } from "../../firebase-config";
+import GetFromBackend from "../../hooks/getFromBackend";
 import "./_activity.scss";
 import "../../Styles/_buttons.scss";
 
 const NewActivity: React.FC = () => {
     const currentUser = useAuth();
-    const [topic, setTopic] = useState("")
+    const { docs } = GetFromBackend("topics");
+    const [allTopics, setAllTopics] = useState([])
+    const [chosenTopic, setChosenTopic] = useState("")
     const [location, setLocation] = useState("")
     const [date, setDate] = useState("")
     const [time, setTime] = useState("")
@@ -18,17 +21,28 @@ const NewActivity: React.FC = () => {
     const [disabled, setDisabled] = useState(true);
     const history = useHistory();
 
+
     const handleSubmit = async e => {
         e.preventDefault()
+
+        // Update Topics in backend
+        const topic = docs.find((obj) => obj.topic === chosenTopic)
+        const topicRef = doc(db, "topics", topic.id)
+        await updateDoc(topicRef, {
+            activities: arrayUnion({title: title}),
+            following: arrayUnion({userid: currentUser.uid})
+        })
+
+        // Update Activities in backend
         const collectionRef = collection(db, "activities")
-        const payload = { 
-            topic: topic, 
-            location: location, 
-            start: date, 
-            end: date, 
-            time: time, 
-            description: description, 
-            title: title, 
+        const payload = {
+            topic: chosenTopic,
+            location: location,
+            start: date,
+            end: date,
+            time: time,
+            description: description,
+            title: title,
             creator: currentUser.uid,
             join: []
         };
@@ -38,8 +52,14 @@ const NewActivity: React.FC = () => {
     }
 
     useEffect(() => {
+        if (docs) {
+            const topics = [...docs].map((obj) => {
+                return obj.topic
+            })
+            setAllTopics([...topics])
+        }
         if (
-            topic !== "" &&
+            chosenTopic !== "" &&
             location !== "" &&
             date !== "" &&
             time !== "" &&
@@ -47,7 +67,8 @@ const NewActivity: React.FC = () => {
             title !== "") {
             setDisabled(false);
         }
-    },[topic, location, date, time, description, title, setDisabled])
+        
+    }, [docs, location, date, time, description, title, setDisabled])
 
     return (
         <div className="activity">
@@ -88,11 +109,12 @@ const NewActivity: React.FC = () => {
                     </label>
                     <label className="activity__form--item">
                         <p className="paragraph paragraph--bold">Topic:</p>
-                        <input
-                            value={topic}
-                            onChange={(e) => setTopic(e.target.value)}
-                            type="text"
-                        />
+                        <select name="topics" value={chosenTopic} onChange={(e) => setChosenTopic(e.target.value)}>
+                            <option value="empty"></option>
+                            {allTopics?.map((obj) => (
+                                <option value={obj} key={obj}>{obj}</option>
+                            ))}
+                        </select>
                     </label>
                     <label className="activity__form--item">
                         <p className="paragraph paragraph--bold">Description:</p>

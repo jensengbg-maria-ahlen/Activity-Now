@@ -14,7 +14,7 @@ import CalendarView from "./views/Calendar/calendar";
 import NewActivity from "./Components/Activities/newActivity"
 import EditActivity from "./Components/Activities/editActivity"
 import ChosenActivity from "./Components/Activities/chosenActivity";
-import YourActivities from "./views/Activities/yourActivities"
+import YourActivities from "./views/YourActivities/yourActivities"
 import NotFound from "./views/404/404"
 import Location from "./views/Location";
 

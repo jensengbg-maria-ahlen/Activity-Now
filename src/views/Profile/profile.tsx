@@ -9,6 +9,7 @@ import {
     updateEmail,
     updatePassword
 } from "firebase/auth";
+import { collection, addDoc, doc, updateDoc, arrayUnion } from "@firebase/firestore";
 import GetFromBackend from "../../hooks/getFromBackend";
 import { logout, db } from '../../firebase-config'
 import { MdDone } from "react-icons/md";
@@ -21,19 +22,16 @@ import "../../Styles/_buttons.scss";
 const Profile: React.FC = () => {
     const auth = getAuth();
     const user = auth.currentUser;
-    const history = useHistory();
+    const { docs } = GetFromBackend("topics");
     const [error, setError] = useState("")
-    const [uid, setUid] = useState("")
     const [file, setfile] = useState(null)
-
     const [currentImg, setCurrentImg] = useState(userImg)
     const [displayName, setDisplayName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("*******")
-
-    const [activities, setActivities] = useState([])
-    const [topics, setTopics] = useState([])
-    const [newTopic, setNewTopic] = useState("")
+    const [yourTopics, setYourTopics] = useState([])
+    const [chosenTopic, setChosenTopic] = useState("")
+    const [allTopics, setAllTopics] = useState([])
     const [saved, setSaved] = useState(false)
 
 
@@ -49,7 +47,20 @@ const Profile: React.FC = () => {
         }
     }
 
+    const addTopicsToUser = (value) => {
+        if (!yourTopics.includes(value)) {
+            const newArr = [...yourTopics, value];
+            setYourTopics(newArr);
+            setChosenTopic(value);
+        }
+    }
+
     const handleSaveProfile = async () => {
+        const topic = docs.find((obj) => obj.topic === chosenTopic)
+        const topicRef = doc(db, "topics", topic.id)
+        await updateDoc(topicRef, {
+            following: arrayUnion({userid: user.uid})
+        })
         updateProfile(user, {
             displayName: displayName,
             photoURL: currentImg
@@ -75,8 +86,18 @@ const Profile: React.FC = () => {
     }
 
     useEffect(() => {
+        if (docs) {
+            const topics = docs.map((obj) => {return obj.topic})
+            setAllTopics(topics)            
+        }
+
+        if (allTopics) {
+            const topics = docs.filter((obj) => obj.following.some((ob) => ob.userid === user?.uid))
+            const value = topics.map((obj) => {return obj.topic})
+            setYourTopics(value);
+        }
+
         if (user) {
-            setUid(user.uid);
             setEmail(user.email);
             if (user.photoURL) {
                 setCurrentImg(user.photoURL);
@@ -84,10 +105,8 @@ const Profile: React.FC = () => {
             if (user.displayName) {
                 setDisplayName(user.displayName);
             }
-
-
         }
-    }, [user])
+    }, [user, docs])
 
     return (
         <div className="profile">
@@ -138,20 +157,21 @@ const Profile: React.FC = () => {
                         />
                     </label>
                     <div className="profile__form--item">
-                        <p className="caption caption--bold">Your upcoming activities:</p>
-                        <div>{activities}</div>
-                    </div>
-                    <div className="profile__form--item">
                         <p className="caption caption--bold">Your topics:</p>
-                        <div>{topics}</div>
+                        <p className="paragraph paragraph--bold paragraph--small">
+                        {yourTopics?.map((topic) => (
+                            <span key={topic}>{topic}, </span>
+                        ))}
+                        </p>
                     </div>
                     <label className="profile__form--item">
                         <p className="caption caption--bold">Add new topic: </p>
-                        <input
-                            type="text"
-                            value={newTopic}
-                            onChange={(e) => setNewTopic(e.target.value)}
-                        />
+                        <select name="topics" onChange={(e) => addTopicsToUser(e.target.value)}>
+                            <option value="empty"></option>
+                            {allTopics?.map((topic) => (
+                                <option value={topic} key={topic}>{topic}</option>
+                            ))}
+                        </select>
                     </label>
                 </form>
                 <div className="profile__buttons">

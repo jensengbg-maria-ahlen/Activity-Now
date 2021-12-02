@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from "react";
-import Upcoming from "../../Components/Upcoming/upcoming";
+import Upcoming from "../../Components/YourActivities/upcoming";
 
 const YourActivities: React.FC = () => {
     return (
