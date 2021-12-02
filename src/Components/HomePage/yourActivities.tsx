@@ -11,9 +11,11 @@ const UpcomingActivity: React.FC = () => {
     const [activities, setActivities] = useState([]);
 
     const yourActivities = () => {
-        const id = currentUser.uid
-        const items = docs.filter((obj) => obj.join.some(item => item === id))
-        setActivities([...items]);
+        if (docs) {
+            const id = currentUser.uid
+            const items = docs.filter((obj) => obj.join.some(item => item === id))
+            setActivities([...items]);
+        }
     }
 
 

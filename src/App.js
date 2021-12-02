@@ -17,7 +17,6 @@ import ChosenActivity from "./Components/Activities/chosenActivity";
 import YourActivities from "./views/Activities/yourActivities"
 import NotFound from "./views/404/404"
 import Location from "./views/Location";
-import ChosenActivity from "./views/ChosenActivity/chosenActivity"
 
 import logo from './assets/logo.png';
 import './Styles/_app.scss';
@@ -43,7 +42,6 @@ function App() {
             <PrivateRoute exact path="/profile" component={Profile} />
             <PrivateRoute exact path="/calendar" component={CalendarView} />
             <PrivateRoute exact path="/createactivity" component={NewActivity} />
-            <PrivateRoute exact path="/chosen/:id" component={ChosenActivity} />
             <PrivateRoute exact path="/edit/:id" component={EditActivity} />
             <PrivateRoute exact path="/chosen/:id" component={ChosenActivity} />
             <PrivateRoute exact path="/youractivities" component={YourActivities} />

@@ -12,7 +12,6 @@ const HotTopics: React.FC = () => {
             <h2 className="title title--h2 title--bold">Hot topics</h2>
             <div className="activities__content activities__content--green">
                 {docs && docs?.map((doc) => (
-                    <Link to={`/chosen/${activity.id}`}>
                     <article className="activities__item" key={doc.id}>
                         <Link to={`/chosen/${doc.id}`}>
                             <p className="paragraph paragraph--bold paragraph--no-spacing">
@@ -21,7 +20,6 @@ const HotTopics: React.FC = () => {
                             </p>
                         </Link>
                     </article>
-                    </Link>
                 ))}
             </div>
         </div>

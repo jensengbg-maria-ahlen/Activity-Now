@@ -1,9 +1,14 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { doc, collection, addDoc, updateDoc } from "@firebase/firestore";
-import { deleteUser, reauthenticateWithCredential } from "firebase/auth";
-import { useAuth } from '../../hooks/authentication'
+import {
+    deleteUser,
+    getAuth,
+    reauthenticateWithCredential,
+    updateProfile,
+    updateEmail,
+    updatePassword
+} from "firebase/auth";
 import GetFromBackend from "../../hooks/getFromBackend";
 import { logout, db } from '../../firebase-config'
 import { MdDone } from "react-icons/md";
@@ -14,21 +19,22 @@ import './_profile.scss';
 import "../../Styles/_buttons.scss";
 
 const Profile: React.FC = () => {
-    const currentUser = useAuth();
+    const auth = getAuth();
+    const user = auth.currentUser;
     const history = useHistory();
-    const { docs } = GetFromBackend("profiles");
     const [error, setError] = useState("")
     const [uid, setUid] = useState("")
     const [file, setfile] = useState(null)
+
     const [currentImg, setCurrentImg] = useState(userImg)
     const [displayName, setDisplayName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("*******")
+
     const [activities, setActivities] = useState([])
     const [topics, setTopics] = useState([])
     const [newTopic, setNewTopic] = useState("")
     const [saved, setSaved] = useState(false)
-    const itemExist = docs.find((doc) => doc.uid === uid);
 
 
     const handleUploadPicture = (e) => {
@@ -43,81 +49,50 @@ const Profile: React.FC = () => {
         }
     }
 
+    const handleSaveProfile = async () => {
+        updateProfile(user, {
+            displayName: displayName,
+            photoURL: currentImg
+        }).then(() => {
+            setSaved(true)
+        }).catch((err) => {
+            console.log(err)
+        })
+
+        updateEmail(user, email).then(() => {
+            setSaved(true)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
     const handleRemoveAccount = async () => {
-        deleteUser(currentUser).then(() => {
+        deleteUser(user).then(() => {
             console.log("user deleted")
         }).catch((error) => {
             console.log(error)
         })
-
-
-    }
-
-    const handleSubmit = async () => {
-        if (itemExist) {
-            const docRef = doc(db, "profiles", uid)
-            const payload = {
-                file: {
-                    name: file.name,
-                    url: currentImg
-                },
-                displayName: displayName
-            };
-            try {
-                const collRef = await updateDoc(docRef, payload);
-                if (collRef) {
-                    setSaved(true)
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        } else {
-            const collectionRef = collection(db, "profiles")
-            const payload = {
-                file: {
-                    name: file.name,
-                    url: currentImg
-                },
-                displayName: displayName,
-                uid: uid,
-            };
-            try {
-                const docRef = await addDoc(collectionRef, payload);
-                if (docRef) {
-                    setSaved(true)
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        }
     }
 
     useEffect(() => {
-        if (currentUser) {
-            setUid(currentUser.uid);
-            setEmail(currentUser.email);
-            if (currentUser.photoURL) {
-                setCurrentImg(currentUser.photoURL);
+        if (user) {
+            setUid(user.uid);
+            setEmail(user.email);
+            if (user.photoURL) {
+                setCurrentImg(user.photoURL);
             }
-            if (currentUser.displayName) {
-                setDisplayName(currentUser.displayName);
+            if (user.displayName) {
+                setDisplayName(user.displayName);
             }
+
+
         }
-        if (itemExist) {
-            if (itemExist.displayName) {
-                setDisplayName(itemExist.displayName)
-            }
-            if (itemExist.file) {
-                setCurrentImg(itemExist.file.url)
-            }
-        }
-        console.log(itemExist, 'item exists')
-    }, [currentUser, itemExist])
+    }, [user])
 
     return (
         <div className="profile">
             <div className="profile__content">
-                {!itemExist && !currentUser.displayName ? (
+                {!user.displayName ? (
                     <div className="profile__welcome">
                         <h2 className="title title--h2">Welcome new user</h2>
                         <p className="paragraph paragraph--bold">Please set a username before continuing</p>
@@ -182,7 +157,7 @@ const Profile: React.FC = () => {
                 <div className="profile__buttons">
                     <ConfirmDeletetion setConfirmed={handleRemoveAccount} />
                     <button className="login-btn" onClick={logout}>Sign out</button>
-                    <button className="create-btn" onClick={handleSubmit}>Save profile</button>
+                    <button className="create-btn" onClick={handleSaveProfile}>Save profile</button>
                 </div>
             </div>
         </div>
