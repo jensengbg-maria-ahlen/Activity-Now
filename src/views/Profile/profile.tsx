@@ -48,10 +48,11 @@ const Profile: React.FC = () => {
     }
 
     const addTopicsToUser = (value) => {
-        if (!yourTopics.includes(value)) {
-            const newArr = [...yourTopics, value];
+        const item = allTopics.find((obj) => obj.id === value);
+        if (!yourTopics.includes(item)) {
+            const newArr = [...yourTopics, item];
             setYourTopics(newArr);
-            setChosenTopic(value);
+            setChosenTopic(item.topic);
         }
     }
 
@@ -87,14 +88,12 @@ const Profile: React.FC = () => {
 
     useEffect(() => {
         if (docs) {
-            const topics = docs.map((obj) => {return obj.topic})
-            setAllTopics(topics)            
+            setAllTopics(docs)            
         }
 
         if (allTopics) {
             const topics = docs.filter((obj) => obj.following.some((ob) => ob.userid === user?.uid))
-            const value = topics.map((obj) => {return obj.topic})
-            setYourTopics(value);
+            setYourTopics(topics);
         }
 
         if (user) {
@@ -160,7 +159,7 @@ const Profile: React.FC = () => {
                         <p className="caption caption--bold">Your topics:</p>
                         <p className="paragraph paragraph--bold paragraph--small">
                         {yourTopics?.map((topic) => (
-                            <span key={topic}>{topic}, </span>
+                            <span key={topic.id}>{topic.topic}, </span>
                         ))}
                         </p>
                     </div>
@@ -169,7 +168,7 @@ const Profile: React.FC = () => {
                         <select name="topics" onChange={(e) => addTopicsToUser(e.target.value)}>
                             <option value="empty"></option>
                             {allTopics?.map((topic) => (
-                                <option value={topic} key={topic}>{topic}</option>
+                                <option value={topic.id} key={topic.id}>{topic.topic}</option>
                             ))}
                         </select>
                     </label>

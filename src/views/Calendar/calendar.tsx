@@ -36,9 +36,6 @@ const CalendarView: React.FC = () => {
 
     return (
         <div className="calendar">
-            <section className="calendar__create">
-                <button onClick={() => history.push("/createactivity")}>Add new activity</button>
-            </section>
             <div className="calendar__content">
                 <FullCalendar
                     plugins={[dayGridPlugin]}
@@ -46,6 +43,9 @@ const CalendarView: React.FC = () => {
                     events={events}
                     eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
                 />
+                <section className="calendar__create">
+                <button onClick={() => history.push("/createactivity")}>Create new</button>
+            </section>
             </div>
         </div>
     );

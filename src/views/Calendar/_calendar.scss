@@ -1,49 +1,88 @@
 @import "../../Styles/colors";
 @import "../../Styles/breakpoints";
 
-
 .calendar {
-    margin: 0 auto;
-    height: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  &__create {
+    width: 100%;
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 20px;
+    justify-content: flex-end;
+  }
 
-    &__create {
-        width: 100%;
+  &__content {
+    width: 900px;
+    height: 100%;
+    @include breakpoint("lg", "down") {
+      width: 700px;
+    }
+    @include breakpoint("md", "down") {
+      width: 500px;
+    }
+    @include breakpoint("sm", "down") {
+      width: 350px;
+    }
+    @include breakpoint("xs", "down") {
+      width: 250px;
+    }
+  }
+
+  .fc {
+    width: 100%;
+    color: $text-color;
+    font-family: "Saira", sans-serif;
+    font-weight: normal;
+    line-height: normal;
+    margin-bottom: 10px;
+
+    &-header-toolbar {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
     }
 
-    &__content {
-        width: 1000px;
-        height: 100%;
-        @include breakpoint ("lg", "down") {
-            width: 700px;
-        }
-        @include breakpoint ("md", "down") {
-            width: 500px;
-        }
-        @include breakpoint ("sm", "down") {
-            width: 350px;
-        }
-        @include breakpoint ("xs", "down") {
-            width: 250px;
-        }
+    &-toolbar-title {
+      font-size: 22px;
+      font-weight: bold;
     }
 
-    .fc {
-        width: 100%;
+    button {
+      appearance: none;
+      text-align: center;
+      cursor: pointer;
+      background-color: $white;
+      margin: 0 10px 10px 0;
+      height: 47px;
+      width: 100px;
+      border-radius: 5px;
+      padding: 8px;
+      border: none;
+      color: $dark-green;
+      font-family: "Saira", sans-serif;
+      font-weight: bold;
+      outline: none;
+      text-decoration: none;
+      box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+      &:hover, &:active {
+        background-color: lighten($dark-green, 8%) !important;
+        color: $white !important;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px !important;
+      }
+      &:disabled {
+        cursor: auto;
+        background: #dddddd;
         color: $text-color;
-        font-family: 'Saira', sans-serif;
-        font-weight: normal;
-        line-height: normal;
-        margin-top: 0px;
-
-        &-toolbar-title {
-            font-size: 22px;
-            font-weight: bold;
+        box-shadow: none;
+        &:hover {
+          color: $text-color;
+          box-shadow: none;
         }
+      }
     }
+  }
 }
-
-
