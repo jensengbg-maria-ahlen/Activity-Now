@@ -68,7 +68,7 @@ const NewActivity: React.FC = () => {
             setDisabled(false);
         }
         
-    }, [docs, location, date, time, description, title, setDisabled])
+    }, [docs, location, date, time, description, title, chosenTopic, setDisabled])
 
     return (
         <div className="activity">

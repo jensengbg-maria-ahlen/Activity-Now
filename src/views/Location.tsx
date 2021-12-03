@@ -17,9 +17,6 @@ const Location: React.FC = () => {
                     <div>
                         {loading ? <div>loading... </div> : null}
                         {suggestions.map((suggestion) => {
-                            const style = {
-                                backgroudc
-                            }
                             return <div {...getSuggestionItemProps()}> {suggestion.description} </div>
                         })}
                     </div>

@@ -112,7 +112,7 @@ const Profile: React.FC = () => {
                 setDisplayName(user.displayName);
             }
         }
-    }, [user, docs])
+    }, [user, docs, allTopics])
 
     return (
         <div className="profile">
@@ -167,9 +167,9 @@ const Profile: React.FC = () => {
                         <div className="topic-container">
                         {yourTopics?.map((topic) => (
                             <article className="topicDiv" key={topic.id}>
-                                <p>{topic.topic} </p>
+                                <p className="caption caption--bold caption--no-spacing">{topic.topic} </p>
                                 <div className="topicRemove">
-                                    <span onClick={() => removeTopic(topic)}> X </span>
+                                    <span className="caption caption--bold caption--no-spacing" onClick={() => removeTopic(topic)}> X </span>
                                 </div>
                             </article>
                         ))}

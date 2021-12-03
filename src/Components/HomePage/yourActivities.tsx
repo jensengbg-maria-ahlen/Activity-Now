@@ -10,18 +10,20 @@ const UpcomingActivity: React.FC = () => {
     const currentUser = useAuth();
     const [activities, setActivities] = useState([]);
 
-    const yourActivities = () => {
-        if (docs) {
-            const id = currentUser.uid
-            const items = docs.filter((obj) => obj.join.some(item => item === id))
-            setActivities([...items]);
-        }
-    }
-
+    
 
     useEffect(() => {
+        const yourActivities = () => {
+            if (docs) {
+                const id = currentUser.uid
+                const items = docs.filter((obj) => obj.join.some(item => item === id))
+                setActivities([...items]);
+            }
+        }
+
         yourActivities()
-    }, [docs])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [docs ])
 
     return (
         <div className="activities">

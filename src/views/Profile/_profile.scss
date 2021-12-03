@@ -90,12 +90,13 @@
   }
   .topic-container {
     display: flex;
+    flex-wrap: wrap;
   
     .topicDiv {
       background-color: #0c584273;
       display: flex;
-      margin-right: 1rem;
-      padding-left: 2px;
+      margin: 0 1rem 10px 0;
+      padding-left: 5px;
       border-radius: 5px;
       justify-content: center;
       align-items: center;
@@ -109,6 +110,9 @@
       border-radius: 5px;
       padding: 5px;
       margin-right: 0;
+      width: 20px;
+      display: flex;
+      justify-content: center;
     }
   }
   &__form {
