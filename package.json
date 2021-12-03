@@ -7,6 +7,8 @@
     "npm": "8.x"
   },
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.10.1",
+    "@fullcalendar/react": "^5.10.1",
     "date-fns": "^2.26.0",
     "firebase": "^9.4.1",
     "https-localhost": "^4.7.0",

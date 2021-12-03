@@ -40,73 +40,79 @@ const Login: React.FC = () => {
     return (
         <React.Fragment>
             <article className="login-view">
-                <div className="login-view__header">
-                    <h1 className="title title--h1 title--bold">Login</h1>
-                    <Link className="link" to="/signup">
-                        <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Sign up</p>
-                    </Link>
-                </div>
-                <form className="login-view__form">
-                    <div className="login-view__input-form">
-                        <label className="caption caption--bold">
-                            Email
-                            <input
-                                style={{
-                                    border: errors.includes("email-not-valid" && "email-no-match") ?
-                                        "2px solid #BB0101" : "1px solid black"
-                                }}
-                                type="email"
-                                onChange={(e) => {
-                                    setLoginEmail(e.target.value)
-                                    let validationErrors: string[] = [...errors].filter(
-                                        (error) => error !== "email-not-valid"
-                                    )
-                                    if (!validateEmail(e.target.value) && validationErrors.indexOf("email-not-valid") === -1) {
-                                        validationErrors.push("email-not-valid");
-                                        setDisabled(true);
-                                    } else {
-                                        validationErrors === validationErrors.filter((error) => error !== "email-not-valid")
-                                        setDisabled(false);
-                                    }
-                                    setErrors(validationErrors);
-                                }}
-                            />
-                        </label>
-                        {errors.includes("email-not-valid") ? (
-                            <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Not a valid email</p>
-                        ) : null}
+                <div className="login-view__content">
+                    <div className="login-view__header">
+                        <h1 className="title title--h1 title--bold">Login</h1>
+                        <Link className="link" to="/signup">
+                            <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Sign up</p>
+                        </Link>
                     </div>
-                    <div className="login-view__input-form">
-                        <label className="caption caption--bold">
-                            Password
-                            <input
-                                style={{
-                                    border: errors.includes("password-no-match") ?
-                                        "2px solid #BB0101" : "1px solid black"
-                                }}
-                                type="password"
-                                onChange={(event) => {
-                                    setLoginPassword(event.target.value);
-                                }}
-                               
-                            />
-                        </label>
-                        {errors.includes("password-no-match") ? (
-                            <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Email or password is incorrect</p>
-                        ) : null}
+                    <form className="login-view__form">
+                        <div className="login-view__input-form">
+                            <label className="caption caption--bold">
+                                Email
+                                <input
+                                    style={{
+                                        border: errors.includes("email-not-valid" && "email-no-match") ?
+                                            "2px solid #BB0101" : "1px solid black"
+                                    }}
+                                    type="email"
+                                    onChange={(e) => {
+                                        setLoginEmail(e.target.value)
+                                        let validationErrors: string[] = [...errors].filter(
+                                            (error) => error !== "email-not-valid"
+                                        )
+                                        if (!validateEmail(e.target.value) && validationErrors.indexOf("email-not-valid") === -1) {
+                                            validationErrors.push("email-not-valid");
+                                            setDisabled(true);
+                                        } else {
+                                            validationErrors === validationErrors.filter((error) => error !== "email-not-valid")
+                                            setDisabled(false);
+                                        }
+                                        setErrors(validationErrors);
+                                    }}
+                                />
+                            </label>
+                            {errors.includes("email-not-valid") ? (
+                                <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Not a valid email</p>
+                            ) : null}
+                        </div>
+                        <div className="login-view__input-form">
+                            <label className="caption caption--bold">
+                                Password
+                                <input
+                                    style={{
+                                        border: errors.includes("password-no-match") ?
+                                            "2px solid #BB0101" : "1px solid black"
+                                    }}
+                                    type="password"
+                                    onChange={(event) => {
+                                        setLoginPassword(event.target.value);
+                                    }}
+                                    onKeyUp={(e) => {
+                                        if (e.key === "Enter") {
+                                            loginWithCredentials
+                                        }
+                                    }}
+                                />
+                            </label>
+                            {errors.includes("password-no-match") ? (
+                                <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Email or password is incorrect</p>
+                            ) : null}
+                        </div>
+                        <Link className="link" to="/forgot">
+                            <p className="caption caption--bold caption--no-spacing">Forgot password</p>
+                        </Link>
+                    </form>
+                    <div className="login-view__buttons">
+                        <button className="google-btn" onClick={signInWithGoogle}>
+                            <img src={googleImg} alt="google" />
+                        </button>
+                        <button className="facebook-btn" onClick={signInWithFacebook}>
+                            <img src={facebookImg} alt="facebook" />
+                        </button>
+                        <button disabled={disabled} className="login-btn" onClick={loginWithCredentials} type="submit">Login</button>
                     </div>
-                    <Link className="link" to="/forgot">
-                        <p className="caption caption--bold caption--no-spacing">Forgot password</p>
-                    </Link>
-                </form>
-                <div className="login-view__buttons">
-                    <button className="google-btn" onClick={signInWithGoogle}>
-                        <img src={googleImg} alt="google" />
-                    </button>
-                    <button className="facebook-btn" onClick={signInWithFacebook}>
-                        <img src={facebookImg} alt="facebook" />
-                    </button>
-                    <button disabled={disabled} className="login-btn" onClick={loginWithCredentials} type="submit">Login</button>
                 </div>
             </article>
             <ToggleInfo toggleText="You need to type in your email and password to log in" />

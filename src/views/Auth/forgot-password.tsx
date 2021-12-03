@@ -45,54 +45,56 @@ const ForgotPassword: React.FC = () => {
     return (
         <React.Fragment>
             <article className="login-view">
-                <div className="login-view__header">
-                    <h1 className="title title--h1 title--bold">Forgot password</h1>
-                    <Link className="link" to="/">
-                        <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Login</p>
-                    </Link>
-                </div>
-                <form className="login-view__form">
-                    <div className="login-view__input-form">
-                        <label className="caption caption--bold">
-                            Email
-                            <input
-                                style={{
-                                    border: errors.includes("email-not-valid") ?
-                                        "2px solid #BB0101" : "1px solid black"
-                                }}
-                                type="email"
-                                onChange={(e) => {
-                                    setLoginEmail(e.target.value)
-
-                                    let validationErrors: string[] = [...errors].filter(
-                                        (error) => error !== "email-not-valid"
-                                    )
-                                    if (!validateEmail(e.target.value) && validationErrors.indexOf("email-not-valid") === -1) {
-                                        validationErrors.push("email-not-valid");
-                                        setDisabled(true);
-                                    } else {
-                                        validationErrors === validationErrors.filter((error) => error !== "email-not-valid")
-                                        setDisabled(false);
-                                    }
-                                    setErrors(validationErrors);
-                                }}
-                                onKeyUp={(e) => { 
-                                    if (e.key === "Enter") { 
-                                        forgotPass
-                                    }
-                                }}
-                            />
-                        </label>
-                        {errors.includes("email-not-valid") ? (
-                            <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Not a valid email</p>
-                        ) : null}
-                        {errors.includes("email-not-found") ? (
-                            <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Email does not exist</p>
-                        ) : null}
+                <div className="login-view__content">
+                    <div className="login-view__header">
+                        <h1 className="title title--h1 title--bold">Forgot password</h1>
+                        <Link className="link" to="/">
+                            <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Login</p>
+                        </Link>
                     </div>
-                </form>
-                <div className="login-view__buttons">
-                    <button disabled={disabled} className="forgot-btn" onClick={forgotPass}>Reset password</button>
+                    <form className="login-view__form">
+                        <div className="login-view__input-form">
+                            <label className="caption caption--bold">
+                                Email
+                                <input
+                                    style={{
+                                        border: errors.includes("email-not-valid") ?
+                                            "2px solid #BB0101" : "1px solid black"
+                                    }}
+                                    type="email"
+                                    onChange={(e) => {
+                                        setLoginEmail(e.target.value)
+
+                                        let validationErrors: string[] = [...errors].filter(
+                                            (error) => error !== "email-not-valid"
+                                        )
+                                        if (!validateEmail(e.target.value) && validationErrors.indexOf("email-not-valid") === -1) {
+                                            validationErrors.push("email-not-valid");
+                                            setDisabled(true);
+                                        } else {
+                                            validationErrors === validationErrors.filter((error) => error !== "email-not-valid")
+                                            setDisabled(false);
+                                        }
+                                        setErrors(validationErrors);
+                                    }}
+                                    onKeyUp={(e) => {
+                                        if (e.key === "Enter") {
+                                            forgotPass
+                                        }
+                                    }}
+                                />
+                            </label>
+                            {errors.includes("email-not-valid") ? (
+                                <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Not a valid email</p>
+                            ) : null}
+                            {errors.includes("email-not-found") ? (
+                                <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Email does not exist</p>
+                            ) : null}
+                        </div>
+                    </form>
+                    <div className="login-view__buttons">
+                        <button disabled={disabled} className="forgot-btn" onClick={forgotPass}>Reset password</button>
+                    </div>
                 </div>
             </article>
             <ToggleInfo toggleText="Check your trash folder if no email has been received." />

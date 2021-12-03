@@ -1,9 +1,10 @@
 // @ts-nocheck
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import {format, getDay, parse, startOfWeek} from "date-fns"
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
 import GetFromBackend from "../../hooks/getFromBackend";
+import { useBreakpoint } from "./useBreakpoint";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./_calendar.scss";
 
@@ -11,36 +12,41 @@ import "./_calendar.scss";
 const CalendarView: React.FC = () => {
     const { docs } = GetFromBackend("activities");
     const history = useHistory()
-    const locales = {
-        "en-eu": require("date-fns/locale/en-GB")
-    }
-    const localizer = dateFnsLocalizer({
-        format, parse, startOfWeek, getDay, locales
-    })
+    const [events, setEvents] = useState([]);
 
-    const goToActivity = ({action, props}) => {
-        console.log(action)
-        console.log(props)
-
-        //history.push(`/chosen/${doc.id}`)
+    const queries = {
+        xs: '(max-width: 320px)',
+        sm: '(max-width: 720px)',
+        md: '(max-width: 1024px)'
     }
+
+    useEffect(() => {
+        if (docs) {
+            const item = [...docs].map((obj) => {
+                return {
+                    title: obj.title,
+                    start: obj.start,
+                    end: obj.end,
+                    id: obj.id,
+                }
+            })
+            setEvents(item)
+        }
+    }, [docs])
 
     return (
-        <div className="calendarDiv">
-            <section>
-                <Link to="/createactivity">
-                    <button>Add new activity</button>
-                </Link>
+        <div className="calendar">
+            <div className="calendar__content">
+                <FullCalendar
+                    plugins={[dayGridPlugin]}
+                    initialView="dayGridMonth"
+                    events={events}
+                    eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
+                />
+                <section className="calendar__create">
+                <button onClick={() => history.push("/createactivity")}>Create new</button>
             </section>
-            <Calendar 
-                localizer={localizer} 
-                events={docs} 
-                startAccessor="start" 
-                endAccessor="end" 
-                selectable
-                style={{ height: 500, margin: "100px" }}
-                onSelectSlot={goToActivity}
-            />
+            </div>
         </div>
     );
 }

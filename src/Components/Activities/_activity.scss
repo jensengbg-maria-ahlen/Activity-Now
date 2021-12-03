@@ -59,7 +59,7 @@
             width: 121%;
         }
 
-        &--edit {
+        &--edit, &--handle {
             display: flex;
             @include breakpoint ("sm", "down") {
                 flex-direction: column-reverse;

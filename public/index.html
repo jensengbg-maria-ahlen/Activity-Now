@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="./logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="A website where you can look what activites you can go on this month and you can create your own activities! You can follow your favorite activities, like if you like going to the movies you can get a notification every time someone postes a movie activity! 
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="./logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description"
+    content="A website where you can look what activites you can go on this month and you can create your own activities! You can follow your favorite activities, like if you like going to the movies you can get a notification every time someone postes a movie activity! 
       It has an easy calendar where you can see all upcoming activities and sign up to go to them. It is east to create a new activity and you can see how many people how has signed up for the different activities. 
-      This is an easy and fun way to make new friends and socialize after the restrictions after corona has been liftet!"
-    />
-    <link rel="apple-touch-icon" href="./logo.png" />
-    <link as="style" rel="stylesheet preload prefetch" href="https://fonts.googleapis.com/css?family=Saira&display=swap">
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Activity Today</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDg9kG29RUD5-FzXDUDUP0OqGDHYyo1gs&libraries=places"></script>
-    
-    <script>
-      var host = "www.URL.com" || "URL.com";
-      if ((host == window.location.host) && (window.location.protocol != "https:")){
+      This is an easy and fun way to make new friends and socialize after the restrictions after corona has been liftet!" />
+  <link defer rel="apple-touch-icon" href="./logo.png" />
+  <link defer rel="preconnect" href="https://fonts.googleapis.com">
+  <link defer rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link defer href="https://fonts.googleapis.com/css2?family=Saira&display=swap" rel="stylesheet">
+  <link defer rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>Activity Today</title>
+  <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDg9kG29RUD5-FzXDUDUP0OqGDHYyo1gs&libraries=places"></script>
+  <script>
+    var host = "www.URL.com" || "URL.com";
+    if ((host == window.location.host) && (window.location.protocol != "https:")) {
       window.location.protocol = "https";
-      }
-      </script>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+    }
+  </script>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+
 </html>
