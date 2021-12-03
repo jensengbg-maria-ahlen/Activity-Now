@@ -32,7 +32,7 @@ const Profile: React.FC = () => {
     const [yourTopics, setYourTopics] = useState([])
     const [chosenTopic, setChosenTopic] = useState("")
     const [allTopics, setAllTopics] = useState([])
-    const [saved, setSaved] = useState(false)
+    const [saved, setSaved] = useState(true)
 
 
     const handleUploadPicture = (e) => {
@@ -111,7 +111,7 @@ const Profile: React.FC = () => {
     return (
         <div className="profile">
             <div className="profile__content">
-                {!user.displayName ? (
+                {user.displayName ? (
                     <div className="profile__welcome">
                         <h2 className="title title--h2">Welcome new user</h2>
                         <p className="paragraph paragraph--bold">Please set a username before continuing</p>

@@ -16,9 +16,12 @@
     flex-direction: column;
     align-items: center;
     @include breakpoint("md", "down") {
-      width: 350px;
+      width: 400px;
     }
     @include breakpoint("sm", "down") {
+      width: 300px;
+    }
+    @include breakpoint("xs", "down") {
       width: 200px;
     }
   }
@@ -27,14 +30,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 500px;
+    width: 100%;
     margin-bottom: 20px;
-    @include breakpoint("md", "down") {
-      width: 350px;
-    }
-    @include breakpoint("sm", "down") {
-      width: 230px;
-    }
   }
 
   &__saved {
@@ -47,14 +44,9 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 500px;
-    @include breakpoint("md", "down") {
-      width: 350px;
-    }
-    @include breakpoint("sm", "down") {
-      width: 230px;
-    }
+    width: 100%;
   }
+
   &__image {
     max-width: 200px;
     max-height: 200px;
@@ -68,8 +60,8 @@
 
   &__pick-image {
     background-color: $white;
-    width: 126px;
-    height: 40px;
+    width: 120px;
+    height: 47px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,13 +97,8 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-    @include breakpoint("md", "down") {
-      padding: 20px;
-      width: 350px;
-    }
     @include breakpoint("sm", "down") {
       padding: 15px;
-      width: 230px;
     }
 
     &--item {
@@ -130,12 +117,9 @@
   &__buttons {
     display: flex;
     justify-content: space-between;
-    width: 500px;
-    @include breakpoint("md", "down") {
-      width: 350px;
-    }
-    @include breakpoint("sm", "down") {
-      width: 250px;
+    width: 100%;
+    @include breakpoint("xs", "down") {
+      flex-wrap: wrap;
     }
   }
 }

@@ -12,7 +12,7 @@
         color: $dark-green;
     }
     @include breakpoint ("md", "down") {
-        width: 500px
+        width: 400px
     }
     @include breakpoint ("sm", "down") {
         width: 300px

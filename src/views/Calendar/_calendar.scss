@@ -1,7 +1,49 @@
-.rbc-today {
-    background-color: #87BA77;
+@import "../../Styles/colors";
+@import "../../Styles/breakpoints";
+
+
+.calendar {
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    &__create {
+        width: 100%;
+    }
+
+    &__content {
+        width: 1000px;
+        height: 100%;
+        @include breakpoint ("lg", "down") {
+            width: 700px;
+        }
+        @include breakpoint ("md", "down") {
+            width: 500px;
+        }
+        @include breakpoint ("sm", "down") {
+            width: 350px;
+        }
+        @include breakpoint ("xs", "down") {
+            width: 250px;
+        }
+    }
+
+    .fc {
+        width: 100%;
+        color: $text-color;
+        font-family: 'Saira', sans-serif;
+        font-weight: normal;
+        line-height: normal;
+        margin-top: 0px;
+
+        &-toolbar-title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+    }
 }
 
-.rbc-calendar * {
-    position: static;
-}
+

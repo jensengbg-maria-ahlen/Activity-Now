@@ -13,8 +13,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
-        @include breakpoint ("md", "down") {
+        width: 1000px;
+        @include breakpoint ("lg", "down") {
+            width: 100%;
             flex-direction: column;
             word-break: break-word;
         }
