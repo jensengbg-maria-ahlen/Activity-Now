@@ -89,8 +89,6 @@ const Login: React.FC = () => {
                                     setLoginPassword(event.target.value);
                                 }}
                                
-                               
-                                onKeyDown={handleKeyDown}
                             />
                         </label>
                         {errors.includes("password-no-match") ? (

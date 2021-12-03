@@ -1,6 +1,5 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
 import {
     deleteUser,
     getAuth,
@@ -9,7 +8,7 @@ import {
     updateEmail,
     updatePassword
 } from "firebase/auth";
-import { collection, addDoc, doc, updateDoc, arrayUnion } from "@firebase/firestore";
+import { doc, updateDoc, arrayUnion, arrayRemove } from "@firebase/firestore";
 import GetFromBackend from "../../hooks/getFromBackend";
 import { logout, db } from '../../firebase-config'
 import { MdDone } from "react-icons/md";
@@ -34,6 +33,7 @@ const Profile: React.FC = () => {
     const [allTopics, setAllTopics] = useState([])
     const [saved, setSaved] = useState(false)
 
+     
 
     const handleUploadPicture = (e) => {
         const types = ["image/png", "image/jpeg", "image/jpg"];
@@ -48,11 +48,19 @@ const Profile: React.FC = () => {
     }
 
     const addTopicsToUser = (value) => {
-        if (!yourTopics.includes(value)) {
-            const newArr = [...yourTopics, value];
+        const item = allTopics.find((obj) => obj.id === value);
+        if (!yourTopics.includes(item)) {
+            const newArr = [...yourTopics, item];
             setYourTopics(newArr);
-            setChosenTopic(value);
+            setChosenTopic(item.topic);
         }
+    }    
+    
+    const removeTopic = async (topic) => {
+        console.log('topic', topic)
+        const topicReff = doc(db, "topics", topic.id)
+        console.log(topicReff, 'topicref')
+        await updateDoc(topicReff, {following: arrayRemove({userid: user.uid})}) 
     }
 
     const handleSaveProfile = async () => {
@@ -74,7 +82,7 @@ const Profile: React.FC = () => {
             setSaved(true)
         }).catch((err) => {
             console.log(err)
-        })
+        }) 
     }
 
     const handleRemoveAccount = async () => {
@@ -87,14 +95,12 @@ const Profile: React.FC = () => {
 
     useEffect(() => {
         if (docs) {
-            const topics = docs.map((obj) => {return obj.topic})
-            setAllTopics(topics)            
+            setAllTopics(docs)            
         }
 
         if (allTopics) {
             const topics = docs.filter((obj) => obj.following.some((ob) => ob.userid === user?.uid))
-            const value = topics.map((obj) => {return obj.topic})
-            setYourTopics(value);
+            setYourTopics(topics);
         }
 
         if (user) {
@@ -158,18 +164,23 @@ const Profile: React.FC = () => {
                     </label>
                     <div className="profile__form--item">
                         <p className="caption caption--bold">Your topics:</p>
-                        <p className="paragraph paragraph--bold paragraph--small">
+                        <div className="topic-container">
                         {yourTopics?.map((topic) => (
-                            <span key={topic}>{topic}, </span>
+                            <article className="topicDiv" key={topic.id}>
+                                <p>{topic.topic} </p>
+                                <div className="topicRemove">
+                                    <span onClick={() => removeTopic(topic)}> X </span>
+                                </div>
+                            </article>
                         ))}
-                        </p>
+                        </div>
                     </div>
                     <label className="profile__form--item">
                         <p className="caption caption--bold">Add new topic: </p>
                         <select name="topics" onChange={(e) => addTopicsToUser(e.target.value)}>
                             <option value="empty"></option>
                             {allTopics?.map((topic) => (
-                                <option value={topic} key={topic}>{topic}</option>
+                                <option value={topic.id} key={topic.id}>{topic.topic}</option>
                             ))}
                         </select>
                     </label>

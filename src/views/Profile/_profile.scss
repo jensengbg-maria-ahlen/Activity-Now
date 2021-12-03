@@ -96,7 +96,29 @@
       position: absolute;
     }
   }
+  .topic-container {
+    display: flex;
+  
+    .topicDiv {
+      background-color: #0c584273;
+      display: flex;
+      margin-right: 1rem;
+      padding-left: 2px;
+      border-radius: 5px;
+      justify-content: center;
+      align-items: center;
+      p {
+        margin-right: 5px;
 
+      }
+    }
+    .topicRemove {
+      background-color: #F75031;
+      border-radius: 5px;
+      padding: 5px;
+      margin-right: 0;
+    }
+  }
   &__form {
     width: 100%;
     background-color: $light-green;
@@ -117,6 +139,7 @@
     &--item {
       width: 100%;
       margin-bottom: 16px;
+
 
       input {
         width: 100%;
