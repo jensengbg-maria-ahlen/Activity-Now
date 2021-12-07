@@ -4,13 +4,27 @@ import ReactDOM from 'react-dom';
 import PreLoader from "./Components/PreLoader/preLoader";
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration.js';
+import { BreakpointProvider } from "./Components/Breakpoint/useBreakpoint";
 import App from './App';
 import './index.css';
+
+const queries = {
+  xsMax: '(max-width: 375px)',
+  smMin: '(min-width: 375px)',
+  smMax: '(max-width: 540px)',
+  mdMin: '(min-width: 540px)',
+  mdMax: '(max-width: 720px)',
+  lgMin: '(min-width: 720px)',
+  lgMax: '(max-width: 1020px)',
+  xlMin: '(min-width: 1020px)'
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <PreLoader />
-    <App />
+    <BreakpointProvider queries={queries} >
+      <App />
+    </BreakpointProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,24 +1,20 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 import GetFromBackend from "../../hooks/getFromBackend";
-import { useBreakpoint } from "./useBreakpoint";
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import { useBreakpoint } from "../../Components/Breakpoint/useBreakpoint";
 import "./_calendar.scss";
-
+import "../../Styles/_buttons.scss"
 
 const CalendarView: React.FC = () => {
     const { docs } = GetFromBackend("activities");
-    const history = useHistory()
+    const history = useHistory();
     const [events, setEvents] = useState([]);
-
-    const queries = {
-        xs: '(max-width: 320px)',
-        sm: '(max-width: 720px)',
-        md: '(max-width: 1024px)'
-    }
+    const breakpoints = useBreakpoint();
 
     useEffect(() => {
         if (docs) {
@@ -32,20 +28,54 @@ const CalendarView: React.FC = () => {
             })
             setEvents(item)
         }
-    }, [docs])
+    }, [docs, breakpoints])
 
     return (
         <div className="calendar">
             <div className="calendar__content">
-                <FullCalendar
-                    plugins={[dayGridPlugin]}
-                    initialView="dayGridMonth"
-                    events={events}
-                    eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
-                />
+                {breakpoints.xsMax ? (
+                    <FullCalendar
+                        plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
+                        initialView="listWeek"
+                        events={events}
+                        eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
+                    />
+                ) : null}
+                {breakpoints.smMin && breakpoints.smMax ? (
+                    <FullCalendar
+                        plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
+                        initialView="dayGridWeek"
+                        events={events}
+                        eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
+                    />
+                ) : null}
+                {breakpoints.mdMin && breakpoints.mdMax ? (
+                    <FullCalendar
+                        plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
+                        initialView="dayGridWeek"
+                        events={events}
+                        eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
+                    />
+                ) : null}
+                {breakpoints.lgMin && breakpoints.lgMax ? (
+                    <FullCalendar
+                        plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
+                        initialView="dayGridMonth"
+                        events={events}
+                        eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
+                    />
+                ) : null}
+                {breakpoints.xlMin ? (
+                    <FullCalendar
+                        plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
+                        initialView="dayGridMonth"
+                        events={events}
+                        eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
+                    />
+                ) : null}
                 <section className="calendar__create">
-                <button onClick={() => history.push("/createactivity")}>Create new</button>
-            </section>
+                    <button onClick={() => history.push("/createactivity")}>Create new</button>
+                </section>
             </div>
         </div>
     );

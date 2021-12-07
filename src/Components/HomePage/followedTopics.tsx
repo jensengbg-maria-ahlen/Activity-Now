@@ -42,6 +42,7 @@ const FollowedTopics: React.FC = () => {
 
         return () => unsub();
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [docs, allActivities])
 
     return (

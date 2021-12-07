@@ -14,7 +14,7 @@ const ConfirmDeletetion = (props: ConfirmProps) => {
 
     return (
         <div className="confirm-deletion">
-            <button className="remove-btn" disabled={active} onClick={() => setActive(!active)}>Remove</button>
+            <button className="delete-btn" disabled={active} onClick={() => setActive(!active)}>Remove</button>
             {active ? (
                 <div className="confirm-deletion__content">
                     <h3 className="title title--h3">Confirm Remove</h3>

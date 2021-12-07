@@ -40,6 +40,18 @@
     line-height: normal;
     margin-bottom: 10px;
 
+    &-day-today {
+      background: $light-green !important;
+    }
+
+    &-day-past {
+      background-color: lighten(grey, 40%) !important;
+    }
+
+    td, th {
+      border: 1px solid lighten($text-color, 50%) !important;
+    }
+
     &-header-toolbar {
       display: flex;
       flex-direction: column;
@@ -49,6 +61,20 @@
     &-toolbar-title {
       font-size: 22px;
       font-weight: bold;
+    }
+
+    &-toolbar-chunk:last-child {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &-button-group {
+      .fc-prev-button,
+      .fc-next-button {
+        width: 50px;
+      }
     }
 
     button {
@@ -68,21 +94,25 @@
       outline: none;
       text-decoration: none;
       box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-      &:hover, &:active {
-        background-color: lighten($dark-green, 8%) !important;
-        color: $white !important;
-        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px !important;
-      }
       &:disabled {
         cursor: auto;
         background: #dddddd;
         color: $text-color;
         box-shadow: none;
-        &:hover {
-          color: $text-color;
-          box-shadow: none;
-        }
       }
+
+      &:hover:not([disabled]),
+      &:active:not([disabled]) {
+        background-color: lighten($dark-green, 8%) !important;
+        color: $white !important;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px !important;
+      }
+    }
+
+    &-h-event {
+      background-color: $dark-green;
+      border: 1px solid $dark-green;
+      cursor: pointer;
     }
   }
 }
