@@ -10,6 +10,7 @@ const ForgotPassword: React.FC = () => {
     const [errors, setErrors] = useState([]);
     const [loginEmail, setLoginEmail] = useState('');
     const [disabled, setDisabled] = useState(true);
+    const [saved, setSaved] = useState(false)
 
     const forgotPass = async () => {
         const valid = validateEmail(loginEmail);
@@ -18,7 +19,9 @@ const ForgotPassword: React.FC = () => {
             setDisabled(false);
             try {
                 const sendMail = await sendPasswordResetEmail(auth, loginEmail)
+                setSaved(true)
                 return sendMail
+                
             } catch (error) {
                 if (error.code === "auth/user-not-found") {
                     let validationErrors = [];
@@ -52,6 +55,11 @@ const ForgotPassword: React.FC = () => {
                             <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Login</p>
                         </Link>
                     </div>
+                    {saved ? (
+                    <div className="profile__saved">
+                        <h2 className="title title--h2 title--bold">Email sent! </h2>
+                    </div>
+                ) : null}
                     <form className="login-view__form">
                         <div className="login-view__input-form">
                             <label className="caption caption--bold">

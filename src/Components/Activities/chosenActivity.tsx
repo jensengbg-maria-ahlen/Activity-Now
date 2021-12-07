@@ -15,6 +15,7 @@ const ChosenActivity: React.FC = () => {
     const currentUser = useAuth()
     const { docs } = GetFromBackend("activities")
     const [activity, setActivity] = useState(null)
+    const [going, setGoing] = useState(0)
     const [title, setTitle] = useState("")
     const [topic, setTopic] = useState("")
     const [time, setTime] = useState("")
@@ -45,10 +46,17 @@ const ChosenActivity: React.FC = () => {
         setJoin(false)
     }
 
+    const goTo = () => {
+        history.push(`/edit/${activity.id}`)
+    }
+
     useEffect(() => {
         const obj = [...docs].find((obj) => { return obj.id === id })
         setActivity(obj)
-
+        if(obj) {
+            const numberGoing = obj.join.length;
+            setGoing(numberGoing)
+        }
         if (activity) {
             setTitle(activity.title)
             setTopic(activity.topic)
@@ -62,7 +70,7 @@ const ChosenActivity: React.FC = () => {
                 setJoin(true)
             }
         }        
-    }, [activity, docs, id])
+    }, [activity, docs, id, going])
 
     return (
         <React.Fragment >
@@ -97,13 +105,18 @@ const ChosenActivity: React.FC = () => {
                                 <p className="paragraph paragraph--bold">Description:</p>
                                 <p className="paragraph paragraph--small">{description}</p>
                             </div>
+                            <div className="activity__form--item">
+                                <p className="paragraph paragraph--bold">Number of people who is going: {going}</p>
+
+                            </div>
+                            
                         </form>
                         <div className="activity__buttons">
                             <button className="edit-btn" onClick={history.goBack}>Go back</button>
                             {activity.creator === currentUser.uid ? (
                                 <div className="activity__buttons--handle">
                                     <ConfirmDeletion setConfirmed={handleCancel} />                                  
-                                    <button className="edit-btn">Edit activity</button>
+                                    <button className="edit-btn" onClick={goTo} >Edit activity</button>
                                 </div>
                             ): (
                                 <div className="activity__buttons--join">

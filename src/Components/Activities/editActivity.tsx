@@ -88,8 +88,6 @@ const EditActivity: React.FC = () => {
 
         if (activity) {
             setTitle(activity.title)
-            setOldTopic(activity.topic)
-            setChosenTopic(activity.topic)
             setLocation(activity.location)
             setDesc(activity.description)
             setDate(activity.start)

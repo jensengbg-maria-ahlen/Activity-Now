@@ -64,11 +64,13 @@ const Profile: React.FC = () => {
     }
 
     const handleSaveProfile = async () => {
-        const topic = docs.find((obj) => obj.topic === chosenTopic)
-        const topicRef = doc(db, "topics", topic.id)
-        await updateDoc(topicRef, {
-            following: arrayUnion({userid: user.uid})
-        })
+        if (chosenTopic) {
+            const topic = docs.find((obj) => obj.topic === chosenTopic)
+            const topicRef = doc(db, "topics", topic.id)
+            await updateDoc(topicRef, {
+                following: arrayUnion({ userid: user.uid })
+            })
+        }
         updateProfile(user, {
             displayName: displayName,
             photoURL: currentImg
