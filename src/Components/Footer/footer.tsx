@@ -7,11 +7,9 @@ const Footer: React.FC = () => {
         <div className="footer">
             <div className="footer__content">
             <h3 className="title title--h3 title--bold title--no-spacing">Help</h3>
-                
                 <div>
                     <a className="paragraph paragraph--small paragraph--no-spacing" href="tel:+4733378901">Call us</a>
                     <a className="paragraph paragraph--small paragraph--no-spacing" href = "mailto: abc@example.com">Send Email</a>
-
                 </div>
             </div>
             <div className="footer__content">

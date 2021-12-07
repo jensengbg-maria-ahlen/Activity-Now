@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
     const [allTopics, setAllTopics] = useState([])
     const [saved, setSaved] = useState(false)
 
-     
+
 
     const handleUploadPicture = (e) => {
         const types = ["image/png", "image/jpeg", "image/jpg"];
@@ -54,21 +54,22 @@ const Profile: React.FC = () => {
             setYourTopics(newArr);
             setChosenTopic(item.topic);
         }
-    }    
-    
+    }
+
     const removeTopic = async (topic) => {
-        console.log('topic', topic)
         const topicReff = doc(db, "topics", topic.id)
-        console.log(topicReff, 'topicref')
-        await updateDoc(topicReff, {following: arrayRemove({userid: user.uid})}) 
+        await updateDoc(topicReff, { following: arrayRemove({ userid: user.uid }) })
     }
 
     const handleSaveProfile = async () => {
-        const topic = docs.find((obj) => obj.topic === chosenTopic)
-        const topicRef = doc(db, "topics", topic.id)
-        await updateDoc(topicRef, {
-            following: arrayUnion({userid: user.uid})
-        })
+        if (chosenTopic) {
+            const topic = docs.find((obj) => obj.topic === chosenTopic)
+            const topicRef = doc(db, "topics", topic.id)
+            await updateDoc(topicRef, {
+                following: arrayUnion({ userid: user.uid })
+            })
+        }
+
         updateProfile(user, {
             displayName: displayName,
             photoURL: currentImg
@@ -82,7 +83,7 @@ const Profile: React.FC = () => {
             setSaved(true)
         }).catch((err) => {
             console.log(err)
-        }) 
+        })
     }
 
     const handleRemoveAccount = async () => {
@@ -95,7 +96,7 @@ const Profile: React.FC = () => {
 
     useEffect(() => {
         if (docs) {
-            setAllTopics(docs)            
+            setAllTopics(docs)
         }
 
         if (allTopics) {
@@ -165,14 +166,14 @@ const Profile: React.FC = () => {
                     <div className="profile__form--item">
                         <p className="caption caption--bold">Your topics:</p>
                         <div className="topic-container">
-                        {yourTopics?.map((topic) => (
-                            <article className="topicDiv" key={topic.id}>
-                                <p className="caption caption--bold caption--no-spacing">{topic.topic} </p>
-                                <div className="topicRemove">
-                                    <span className="caption caption--bold caption--no-spacing" onClick={() => removeTopic(topic)}> X </span>
-                                </div>
-                            </article>
-                        ))}
+                            {yourTopics?.map((topic) => (
+                                <article className="topicDiv" key={topic.id}>
+                                    <p className="caption caption--bold caption--no-spacing">{topic.topic} </p>
+                                    <div className="topicRemove">
+                                        <span className="caption caption--bold caption--no-spacing" onClick={() => removeTopic(topic)}> X </span>
+                                    </div>
+                                </article>
+                            ))}
                         </div>
                     </div>
                     <label className="profile__form--item">

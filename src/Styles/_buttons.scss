@@ -17,9 +17,6 @@ button {
     outline: none;
     text-decoration: none;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-}
-
-.login-btn, .create-btn, .forgot-btn, .go-back-btn, .cancel-btn, .edit-btn {
     &:hover {
         background-color: lighten($dark-green, 8%);
         color: $white;
@@ -48,7 +45,7 @@ button {
     } 
 }
 
-.delete-btn, .remove-btn {
+.delete-btn {
     &:hover {
         background-color: darken($red, 10%);
         color: $white;
@@ -76,5 +73,9 @@ button {
     img {
         width: 48px;
         height: 48px;
+    }
+    &:hover {
+        background-color: $background;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     }
 }
