@@ -1,12 +1,17 @@
 // @ts-nocheck
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import PreLoader from "./Components/PreLoader/preLoader";
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration.js';
 import { BreakpointProvider } from "./Components/Breakpoint/useBreakpoint";
-import App from './App';
+import PreLoader from "./Components/PreLoader/preLoader";
 import './index.css';
+
+const App = React.lazy(() => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(import("./App")), 1000)
+  })
+});
 
 const queries = {
   xsMax: '(max-width: 375px)',
@@ -21,12 +26,14 @@ const queries = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <PreLoader />
-    <BreakpointProvider queries={queries} >
-      <App />
-    </BreakpointProvider>
+    <Suspense fallback={<PreLoader />} >
+      <BreakpointProvider queries={queries} >
+        <App />
+      </BreakpointProvider>
+    </Suspense>
   </React.StrictMode>,
   document.getElementById('root')
+
 );
 
 
