@@ -1,20 +1,21 @@
 // @ts-nocheck
 
-import { useState } from "react";
+import React, { useState } from "react";
 import "./_confirm-deletion.scss"
 import "../../Styles/_buttons.scss"
 
 type ConfirmProps = {
     setConfirmed: (confirmed: boolean) => void;
+    disabled: boolean;
 }
 
-const ConfirmDeletetion = (props: ConfirmProps) => {
+const ConfirmDeletetion: React.FC = (props: ConfirmProps) => {
     const [active, setActive] = useState(false)
     const [confirmed, setConfirmed] = useState(false);
 
     return (
         <div className="confirm-deletion">
-            <button className="delete-btn" disabled={active} onClick={() => setActive(!active)}>Remove</button>
+            <button className={props.disabled ? "delete-btn--disabled" : "delete-btn"} disabled={active} onClick={() => setActive(!active)}>Remove</button>
             {active ? (
                 <div className="confirm-deletion__content">
                     <h3 className="title title--h3">Confirm Remove</h3>
@@ -34,6 +35,7 @@ const ConfirmDeletetion = (props: ConfirmProps) => {
                         onClick={(e) => {
                         e.preventDefault()
                         setConfirmed(false);
+                        setActive(!active)
                         props.setConfirmed(confirmed);
                     }}>
                         Delete

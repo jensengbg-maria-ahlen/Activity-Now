@@ -32,19 +32,19 @@ const Upcoming: React.FC = () => {
                         <div key={activity.id} className="upcoming__item">
                             <div className="upcoming__item--content">
                                 <p className="paragraph">
-                                    Name: 
+                                    Name:{" "}
                                     <span className="paragraph paragraph--bold paragraph--small">
-                                        {activity.name}
+                                        {activity.title}
                                     </span>
                                 </p>
                                 <p className="paragraph">
-                                    Description: 
+                                    Description: {" "}
                                     <span className="paragraph paragraph--bold paragraph--small">
                                         {activity.description}
                                     </span>
                                 </p>
                                 <p className="paragraph">
-                                    Topic: 
+                                    Topic: {" "}
                                     <span className="paragraph paragraph--bold paragraph--small">
                                         {activity.topic}
                                     </span>
