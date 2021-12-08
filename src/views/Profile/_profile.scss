@@ -2,14 +2,12 @@
 @import "../../Styles/breakpoints";
 
 .profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin: 0 auto;
   height: 100%;
-  width: 100%;
-  margin-bottom: 40px;
-
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
   &__content {
     width: 500px;
     display: flex;
@@ -25,7 +23,6 @@
       width: 200px;
     }
   }
-
   &__welcome {
     display: flex;
     align-items: center;
@@ -33,20 +30,16 @@
     width: 100%;
     margin-bottom: 20px;
   }
-
   &__saved {
     h2 {
       color: $dark-green;
     }
   }
-
   &__photo-settings {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 100%;
   }
-
   &__image {
     max-width: 200px;
     max-height: 200px;
@@ -57,7 +50,6 @@
       width: 100%;
     }
   }
-
   &__pick-image {
     background-color: $white;
     width: 120px;
@@ -80,7 +72,6 @@
       }
       background-color: lighten($dark-green, 8%);
     }
-
     input {
       width: 0;
       height: 0;
@@ -88,56 +79,55 @@
       position: absolute;
     }
   }
-  .topic-container {
-    display: flex;
-    flex-wrap: wrap;
-  
-    .topicDiv {
-      background-color: #0c584273;
-      display: flex;
-      margin: 0 1rem 10px 0;
-      padding-left: 5px;
-      border-radius: 5px;
-      justify-content: center;
-      align-items: center;
-      p {
-        margin-right: 5px;
-
-      }
-    }
-    .topicRemove {
-      background-color: #F75031;
-      border-radius: 5px;
-      padding: 5px;
-      margin-right: 0;
-      width: 20px;
-      display: flex;
-      justify-content: center;
-    }
-  }
   &__form {
     width: 100%;
     background-color: $light-green;
+    box-shadow: $dark-green 1px 1px 3px 3px;
     border-radius: 10px;
-    padding: 30px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    padding: 30px;
     @include breakpoint("sm", "down") {
       padding: 15px;
     }
-
     &--item {
-      width: 100%;
-      margin-bottom: 16px;
-
-
+      margin-bottom: 20px;
       input {
         width: 100%;
         border-radius: 5px;
         border: solid 1px;
         height: 2rem;
       }
+      .topic-container {
+        display: flex;
+        flex-wrap: wrap;
+        .topicDiv {
+          background-color: #0c584273;
+          display: flex;
+          margin: 0 1rem 10px 0;
+          padding-left: 5px;
+          border-radius: 5px;
+          justify-content: center;
+          align-items: center;
+          p {
+            margin-right: 5px;
+    
+          }
+        }
+        .topicRemove {
+          background-color: $red;
+          border-radius: 5px;
+          padding: 5px;
+          margin-right: 0;
+          width: 20px;
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+    a {
+      text-decoration: none;
     }
   }
 
@@ -145,18 +135,6 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    @include breakpoint("xs", "down") {
-      flex-wrap: wrap;
-    }
+    flex-wrap: wrap;
   }
-}
-
-.profileSect {
-  border: 2px solid #0c5843;
-  border-radius: 10px;
-  box-shadow: #0c584271 1px 1px 3px 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 1rem;
 }
