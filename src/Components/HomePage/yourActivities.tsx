@@ -25,7 +25,7 @@ const UpcomingActivity: React.FC = () => {
             <div className="activities__content activities__content--green">
                 {activities?.map((activity) => (
                     <article className="activities__item" key={activity.id}>
-                        <Link to={`/edit/${activity.id}`}>
+                        <Link to={`/chosen/${activity.id}`}>
                             <p className="paragraph paragraph--bold paragraph--no-spacing">
                                 {activity.start} -
                                 <span className="paragraph--small span"> {activity.title}</span>

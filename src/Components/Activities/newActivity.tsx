@@ -44,7 +44,7 @@ const NewActivity: React.FC = () => {
             description: description,
             title: title,
             creator: currentUser.uid,
-            join: []
+            join: [currentUser.uid]
         };
         const docRef = await addDoc(collectionRef, payload);
         history.push("/youractivities");

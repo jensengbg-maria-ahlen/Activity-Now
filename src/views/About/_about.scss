@@ -1,0 +1,14 @@
+.aboutArt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .aboutDiv {
+        margin: 0 3rem 2rem 3rem;
+    }
+    .usImage {
+            width: 130px;
+            height: 150px;
+            margin-right: 1rem;
+        }
+}    

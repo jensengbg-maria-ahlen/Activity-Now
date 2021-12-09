@@ -23,8 +23,8 @@ const ChosenActivity = React.lazy(() => import("./Components/Activities/chosenAc
 const YourActivities = React.lazy(() => import("./views/YourActivities/yourActivities"));
 const NotFound = React.lazy(() => import("./views/404/404"));
 const Location = React.lazy(() => import("./views/Location"));
-
-
+const Cookies = React.lazy(() => import("./views/Cookie/cookies"));
+const About = React.lazy(() => import("./views/About/about"));
 
 function App() {
   return (
@@ -43,6 +43,8 @@ function App() {
               <Route exact path="/signup" component={Singup} />
               <Route exact path="/forgot" component={ForgotPassword} />
               <PrivateRoute exact path="/" component={Home} />
+              <PrivateRoute exact path="/cookie" component={Cookies} />
+              <PrivateRoute exact path="/aboutus" component={About} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <SettingRoute exact path="/profile/changepassword" component={PasswordChange} />
               <SettingRoute exact path="/forgotpassword" component={UserForgotPassword} />

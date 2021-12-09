@@ -20,4 +20,18 @@
             word-break: break-word;
         }
     }
+    .CookieConsent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        div:last-child {
+            display: flex;
+
+            button {
+                margin: 0;
+                padding: 0;
+            }
+        }
+        
+    }
 }
