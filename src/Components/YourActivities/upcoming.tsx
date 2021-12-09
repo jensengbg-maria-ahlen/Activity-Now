@@ -11,16 +11,12 @@ const Upcoming: React.FC = () => {
     const currentUser = useAuth();
     const [activities, setActivities] = useState([]);
 
-    const yourActivities = () => {
-        if (docs) {
-            const id = currentUser.uid
-            const items = docs.filter((obj) => obj.creator === id)
-            setActivities([...items]);
-        }
-    }
-
     useEffect(() => {
-        yourActivities()
+        if (docs) {
+            const items = docs.filter((obj) => obj.creator === currentUser.uid)
+            setActivities(items);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [docs])
 
     return (

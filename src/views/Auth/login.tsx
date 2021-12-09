@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -9,17 +8,18 @@ import ToggleInfo from "../../Components/ToggleInfo/toggleInfo";
 import './_auth.scss';
 
 const Login: React.FC = () => {
-    const [loginEmail, setLoginEmail] = useState('')
-    const [loginPwd, setLoginPassword] = useState('')
-    const [errors, setErrors] = useState([]);
-    const [disabled, setDisabled] = useState(true);
+    const [loginEmail, setLoginEmail] = useState<string>('')
+    const [loginPwd, setLoginPassword] = useState<string>('')
+    const [errors, setErrors] = useState<string[]>([]);
+    const [disabled, setDisabled] = useState<boolean>(true);
     const history = useHistory()
+    const toggleText: string = "You need to type in your email and password to log in";
 
     const loginWithCredentials = async () => {
         try {
             await signInWithEmailAndPassword(auth, loginEmail, loginPwd)
             history.push("/")
-        } catch (error) {
+        } catch (error: any) {
             if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
                 let validationErrors = [];
                 validationErrors.push("password-no-match", "email-no-match");
@@ -28,7 +28,7 @@ const Login: React.FC = () => {
         }
     }
 
-    const validateEmail = (email) => {
+    const validateEmail = (email: string) => {
         // eslint-disable-next-line
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (regex.test(email)) {
@@ -115,7 +115,7 @@ const Login: React.FC = () => {
                     </div>
                 </div>
             </article>
-            <ToggleInfo toggleText="You need to type in your email and password to log in" />
+            <ToggleInfo toggleText={toggleText} />
         </React.Fragment>
     );
 }
