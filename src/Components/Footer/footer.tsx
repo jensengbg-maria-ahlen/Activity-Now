@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from "react"
 import "./_footer.scss"
+import {Link} from "react-router-dom"
 
 const Footer: React.FC = () => {
     return (
@@ -15,8 +16,12 @@ const Footer: React.FC = () => {
             <div className="footer__content">
                 <h3 className="title title--h3 title--bold title--no-spacing">Information</h3>
                 <div>
-                    <p className="paragraph paragraph--small paragraph--no-spacing">Cookies</p>
-                    <p className="paragraph paragraph--small paragraph--no-spacing">About us</p>
+                    <Link to="/cookie">
+                        <p className="paragraph paragraph--small paragraph--no-spacing" >Cookies</p>
+                    </Link>
+                    <Link to="/aboutus">
+                        <p className="paragraph paragraph--small paragraph--no-spacing">About us</p>
+                    </Link>
                 </div>
             </div>
             <div className="footer__content">

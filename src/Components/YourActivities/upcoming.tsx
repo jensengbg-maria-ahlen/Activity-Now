@@ -26,7 +26,7 @@ const Upcoming: React.FC = () => {
     return (
         <div className="upcoming">
             <div className="upcoming__content">
-                <h2 className="title title--h2">Upcoming activites:</h2>
+                <h2 className="title title--h2">Activites you created:</h2>
                 <div className="upcoming__activities">
                     {activities.map((activity) => (
                         <div key={activity.id} className="upcoming__item">

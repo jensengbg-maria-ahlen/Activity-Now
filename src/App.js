@@ -17,6 +17,8 @@ import ChosenActivity from "./Components/Activities/chosenActivity";
 import YourActivities from "./views/YourActivities/yourActivities"
 import NotFound from "./views/404/404"
 import Location from "./views/Location";
+import Cookies from "./views/Cookie/cookies"
+import About from "./views/About/about"
 
 import logo from './assets/logo.png';
 import './Styles/_app.scss';
@@ -45,6 +47,8 @@ function App() {
             <PrivateRoute exact path="/edit/:id" component={EditActivity} />
             <PrivateRoute exact path="/chosen/:id" component={ChosenActivity} />
             <PrivateRoute exact path="/youractivities" component={YourActivities} />
+            <PrivateRoute exact path="/cookie" component={Cookies} />
+            <PrivateRoute exact path="/aboutus" component={About} />
             <Route exact path="/location" component={Location} />
             <Route exact path="*" component={NotFound} />
           </Switch>
