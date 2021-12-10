@@ -1,7 +1,5 @@
-// @ts-nocheck
 import React from "react";
 import "./_cookies.scss";
-
 
 const Cookies: React.FC = () => {
     return (

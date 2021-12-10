@@ -1,11 +1,9 @@
-// @ts-nocheck
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { CgMenu, CgClose } from "react-icons/cg"
 import NavLinks from "./NavLinks";
 import "./_nav.scss"
 
-const MobileNavigation = () => {
+const MobileNavigation: React.FC = () => {
     const [active, setActive] = useState(false)
 
     const openIcon = <CgMenu 

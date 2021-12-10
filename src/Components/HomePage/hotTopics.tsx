@@ -7,7 +7,7 @@ import "./_activities.scss"
 
 const HotTopics: React.FC = () => {
     const { docs } = GetFromBackend("activities");
-    const [popular, setPopular] = useState([])
+    const [popular, setPopular] = useState<string[]>([])
     useEffect(() => {
         const popularActivities = [...docs].filter((obj) => {
             return obj.join.length >= 3

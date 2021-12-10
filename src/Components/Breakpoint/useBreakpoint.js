@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useEffect, createContext, useContext } from 'react';
 
 const defaultValue = {}

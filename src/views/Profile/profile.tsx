@@ -8,24 +8,25 @@ import { logout, db } from '../../firebase-config'
 import { MdDone } from "react-icons/md";
 import userImg from '../../assets/user.png';
 import ProgressBar from "../../Components/Progress/progressBar"
+import { CurrentUser } from "../../interface";
 import './_profile.scss';
 import "../../Styles/_buttons.scss";
 
 const Profile: React.FC = () => {
     const auth = getAuth();
-    const user = auth.currentUser;
+    const user: typeof currentUser = auth.currentUser;
     const history = useHistory()
     const { docs } = GetFromBackend("topics");
-    const [error, setError] = useState("")
+    const [error, setError] = useState<string>("")
     const [file, setfile] = useState(null)
-    const [currentImg, setCurrentImg] = useState(userImg)
-    const [displayName, setDisplayName] = useState("")
-    const [email, setEmail] = useState("")
-    const [yourTopics, setYourTopics] = useState([])
-    const [chosenTopic, setChosenTopic] = useState("")
-    const [allTopics, setAllTopics] = useState([])
-    const [saved, setSaved] = useState(false)
-    const [canChangePass, setCanChangePass] = useState(false);
+    const [currentImg, setCurrentImg] = useState<string>(userImg)
+    const [displayName, setDisplayName] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
+    const [yourTopics, setYourTopics] = useState<[]>([])
+    const [chosenTopic, setChosenTopic] = useState<string>("")
+    const [allTopics, setAllTopics] = useState<[]>([])
+    const [saved, setSaved] = useState<boolean>(false)
+    const [canChangePass, setCanChangePass] = useState<boolean>(false);
 
     const handleUploadPicture = (e) => {
         const types = ["image/png", "image/jpeg", "image/jpg"];

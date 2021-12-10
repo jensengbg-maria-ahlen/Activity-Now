@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useEffect } from "react";
 import UpdateProfile from "../../hooks/addToStorage";
 import "./_progressBar.scss";

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { getAuth, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
+import "./_password.scss";
 
 const PasswordChange: React.FC = () => {
     const history = useHistory();

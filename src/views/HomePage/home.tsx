@@ -20,7 +20,6 @@ const Home: React.FC = () => {
                 buttonText="I accept"
                 cookieName="ActivityToday Cookie"
                 disableStyles={true}
-                debug={true}
                 expires={150}
                 enableDeclineButton
                 onDecline={() => {

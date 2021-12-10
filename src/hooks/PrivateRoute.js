@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Route, Redirect } from "react-router-dom"
 import { getAuth } from "@firebase/auth";
 import { useAuth } from "./authentication"

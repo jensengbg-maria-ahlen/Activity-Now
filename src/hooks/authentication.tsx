@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { onAuthStateChanged } from 'firebase/auth'

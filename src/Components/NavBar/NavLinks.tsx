@@ -1,8 +1,13 @@
-// @ts-nocheck
+import React from "react";
 import { Link } from "react-router-dom";
 import "./_nav.scss";
 
-const NavLinks = (props: any) => {
+type NavProps = {
+    isMobile: boolean,
+    handleCloseMenu: () => void;
+}
+
+const NavLinks: React.FC<NavProps> = (props: NavProps) => {
     return (
         <ul className="nav-bar__list">
             <li className="nav-bar__list-item" onClick={() => props.isMobile && props.handleCloseMenu()}>

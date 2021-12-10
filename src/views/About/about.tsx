@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import Maria from '../../assets/maria.jpg';
 import Matilda from '../../assets/matilda.jpg';
