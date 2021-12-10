@@ -8,13 +8,12 @@ import { logout, db } from '../../firebase-config'
 import { MdDone } from "react-icons/md";
 import userImg from '../../assets/user.png';
 import ProgressBar from "../../Components/Progress/progressBar"
-import { CurrentUser } from "../../interface";
 import './_profile.scss';
 import "../../Styles/_buttons.scss";
 
 const Profile: React.FC = () => {
     const auth = getAuth();
-    const user: typeof currentUser = auth.currentUser;
+    const user = auth.currentUser;
     const history = useHistory()
     const { docs } = GetFromBackend("topics");
     const [error, setError] = useState<string>("")
