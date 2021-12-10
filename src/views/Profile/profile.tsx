@@ -149,8 +149,8 @@ const Profile: React.FC = () => {
                             {yourTopics?.map((topic) => (
                                 <article className="topicDiv" key={topic.id}>
                                     <p className="caption caption--bold caption--no-spacing">{topic.topic} </p>
-                                    <div className="topicRemove">
-                                        <span className="caption caption--bold caption--no-spacing" onClick={() => removeTopic(topic)}> X </span>
+                                    <div className="topicRemove" onClick={() => removeTopic(topic)}>
+                                        <span className="caption caption--bold caption--no-spacing"> X </span>
                                     </div>
                                 </article>
                             ))}
@@ -159,7 +159,6 @@ const Profile: React.FC = () => {
                     <label className="profile__form--item">
                         <p className="caption caption--bold">Add new topic: </p>
                         <select name="topics" onChange={(e) => addTopicsToUser(e.target.value)}>
-                            <option value="empty"></option>
                             {allTopics?.map((topic) => (
                                 <option value={topic.id} key={topic.id}>{topic.topic}</option>
                             ))}
