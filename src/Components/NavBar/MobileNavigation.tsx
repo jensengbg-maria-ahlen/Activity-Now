@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import { CgMenu, CgClose } from "react-icons/cg"
 import NavLinks from "./NavLinks";

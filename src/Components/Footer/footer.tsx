@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import "./_footer.scss"
 import {Link} from "react-router-dom"

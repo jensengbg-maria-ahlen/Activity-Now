@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import "./_confirm-deletion.scss"
 import "../../Styles/_buttons.scss"
