@@ -11,10 +11,10 @@ const About: React.FC = () => {
             <h1 className="title title--h1 title--bold">Information om ActivityToday</h1>
             <div className="aboutDiv">
                 <p className="paragraph paragraph--small">
-                Activity Today gjorde vi för vi tyckte det skulle vara en kul idé att ha. Speciellt nu efter corona restriktioner har börjat släppa och man kan börja gå ut och göra saker. Men som många vuxna har problem med så kanske man inte har så många vänner eller inte har så många som vill hitta på nya saker. Så detta blir ett lätt sätt att komma i kontakt med nya människor som kanske har samma intresse som du själv har och man kan komma ut från sitt hem. 
+                Activity Today we did because we thought it would be a fun idea to have. Especially now after corona restrictions have started to drop and one can start going out and doing things. But as many adults have problems with, you may not have as many friends or not so many who want to invent new things. So this will be an easy way to get in touch with new people who may have the same interest as you and you can get out of your home.
                 
                 <br/> <br/>
-                Vi som gjort appen heter Maria och Matilda! Har du några frågor eller synpunkter får du mer än gärna hör av dig till oss. Du hittar våra kontaktuppgiter längst ner på sidan!
+                We who made the application are called Maria and Matilda! If you have any questions or comments, you are more than welcome to contact us. You will find our contact details at the bottom of the page!
                 </p>
             </div>
             <div>

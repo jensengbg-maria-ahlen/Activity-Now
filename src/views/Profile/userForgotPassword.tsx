@@ -7,10 +7,10 @@ import ToggleInfo from "../../Components/ToggleInfo/toggleInfo";
 import "./_password.scss"
 
 const UserForgotPassword: React.FC = () => {
-    const [errors, setErrors] = useState([]);
-    const [loginEmail, setLoginEmail] = useState('');
-    const [disabled, setDisabled] = useState(false);
-    const [saved, setSaved] = useState(false)
+    const [errors, setErrors] = useState<string[]>([]);
+    const [loginEmail, setLoginEmail] = useState<string>('');
+    const [disabled, setDisabled] = useState<boolean>(false);
+    const [saved, setSaved] = useState<boolean>(false)
     const currentUser = auth.currentUser;
     const history = useHistory();
 
@@ -24,7 +24,7 @@ const UserForgotPassword: React.FC = () => {
                 setSaved(true)
                 return sendMail
 
-            } catch (error) {
+            } catch (error: any) {
                 if (error.code === "auth/user-not-found") {
                     let validationErrors = [];
                     validationErrors.push("email-not-found");
@@ -38,7 +38,7 @@ const UserForgotPassword: React.FC = () => {
         }
     }
 
-    const validateEmail = (email) => {
+    const validateEmail = (email: string) => {
         // eslint-disable-next-line
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (regex.test(email)) {
@@ -49,7 +49,7 @@ const UserForgotPassword: React.FC = () => {
 
     useEffect(() => {
         if (currentUser) {
-            setLoginEmail(currentUser.email)
+            setLoginEmail(currentUser.email as string)
         }
     }, [currentUser])
 
@@ -110,7 +110,9 @@ const UserForgotPassword: React.FC = () => {
                     <button disabled={disabled} className="forgot-btn" onClick={forgotPass}>Reset password</button>
                 </div>
             </div>
-            <ToggleInfo className="toggle-info" toggleText="Check your trash folder if no email has been received." />
+            <div className="toggle-info">
+                <ToggleInfo toggleText="Check your trash folder if no email has been received." />
+            </div>
         </article>
     )
 }

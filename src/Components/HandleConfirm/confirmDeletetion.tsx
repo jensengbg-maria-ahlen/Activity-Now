@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import React, { useState } from "react";
 import "./_confirm-deletion.scss"
 import "../../Styles/_buttons.scss"
@@ -9,9 +8,9 @@ type ConfirmProps = {
     disabled: boolean;
 }
 
-const ConfirmDeletetion: React.FC = (props: ConfirmProps) => {
-    const [active, setActive] = useState(false)
-    const [confirmed, setConfirmed] = useState(false);
+const ConfirmDeletetion: React.FC<ConfirmProps> = (props: ConfirmProps) => {
+    const [active, setActive] = useState<boolean>(false)
+    const [confirmed, setConfirmed] = useState<boolean>(false);
 
     return (
         <div className="confirm-deletion">

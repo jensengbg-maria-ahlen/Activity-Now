@@ -2,23 +2,22 @@
 import React from "react";
 import "./_cookies.scss";
 
-
 const Cookies: React.FC = () => {
     return (
         <article className="cookieArt">
-            <h1 className="title title--h1 title--bold">Information om kakor</h1>
+            <h1 className="title title--h1 title--bold">Information about cookies</h1>
             <div >
                 <h3 className="title title--h3 title--bold">Vad är Cookies?</h3>
-                <p className="paragraph paragraph--small"> Cookies är små textfiler som kan användas av sajter för att ge dig som användare en personligt anpassad och mer effektiv upplevelse av sajten.
-                 På Activity Today använder vi oss av nödvändiga cookies. 
-                 Nedan kan du läsa om nödvändiga cookies och vad vi använder dem till.</p>
+                <p className="paragraph paragraph--small"> Cookies are small text files that can be used by sites to give you as a user a personalized and more efficient experience of the site.
+                At Activity Today, we use the necessary cookies.
+                 Below you can read about necessary cookies and what we use them for.</p>
             </div>
             <br />
             <div>
-                <p className="paragraph paragraph--small"><strong> Nödvändiga cookies</strong> 
-                är de som behövs för att sajten ska fungera korrekt. Utan dessa cookies fungerar inte grundläggande funktioner såsom sidnavigering och inloggningsmöjlighet till ditt användarkonto.
-                 Vi samlar även in viss information genom cookies i analytiskt syfte för att förbättra vår sajt och ge oss information om effekten av vår marknadsföring. I vissa fall delas sådan cookiedata med våra partners, exempelvis vid affiliate-marknadsföring där vi delar ett pseudonymiserat ordernummer för att koppla ihop försäljning och returer med trafik från dessa partners.
-                 IP-adresser delas i vissa fall med sådana partners för att undvika bedrägerier men sparas inte längre än nödvändigt. Behandling av cookies i denna kategori baseras på vårt berättigade intresse att förstå och förbättra hur våran sajt används och för att kunna ersätta våra partners för köp på vår sajt som kommit via deras kanaler.</p>
+                <p className="paragraph paragraph--small"><strong> Necessary cookies </strong> 
+                are the ones needed for the site to work properly. Without these cookies, basic functions such as page navigation and login option to your user account will not work.
+                 We also collect certain information through cookies for analytical purposes to improve our site and provide us with information about the effect of our marketing. In some cases, such cookie data is shared with our partners, for example in affiliate marketing where we share a pseudonymous order number to link sales and returns with traffic from these partners.
+                 IP addresses are in some cases shared with such partners to avoid fraud but are not saved longer than necessary. Processing of cookies in this category is based on our legitimate interest in understanding and improving how our site is used and in order to be able to compensate our partners for purchases on our site that have come through their channels.</p>
             </div>
         </article>
     )

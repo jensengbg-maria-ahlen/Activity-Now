@@ -3,15 +3,16 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { deleteUser, EmailAuthProvider, getAuth, reauthenticateWithCredential } from "firebase/auth";
 import ConfirmDeletetion from "../../Components/HandleConfirm/confirmDeletetion";
+import "./_password.scss";
 
 const RemoveAccount: React.FC = () => {
     const auth = getAuth();
     const user = auth.currentUser;
     const history = useHistory()
-    const [password, setPassword] = useState("")
-    const [errors, setErrors] = useState([]);
-    const [disabled, setDisabled] = useState(true);
-    const credentials = EmailAuthProvider.credential(user.email, password);
+    const [password, setPassword] = useState<string>("")
+    const [errors, setErrors] = useState<string[]>([]);
+    const [disabled, setDisabled] = useState<boolean>(true);
+    const credentials = EmailAuthProvider.credential(user.email as string, password);
 
     const handleRemoveAccount = async () => {
         try {
@@ -65,7 +66,7 @@ const RemoveAccount: React.FC = () => {
                 </form>
                 <div className="password__buttons">
                     <button onClick={() => history.goBack()}>Go back</button>
-                    <ConfirmDeletetion setConfirmed={handleRemoveAccount} disabled={disabled} />
+                    <ConfirmDeletetion setConfirmed={() => handleRemoveAccount()} disabled={disabled} />
                 </div>
             </div>
         </div>

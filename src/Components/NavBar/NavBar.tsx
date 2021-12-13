@@ -3,10 +3,15 @@ import MobileNavigation from "./MobileNavigation";
 import Navigation from "./Navigation";
 import "./_nav.scss";
 
-const NavBar = () => {
+type NavProps = {
+  isMobile: boolean,
+  handleCloseMenu: () => void;
+}
+
+const NavBar: React.FC<NavProps> = (props: NavProps) => {
   return (
     <div className="nav-bar">
-      <Navigation />
+      <Navigation {...props} />
       <MobileNavigation />
     </div>
   )

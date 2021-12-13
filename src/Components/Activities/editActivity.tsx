@@ -12,7 +12,7 @@ import {
     arrayRemove
 } from "@firebase/firestore";
 import GetFromBackend from "../../hooks/getFromBackend";
-import { db } from "../../firebase-config";
+import { db, auth } from "../../firebase-config";
 import ConfirmDeletion from "../HandleConfirm/confirmDeletetion";
 import "./_activity.scss";
 import "../../Styles/_buttons.scss";
@@ -20,10 +20,12 @@ import "../../Styles/_buttons.scss";
 const EditActivity: React.FC = () => {
     const history = useHistory()
     let { id } = useParams()
+    const currentUser = auth.currentUser;
     const { docs } = GetFromBackend("activities");
     const [activity, setActivity] = useState(null)
     const [title, setTitle] = useState("")
     const [allTopics, setAllTopics] = useState([])
+    const [oldTopic, setOldTopic] = useState("");
     const [chosenTopic, setChosenTopic] = useState("")
     const [time, setTime] = useState("")
     const [location, setLocation] = useState("")
@@ -32,12 +34,11 @@ const EditActivity: React.FC = () => {
 
     const handleEdit = async () => {
         // Update Topics in backend
-        const currentTopic = docs.find((obj) => obj.topic === oldTopic)
-        const newTopic = docs.find((obj) => obj.topic === chosenTopic)
+        const currentTopic = allTopics.find((obj) => obj.topic === oldTopic)
 
-        if (newTopic !== currentTopic) {
+        if (chosenTopic !== currentTopic.id) {
             // update new topic
-            const newTopicRef = doc(db, "topics", newTopic.id)
+            const newTopicRef = doc(db, "topics", chosenTopic)
             await updateDoc(newTopicRef, {
                 activities: arrayUnion({title: title}),
                 following: arrayUnion({userid: currentUser.uid})
@@ -47,13 +48,14 @@ const EditActivity: React.FC = () => {
             const oldTopicRef = doc(db, "topics", currentTopic.id)
             await updateDoc(oldTopicRef, {
                 activities: arrayRemove({title: title})
-            } )
+            })
         }        
 
         // Update chosen Activity
         const docRef = doc(db, "activities", id);
+        const topicName = allTopics.filter((obj) => obj.id === chosenTopic);
         const payload = {
-            topic: chosenTopic,
+            topic: topicName[0].topic,
             location: location,
             start: date,
             end: date,
@@ -78,18 +80,15 @@ const EditActivity: React.FC = () => {
         history.goBack()
     }
 
-
     const showAllTopics = () => {
+        // get all topics from backend
         const q = query(collection(db, "topics"));
         const unsub = onSnapshot(q, (querySnapshot) => {
             const documents = [];
             querySnapshot.forEach((doc) => {
                 documents.push({ ...doc.data(), id: doc.id });
             });
-            const topics = [...documents].map((obj) => {
-                return obj.topic
-            })
-            setAllTopics([...topics])
+            setAllTopics(documents)
         })
 
         return () => unsub();
@@ -104,14 +103,19 @@ const EditActivity: React.FC = () => {
         if (activity) {
             setTitle(activity.title)
             setLocation(activity.location)
+            setOldTopic(activity.topic)
             setDesc(activity.description)
             setDate(activity.start)
             setTime(activity.time)
         }
 
-        // get all topics from backend
-        showAllTopics()
+        if (allTopics && activity) {
+            const topic = allTopics.filter((obj) => obj.topic === activity.topic)
+            setChosenTopic(topic[0].id)
+        }
 
+        showAllTopics()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activity, docs, id, db])
 
     return (
@@ -134,7 +138,7 @@ const EditActivity: React.FC = () => {
                             <label className="activity__form--item">
                                 <p className="paragraph paragraph--bold">Date:</p>
                                 <input
-                                    type="text"
+                                    type="date"
                                     value={date}
                                     onChange={(e) => setDate(e.target.value)}
                                 />
@@ -158,8 +162,8 @@ const EditActivity: React.FC = () => {
                             <label className="activity__form--item">
                                 <p className="paragraph paragraph--bold">Topic:</p>
                                 <select name="topics" value={chosenTopic} onChange={(e) => setChosenTopic(e.target.value)}>
-                                    {allTopics?.map((obj) => (
-                                        <option value={obj} key={obj}>{obj}</option>
+                                    {allTopics?.map((topic) => (
+                                        <option value={topic.id} key={topic.id}>{topic.topic}</option>
                                     ))}
                                 </select>
                             </label>

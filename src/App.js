@@ -22,7 +22,6 @@ const EditActivity = React.lazy(() => import("./Components/Activities/editActivi
 const ChosenActivity = React.lazy(() => import("./Components/Activities/chosenActivity"));
 const YourActivities = React.lazy(() => import("./views/YourActivities/yourActivities"));
 const NotFound = React.lazy(() => import("./views/404/404"));
-const Location = React.lazy(() => import("./views/Location"));
 const Cookies = React.lazy(() => import("./views/Cookie/cookies"));
 const About = React.lazy(() => import("./views/About/about"));
 
@@ -54,7 +53,6 @@ function App() {
               <PrivateRoute exact path="/edit/:id" component={EditActivity} />
               <PrivateRoute exact path="/chosen/:id" component={ChosenActivity} />
               <PrivateRoute exact path="/youractivities" component={YourActivities} />
-              <Route exact path="/location" component={Location} />
               <Route exact path="*" component={NotFound} />
             </Switch>
             <footer>

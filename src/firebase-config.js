@@ -3,11 +3,11 @@ import { initializeApp } from "firebase/app";
 import "firebase/auth"
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { 
-  getAuth, 
-  GoogleAuthProvider, 
-  FacebookAuthProvider, 
-  signInWithPopup, 
+import {
+  getAuth,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithPopup,
   signOut
 } from 'firebase/auth'
 
@@ -28,16 +28,16 @@ const projectStorage = getStorage();
 
 export const logout = () => {
   signOut(auth)
-  }
+}
 
 const provider = new GoogleAuthProvider()
 export const signInWithGoogle = () => {
   signInWithPopup(auth, provider).then((result) => {
     return result
   })
-  .catch((error) => {
-    return error
-  })
+    .catch((error) => {
+      return error
+    })
 }
 
 const providerFb = new FacebookAuthProvider()
@@ -45,9 +45,9 @@ export const signInWithFacebook = () => {
   signInWithPopup(auth, providerFb).then((result) => {
     return result
   })
-  .catch((error) => {
-    return error
-  })
+    .catch((error) => {
+      return error
+    })
 }
 
-export {auth, db, app, projectStorage}
+export { auth, db, app, projectStorage }

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState }  from "react";
 import infoImg from '../../assets/info.png';
 import "./_toggle-info.scss";

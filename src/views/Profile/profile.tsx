@@ -16,16 +16,16 @@ const Profile: React.FC = () => {
     const user = auth.currentUser;
     const history = useHistory()
     const { docs } = GetFromBackend("topics");
-    const [error, setError] = useState("")
+    const [error, setError] = useState<string>("")
     const [file, setfile] = useState(null)
-    const [currentImg, setCurrentImg] = useState(userImg)
-    const [displayName, setDisplayName] = useState("")
-    const [email, setEmail] = useState("")
-    const [yourTopics, setYourTopics] = useState([])
-    const [chosenTopic, setChosenTopic] = useState("")
-    const [allTopics, setAllTopics] = useState([])
-    const [saved, setSaved] = useState(false)
-    const [canChangePass, setCanChangePass] = useState(false);
+    const [currentImg, setCurrentImg] = useState<string>(userImg)
+    const [displayName, setDisplayName] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
+    const [yourTopics, setYourTopics] = useState<[]>([])
+    const [chosenTopic, setChosenTopic] = useState<string>("")
+    const [allTopics, setAllTopics] = useState<[]>([])
+    const [saved, setSaved] = useState<boolean>(false)
+    const [canChangePass, setCanChangePass] = useState<boolean>(false);
 
     const handleUploadPicture = (e) => {
         const types = ["image/png", "image/jpeg", "image/jpg"];
@@ -149,8 +149,8 @@ const Profile: React.FC = () => {
                             {yourTopics?.map((topic) => (
                                 <article className="topicDiv" key={topic.id}>
                                     <p className="caption caption--bold caption--no-spacing">{topic.topic} </p>
-                                    <div className="topicRemove">
-                                        <span className="caption caption--bold caption--no-spacing" onClick={() => removeTopic(topic)}> X </span>
+                                    <div className="topicRemove" onClick={() => removeTopic(topic)}>
+                                        <span className="caption caption--bold caption--no-spacing"> X </span>
                                     </div>
                                 </article>
                             ))}
@@ -159,7 +159,6 @@ const Profile: React.FC = () => {
                     <label className="profile__form--item">
                         <p className="caption caption--bold">Add new topic: </p>
                         <select name="topics" onChange={(e) => addTopicsToUser(e.target.value)}>
-                            <option value="empty"></option>
                             {allTopics?.map((topic) => (
                                 <option value={topic.id} key={topic.id}>{topic.topic}</option>
                             ))}
