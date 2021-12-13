@@ -23,6 +23,7 @@ const ChosenActivity: React.FC = () => {
     const [date, setDate] = useState("")
     const [description, setDesc] = useState("")
     const [join, setJoin] = useState(false)
+    const [isToday, setIsToday] = useState(false);
 
     const handleCancel = async () => {
         const docRef = doc(db, "activities", id)
@@ -53,7 +54,7 @@ const ChosenActivity: React.FC = () => {
     useEffect(() => {
         const obj = [...docs].find((obj) => { return obj.id === id })
         setActivity(obj)
-        if(obj) {
+        if (obj) {
             const numberGoing = obj.join.length;
             setGoing(numberGoing)
         }
@@ -69,8 +70,16 @@ const ChosenActivity: React.FC = () => {
             if (isJoined) {
                 setJoin(true)
             }
-        }        
-    }, [activity, docs, id, going, currentUser])
+        }
+        const today = new Date();
+
+        if (today.toISOString().split('T')[0] >= date) {
+            setIsToday(false)
+        } else {
+            setIsToday(true)
+        }
+
+    }, [activity, docs, id, going, currentUser, date])
 
     return (
         <React.Fragment >
@@ -109,21 +118,26 @@ const ChosenActivity: React.FC = () => {
                                 <p className="paragraph paragraph--bold">Number of people who is going: {going}</p>
 
                             </div>
-                            
+
                         </form>
                         <div className="activity__buttons">
                             <button className="edit-btn" onClick={history.goBack}>Go back</button>
-                            {activity.creator === currentUser.uid ? (
-                                <div className="activity__buttons--handle">
-                                    <ConfirmDeletion setConfirmed={handleCancel} />                                  
-                                    <button className="edit-btn" onClick={goTo} >Edit activity</button>
-                                </div>
-                            ): (
-                                <div className="activity__buttons--join">
-                                    <button disabled={!join} className="edit-btn" onClick={handleUnregister}>Can't go</button>
-                                    <button disabled={join} className="edit-btn" onClick={handleJoin}>Join</button>
-                                </div>
-                            )}
+                            {isToday ? (
+                                <React.Fragment>
+                                    {activity.creator === currentUser.uid ? (
+                                        <div className="activity__buttons--handle">
+                                            <ConfirmDeletion setConfirmed={handleCancel} />
+                                            <button className="edit-btn" onClick={goTo} >Edit activity</button>
+                                        </div>
+                                    ) : (
+                                        <div className="activity__buttons--join">
+                                            <button disabled={!join} className="edit-btn" onClick={handleUnregister}>Can't go</button>
+                                            <button disabled={join} className="edit-btn" onClick={handleJoin}>Join</button>
+                                        </div>
+                                    )}
+                                </React.Fragment>
+                            ) : null}
+
 
                         </div>
                     </div>
