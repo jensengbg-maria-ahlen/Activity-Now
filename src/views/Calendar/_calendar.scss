@@ -40,12 +40,16 @@
     line-height: normal;
     margin-bottom: 10px;
 
-    &-day-today {
-      background: $light-green !important;
-    }
-
-    &-day-past {
-      background-color: lighten(grey, 40%) !important;
+    &-view-harness {
+      @include breakpoint("md", "down") {
+        height: 50vh !important;
+      }
+      @include breakpoint("sm", "down") {
+        height: 50vh !important;
+      }
+      @include breakpoint("xs", "down") {
+        height: 50vh !important;
+      }
     }
 
     td, th {
@@ -115,5 +119,50 @@
       border: 1px solid $dark-green;
       cursor: pointer;
     }
+
+    &-list-event-dot {
+      border: none;
+    }
+
+    &-list-event-time {
+      display:none;
+    }
+
+    &-day-future {
+      .fc-list-day-cushion {
+        background: $white !important;
+      }
+    }
+
+    &-list-event {
+      .fc-list-event-graphic {
+        background-color: gray
+      }
+    }
+
+    &-event-today, &-event-future {
+      .fc-list-event-graphic {
+        background-color: $dark-green;
+      }
+    }
+
+    &-day-today {
+      background: $light-green !important;
+      .fc-list-day-cushion {
+        background: $light-green !important;
+      }
+    }
+
+    &-day-past {
+      background-color: lighten(grey, 40%) !important;
+      .fc-list-day-cushion {
+        background-color: lighten(grey, 40%) !important;
+      }
+     .fc-h-event {
+        background-color: gray;
+        border: 1px solid gray;
+      }
+    }
+
   }
 }
