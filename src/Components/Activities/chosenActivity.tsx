@@ -78,7 +78,6 @@ const ChosenActivity: React.FC = () => {
         } else {
             setIsToday(true)
         }
-
     }, [activity, docs, id, going, currentUser, date])
 
     return (
@@ -89,6 +88,9 @@ const ChosenActivity: React.FC = () => {
                         <h2 className="title title--h2">
                             <span className="title--bold"> {title}</span>
                         </h2>
+                        {activity.creator === "Anonymus" ? (
+                            <h3 className="title title--h3 title--bold">The creator for this activity has chosen to end their account. <br></br> If you still want to attend, please feel free to do so.</h3>
+                        ) : null }
                         <form className="activity__form">
                             <div className="activity__form--item">
                                 <p className="paragraph paragraph--bold">Name:</p>

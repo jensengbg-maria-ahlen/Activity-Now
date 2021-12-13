@@ -9,6 +9,10 @@
     align-items: center;
     margin-bottom: 30px;
 
+    .title--h3 {
+        color: $red;
+    }
+
     &__content {
         width: 500px;
         display: flex;

@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { deleteUser, EmailAuthProvider, getAuth, reauthenticateWithCredential } from "firebase/auth";
+import { doc, updateDoc, collection, query, onSnapshot } from "@firebase/firestore";
+import { db } from "../../firebase-config";
 import ConfirmDeletetion from "../../Components/HandleConfirm/confirmDeletetion";
 import "./_password.scss";
 
@@ -12,13 +14,20 @@ const RemoveAccount: React.FC = () => {
     const [password, setPassword] = useState<string>("")
     const [errors, setErrors] = useState<string[]>([]);
     const [disabled, setDisabled] = useState<boolean>(true);
+    const [allActivities, setAllActivities] = useState([])
     const credentials = EmailAuthProvider.credential(user.email as string, password);
 
     const handleRemoveAccount = async () => {
         try {
             reauthenticateWithCredential(user, credentials).then(() => {
                 deleteUser(user).then(() => {
-                    return user
+                    const creator = allActivities.filter((obj) => obj.creator === user?.uid);
+                    creator.map(async (obj) => {
+                        const oldTopicRef = doc(db, "activities", obj.id)
+                        await updateDoc(oldTopicRef, {
+                            creator: "Anonymus"
+                        })
+                    });
                 }).catch((error) => {
                     return error
                 })
@@ -33,11 +42,27 @@ const RemoveAccount: React.FC = () => {
         }
     }
 
+    const activities = () => {
+        const q = query(collection(db, "activities"));
+        const unsub = onSnapshot(q, (querySnapshot) => {
+            const documents = [];
+            querySnapshot.forEach((doc) => {
+                documents.push({ ...doc.data(), id: doc.id });
+            });
+            setAllActivities(documents)
+        })
+
+        return () => unsub();
+    }
+
+
     useEffect(() => {
         if (password.length >= 6) {
             setDisabled(false)
         }
-    }, [disabled, password])
+
+        activities()
+    }, [disabled, password, user])
 
     return (
         <div className="password">
