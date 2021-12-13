@@ -24,7 +24,6 @@ const EditActivity: React.FC = () => {
     const [activity, setActivity] = useState(null)
     const [title, setTitle] = useState("")
     const [allTopics, setAllTopics] = useState([])
-    const [oldTopic, setOldTopic] = useState("");
     const [chosenTopic, setChosenTopic] = useState("")
     const [time, setTime] = useState("")
     const [location, setLocation] = useState("")
@@ -80,6 +79,22 @@ const EditActivity: React.FC = () => {
     }
 
 
+    const showAllTopics = () => {
+        const q = query(collection(db, "topics"));
+        const unsub = onSnapshot(q, (querySnapshot) => {
+            const documents = [];
+            querySnapshot.forEach((doc) => {
+                documents.push({ ...doc.data(), id: doc.id });
+            });
+            const topics = [...documents].map((obj) => {
+                return obj.topic
+            })
+            setAllTopics([...topics])
+        })
+
+        return () => unsub();
+    }
+
     useEffect(() => {
         if (docs) {
             const obj = [...docs].find((obj) => { return obj.id === id })
@@ -95,21 +110,9 @@ const EditActivity: React.FC = () => {
         }
 
         // get all topics from backend
-        const q = query(collection(db, "topics"));
-        const unsub = onSnapshot(q, (querySnapshot) => {
-            const documents = [];
-            querySnapshot.forEach((doc) => {
-                documents.push({ ...doc.data(), id: doc.id });
-            });
-            const topics = [...documents].map((obj) => {
-                return obj.topic
-            })
-            setAllTopics([...topics])
-        })
+        showAllTopics()
 
-        return () => unsub();
-
-    }, [activity, docs, id, allTopics])
+    }, [activity, docs, id, db])
 
     return (
         <React.Fragment >

@@ -1,9 +1,12 @@
-// @ts-nocheck
 import React, { useState }  from "react";
 import infoImg from '../../assets/info.png';
 import "./_toggle-info.scss";
 
-const ToggleInfo: React.FC = ({toggleText} : {toggleText: any}) => {
+type ToggleProps = {
+    toggleText: string
+}
+
+const ToggleInfo: React.FC<ToggleProps> = (props: ToggleProps) => {
     const [isShown, setIsShown] = useState(false);
 
     return (
@@ -14,7 +17,7 @@ const ToggleInfo: React.FC = ({toggleText} : {toggleText: any}) => {
             {isShown && (
                 <div className="toggle-info__info-text">
                     <p className="caption caption--bold">
-                        {toggleText}
+                        {props.toggleText}
                     </p>
                 </div>
             )}

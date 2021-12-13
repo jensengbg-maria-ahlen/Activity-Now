@@ -1,18 +1,11 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
-import {
-    deleteUser,
-    getAuth,
-    reauthenticateWithCredential,
-    updateProfile,
-    updateEmail,
-    updatePassword
-} from "firebase/auth";
+import { Link, useHistory } from "react-router-dom";
+import { getAuth, updateProfile, updateEmail } from "firebase/auth";
 import { doc, updateDoc, arrayUnion, arrayRemove } from "@firebase/firestore";
 import GetFromBackend from "../../hooks/getFromBackend";
 import { logout, db } from '../../firebase-config'
 import { MdDone } from "react-icons/md";
-import ConfirmDeletetion from "../../Components/HandleConfirm/confirmDeletetion";
 import userImg from '../../assets/user.png';
 import ProgressBar from "../../Components/Progress/progressBar"
 import './_profile.scss';
@@ -21,19 +14,18 @@ import "../../Styles/_buttons.scss";
 const Profile: React.FC = () => {
     const auth = getAuth();
     const user = auth.currentUser;
+    const history = useHistory()
     const { docs } = GetFromBackend("topics");
     const [error, setError] = useState("")
     const [file, setfile] = useState(null)
     const [currentImg, setCurrentImg] = useState(userImg)
     const [displayName, setDisplayName] = useState("")
     const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("*******")
     const [yourTopics, setYourTopics] = useState([])
     const [chosenTopic, setChosenTopic] = useState("")
     const [allTopics, setAllTopics] = useState([])
     const [saved, setSaved] = useState(false)
-
-
+    const [canChangePass, setCanChangePass] = useState(false);
 
     const handleUploadPicture = (e) => {
         const types = ["image/png", "image/jpeg", "image/jpg"];
@@ -85,14 +77,6 @@ const Profile: React.FC = () => {
         })
     }
 
-    const handleRemoveAccount = async () => {
-        deleteUser(user).then(() => {
-            console.log("user deleted")
-        }).catch((error) => {
-            console.log(error)
-        })
-    }
-
     useEffect(() => {
         if (docs) {
             setAllTopics(docs)
@@ -111,6 +95,11 @@ const Profile: React.FC = () => {
             if (user.displayName) {
                 setDisplayName(user.displayName);
             }
+        }
+
+        const provider = user?.providerData.map((id) => id.providerId)
+        if (provider[0] === "password") {
+            setCanChangePass(true)
         }
     }, [user, docs, allTopics])
 
@@ -154,14 +143,6 @@ const Profile: React.FC = () => {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
-                    <label className="profile__form--item">
-                        <p className="caption caption--bold">Change password:</p>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </label>
                     <div className="profile__form--item">
                         <p className="caption caption--bold">Your topics:</p>
                         <div className="topic-container">
@@ -184,9 +165,14 @@ const Profile: React.FC = () => {
                             ))}
                         </select>
                     </label>
+                    {canChangePass ? (
+                        <Link to="/profile/changepassword">
+                            <p className="paragraph paragraph--bold paragraph--no-spacing">Change password</p>
+                        </Link>
+                    ) : null}
                 </form>
                 <div className="profile__buttons">
-                    <ConfirmDeletetion setConfirmed={handleRemoveAccount} />
+                    <button className="delete-btn" onClick={() => history.push("/removeaccount")}>Delete me</button>
                     <button className="login-btn" onClick={logout}>Sign out</button>
                     <button className="create-btn" onClick={handleSaveProfile}>Save profile</button>
                 </div>

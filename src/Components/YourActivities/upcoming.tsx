@@ -11,16 +11,12 @@ const Upcoming: React.FC = () => {
     const currentUser = useAuth();
     const [activities, setActivities] = useState([]);
 
-    const yourActivities = () => {
-        if (docs) {
-            const id = currentUser.uid
-            const items = docs.filter((obj) => obj.creator === id)
-            setActivities([...items]);
-        }
-    }
-
     useEffect(() => {
-        yourActivities()
+        if (docs) {
+            const items = docs.filter((obj) => obj.creator === currentUser.uid)
+            setActivities(items);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [docs])
 
     return (
@@ -32,19 +28,19 @@ const Upcoming: React.FC = () => {
                         <div key={activity.id} className="upcoming__item">
                             <div className="upcoming__item--content">
                                 <p className="paragraph">
-                                    Name: 
+                                    Name:{" "}
                                     <span className="paragraph paragraph--bold paragraph--small">
-                                        {activity.name}
+                                        {activity.title}
                                     </span>
                                 </p>
                                 <p className="paragraph">
-                                    Description: 
+                                    Description: {" "}
                                     <span className="paragraph paragraph--bold paragraph--small">
                                         {activity.description}
                                     </span>
                                 </p>
                                 <p className="paragraph">
-                                    Topic: 
+                                    Topic: {" "}
                                     <span className="paragraph paragraph--bold paragraph--small">
                                         {activity.topic}
                                     </span>

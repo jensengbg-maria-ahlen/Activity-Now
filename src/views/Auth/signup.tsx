@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth"
@@ -9,14 +8,15 @@ import ToggleInfo from "../../Components/ToggleInfo/toggleInfo";
 import './_auth.scss';
 
 const Signup: React.FC = () => {
-    const [registerEmail, setRegisterEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
-    const [errors, setErrors] = useState([]);
-    const [disabled, setDisabled] = useState(true);
+    const [registerEmail, setRegisterEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [registerPassword, setRegisterPassword] = useState<string>("");
+    const [errors, setErrors] = useState<string[]>([]);
+    const [disabled, setDisabled] = useState<boolean>(true);
     const history = useHistory();
+    const toggleText: string = "info about activity today, stuff you agree too when signing up"
 
-    const validateEmail = (email) => {
+    const validateEmail = (email: string) => {
         // eslint-disable-next-line
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (regex.test(email)) {
@@ -47,7 +47,7 @@ const Signup: React.FC = () => {
                 );
                 setDisabled(true)
                 history.push("/profile")
-            } catch (error) {
+            } catch (error: any) {
                 if (error.message === "auth/weak-password") {
                     let validationErrors = [];
                     validationErrors.push("password-is-weak");
@@ -153,7 +153,7 @@ const Signup: React.FC = () => {
                     </div>
                 </div>
             </article>
-            <ToggleInfo toggleText="info about activity today, stuff you agree too when signing up" />
+            <ToggleInfo toggleText={toggleText} />
         </React.Fragment>
     );
 }

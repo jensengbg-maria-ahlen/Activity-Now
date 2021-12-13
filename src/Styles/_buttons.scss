@@ -56,6 +56,13 @@ button {
         color: $text-color;
         box-shadow: none; 
     }
+
+    &--disabled {
+        cursor: auto;
+        background: #dddddd;
+        color: $text-color;
+        box-shadow: none;
+    }
 }
 
 

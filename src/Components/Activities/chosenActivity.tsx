@@ -70,7 +70,7 @@ const ChosenActivity: React.FC = () => {
                 setJoin(true)
             }
         }        
-    }, [activity, docs, id, going])
+    }, [activity, docs, id, going, currentUser])
 
     return (
         <React.Fragment >

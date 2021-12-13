@@ -23,7 +23,6 @@ const Home: React.FC = () => {
                     buttonText="Accept cookies"
                     cookieName="ActivityToday Cookie"
                     style={{ background: "#2B373B"  }}
-                    debug={true}
                     buttonStyle={{color: "#171E20", background: "#87BA77", fontSize: "13px" }}
                     expires={150}
                     enableDeclineButton
