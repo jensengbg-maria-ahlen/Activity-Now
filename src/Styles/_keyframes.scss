@@ -1,6 +1,17 @@
-@keyframes slide-down-fade-in {
+@keyframes toggle-info-slide-up {
   from {
-    transform: translateY(-16px);
+    transform: translateY(-90%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up-fade-in {
+  from {
+    transform: translateY(16px);
     opacity: 0;
   }
   to {
@@ -9,9 +20,9 @@
   }
 }
 
-@keyframes slide-up-fade-in {
+@keyframes slide-down-fade-in {
   from {
-    transform: translateY(16px);
+    transform: translateY(-16px);
     opacity: 0;
   }
   to {
@@ -29,51 +40,11 @@
   }
 }
 
-@keyframes bigger {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(2);
-  }
-}
-
 @keyframes spin {
   from {
     transform: rotate(0);
   }
   to {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes error-shake {
-  10%,
-  90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-  20%,
-  80% {
-    transform: translate3d(2px, 0, 0);
-  }
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-  40%,
-  60% {
-    transform: translate3d(4px, 0, 0);
-  }
-}
-
-@keyframes toggle-info-slide-up {
-  from {
-    transform: translateY(-90%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(-100%);
-    opacity: 1;
   }
 }

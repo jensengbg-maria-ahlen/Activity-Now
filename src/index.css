@@ -14,16 +14,3 @@ body, html {
 #root {
   height: inherit;
 }
-
-
-
-
-@font-face {
-  font-family: "Saira", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-display: swap;
-  font-style: normal;
-  font-weight: 400;
-  src: url("https://fonts.googleapis.com/css2?family=Saira");
-}
