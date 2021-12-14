@@ -6,6 +6,7 @@ import "../../Styles/_buttons.scss"
 type ConfirmProps = {
     setConfirmed: (confirmed: boolean) => void;
     disabled: boolean;
+    confirmText: string;
 }
 
 const ConfirmDeletetion: React.FC<ConfirmProps> = (props: ConfirmProps) => {
@@ -18,7 +19,7 @@ const ConfirmDeletetion: React.FC<ConfirmProps> = (props: ConfirmProps) => {
             {active ? (
                 <div className="confirm-deletion__content">
                     <h3 className="title title--h3">Confirm Remove</h3>
-                    <p className="paragraph">Are you sure you want to remove this activity?</p>
+                    <p className="paragraph">{props.confirmText}</p>
                     <div className="confirm-deletion__buttons">
                     <button
                         className="cancel-btn"

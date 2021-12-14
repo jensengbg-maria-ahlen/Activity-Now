@@ -91,7 +91,7 @@ const RemoveAccount: React.FC = () => {
                 </form>
                 <div className="password__buttons">
                     <button onClick={() => history.goBack()}>Go back</button>
-                    <ConfirmDeletetion setConfirmed={() => handleRemoveAccount()} disabled={disabled} />
+                    <ConfirmDeletetion setConfirmed={() => handleRemoveAccount()} disabled={disabled} confirmText="Are you sure you want to remove your account?" />
                 </div>
             </div>
         </div>

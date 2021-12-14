@@ -178,7 +178,7 @@ const EditActivity: React.FC = () => {
                             </label>
                         </form>
                         <div className="activity__buttons">
-                            <ConfirmDeletion setConfirmed={handleCancel} />
+                            <ConfirmDeletion setConfirmed={handleCancel} confirmText="Are you sure you want to remove the activity?" />
                             <div className="activity__buttons--edit">
                                 <button className="edit-btn" onClick={history.goBack}>Stop editing</button>
                                 <button className="edit-btn" onClick={handleEdit}>Save activity</button>

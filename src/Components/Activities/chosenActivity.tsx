@@ -128,7 +128,7 @@ const ChosenActivity: React.FC = () => {
                                 <React.Fragment>
                                     {activity.creator === currentUser.uid ? (
                                         <div className="activity__buttons--handle">
-                                            <ConfirmDeletion setConfirmed={handleCancel} />
+                                            <ConfirmDeletion setConfirmed={handleCancel} confirmText="Are you sure you want to remove the activity?" />
                                             <button className="edit-btn" onClick={goTo} >Edit activity</button>
                                         </div>
                                     ) : (

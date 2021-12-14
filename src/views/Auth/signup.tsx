@@ -153,7 +153,7 @@ const Signup: React.FC = () => {
                     </div>
                 </div>
             </article>
-            <ToggleInfo toggleText="info about activity today, stuff you agree too when signing up" />
+            <ToggleInfo toggleText="Activity Today takes no responsibility for what happens on the activities. Please only go to safe locations, and if put in danger, call 112! " />
         </React.Fragment>
     );
 }
