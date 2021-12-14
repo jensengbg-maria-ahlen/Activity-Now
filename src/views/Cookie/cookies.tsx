@@ -7,7 +7,7 @@ const Cookies: React.FC = () => {
         <article className="cookieArt">
             <h1 className="title title--h1 title--bold">Information about cookies</h1>
             <div >
-                <h3 className="title title--h3 title--bold">Vad är Cookies?</h3>
+                <h3 className="title title--h3 title--bold">What are cookies cookies?</h3>
                 <p className="paragraph paragraph--small"> Cookies are small text files that can be used by sites to give you as a user a personalized and more efficient experience of the site.
                 At Activity Today, we use the necessary cookies.
                  Below you can read about necessary cookies and what we use them for.</p>

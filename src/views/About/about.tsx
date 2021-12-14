@@ -8,7 +8,7 @@ import "./_about.scss";
 const About: React.FC = () => {
     return (
         <article className="aboutArt">
-            <h1 className="title title--h1 title--bold">Information om ActivityToday</h1>
+            <h1 className="title title--h1 title--bold">Information about ActivityToday</h1>
             <div className="aboutDiv">
                 <p className="paragraph paragraph--small">
                 Activity Today we did because we thought it would be a fun idea to have. Especially now after corona restrictions have started to drop and one can start going out and doing things. But as many adults have problems with, you may not have as many friends or not so many who want to invent new things. So this will be an easy way to get in touch with new people who may have the same interest as you and you can get out of your home.
