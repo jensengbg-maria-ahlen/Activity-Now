@@ -44,12 +44,6 @@
       @include breakpoint("md", "down") {
         height: 50vh !important;
       }
-      @include breakpoint("sm", "down") {
-        height: 50vh !important;
-      }
-      @include breakpoint("xs", "down") {
-        height: 50vh !important;
-      }
     }
 
     td, th {
