@@ -13,13 +13,13 @@ const App = React.lazy(() => {
 });
 
 const queries = {
-  xsMax: '(max-width: 375px)',
+  xsMax: '(max-width: 374px)',
   smMin: '(min-width: 375px)',
-  smMax: '(max-width: 540px)',
+  smMax: '(max-width: 539px)',
   mdMin: '(min-width: 540px)',
-  mdMax: '(max-width: 720px)',
+  mdMax: '(max-width: 719px)',
   lgMin: '(min-width: 720px)',
-  lgMax: '(max-width: 1020px)',
+  lgMax: '(max-width: 1019px)',
   xlMin: '(min-width: 1020px)'
 }
 

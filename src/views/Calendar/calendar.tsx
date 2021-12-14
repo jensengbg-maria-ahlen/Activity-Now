@@ -36,8 +36,10 @@ const CalendarView: React.FC = () => {
                 {breakpoints.xsMax ? (
                     <FullCalendar
                         plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
-                        initialView="listWeek"
+                        initialView="listMonth"
+                        firstDay={1}
                         events={events}
+                        noEventsText="No Events to display"
                         eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
                     />
                 ) : null}
@@ -45,6 +47,7 @@ const CalendarView: React.FC = () => {
                     <FullCalendar
                         plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
                         initialView="dayGridWeek"
+                        firstDay={1}
                         events={events}
                         eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
                     />
@@ -53,6 +56,7 @@ const CalendarView: React.FC = () => {
                     <FullCalendar
                         plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
                         initialView="dayGridWeek"
+                        firstDay={1}
                         events={events}
                         eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
                     />
@@ -61,6 +65,7 @@ const CalendarView: React.FC = () => {
                     <FullCalendar
                         plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
                         initialView="dayGridMonth"
+                        firstDay={1}
                         events={events}
                         eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
                     />
@@ -69,6 +74,7 @@ const CalendarView: React.FC = () => {
                     <FullCalendar
                         plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
                         initialView="dayGridMonth"
+                        firstDay={1}
                         events={events}
                         eventClick={(e: EventClickArg) => history.push(`/chosen/${e.event.id}`)}
                     />
