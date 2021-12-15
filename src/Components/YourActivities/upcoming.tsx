@@ -55,8 +55,8 @@ const Upcoming: React.FC = () => {
                                                 </span>
                                             </p>
                                         </div>
-                                        <Link to={`/edit/${activity.id}`} >
-                                            <button className="edit-btn" >edit</button>
+                                        <Link to={`/chosen/${activity.id}`} >
+                                            <button className="edit-btn" >Show details</button>
                                         </Link>
                                     </div>
                                 )
