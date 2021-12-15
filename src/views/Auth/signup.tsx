@@ -53,6 +53,11 @@ const Signup: React.FC = () => {
                     validationErrors.push("password-is-weak");
                     setErrors(validationErrors);
                 }
+                if (error.code === "auth/email-already-in-use") {
+                    let validationErrors = [];
+                    validationErrors.push("email-already-in-use");
+                    setErrors(validationErrors);
+                }
             }
         }
     };
@@ -73,7 +78,7 @@ const Signup: React.FC = () => {
                                 Email
                                 <input
                                     style={{
-                                        border: errors.includes("email-not-valid") ?
+                                        border: errors.includes("email-not-valid" && "email-already-in-use") ?
                                             "2px solid #BB0101" : "1px solid black"
                                     }}
                                     type="email"
@@ -97,6 +102,9 @@ const Signup: React.FC = () => {
 
                             {errors.includes("email-not-valid") ? (
                                 <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Not a valid email</p>
+                            ) : null}
+                            {errors.includes("email-already-in-use") ? (
+                                <p className="paragraph paragraph--small paragraph--bold paragraph--no-spacing">Email already exist</p>
                             ) : null}
                         </div>
                         <div className="login-view__input-form">

@@ -67,7 +67,7 @@ const ForgotPassword: React.FC = () => {
                                 Email
                                 <input
                                     style={{
-                                        border: errors.includes("email-not-valid") ?
+                                        border: errors.includes("email-not-valid" && "email-not-found") ?
                                             "2px solid #BB0101" : "1px solid black"
                                     }}
                                     type="email"
