@@ -29,7 +29,7 @@ const Upcoming: React.FC = () => {
                 </div>
             <div className="upcoming__content">
                 <div className="upcoming__old">
-                    <h2 className="title title--h2">Old activities you created:</h2>
+                    <h2 className="title title--h2">Your old activities:</h2>
                     <div className="upcoming__activities">
                     {activities.map((activity) => {
                             if (activity.start <= today.toISOString().split('T')[0]) {
@@ -67,7 +67,7 @@ const Upcoming: React.FC = () => {
                     </div>
                 </div>
                 <div className="upcoming__new">
-                    <h2 className="title title--h2">New activites you created:</h2>
+                    <h2 className="title title--h2">Your new activities:</h2>
                     <div className="upcoming__activities">
                         {activities.map((activity) => {
                             if (activity.start >= today.toISOString().split('T')[0]) {
