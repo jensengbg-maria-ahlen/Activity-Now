@@ -61,14 +61,25 @@ const Profile: React.FC = () => {
                 following: arrayUnion({ userid: user.uid })
             })
         }
-        updateProfile(user, {
-            displayName: displayName,
-            photoURL: currentImg
-        }).then(() => {
-            setSaved(true)
-        }).catch((err) => {
-            console.log(err)
-        })
+        if (currentImg === userImg) {
+            updateProfile(user, {
+                displayName: displayName,
+            }).then(() => {
+                setSaved(true)
+            }).catch((err) => {
+                console.log(err)
+            })
+        } else {
+            updateProfile(user, {
+                displayName: displayName,
+                photoURL: currentImg
+            }).then(() => {
+                setSaved(true)
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
+        
 
         updateEmail(user, email).then(() => {
             setSaved(true)

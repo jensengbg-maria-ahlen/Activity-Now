@@ -20,14 +20,15 @@ const RemoveAccount: React.FC = () => {
     const handleRemoveAccount = async () => {
         try {
             reauthenticateWithCredential(user, credentials).then(() => {
+                const creator = allActivities.filter((obj) => obj.creator === user?.uid);
+                creator.map(async (obj) => {
+                    const oldTopicRef = doc(db, "activities", obj.id)
+                    await updateDoc(oldTopicRef, {
+                        creator: "Anonymus"
+                    })
+                });
                 deleteUser(user).then(() => {
-                    const creator = allActivities.filter((obj) => obj.creator === user?.uid);
-                    creator.map(async (obj) => {
-                        const oldTopicRef = doc(db, "activities", obj.id)
-                        await updateDoc(oldTopicRef, {
-                            creator: "Anonymus"
-                        })
-                    });
+                   return user
                 }).catch((error) => {
                     return error
                 })
