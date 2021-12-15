@@ -48,7 +48,7 @@ const Signup: React.FC = () => {
                 setDisabled(true)
                 history.push("/profile")
             } catch (error) {
-                if (error.message === "auth/weak-password") {
+                if (error.code === "auth/weak-password") {
                     let validationErrors = [];
                     validationErrors.push("password-is-weak");
                     setErrors(validationErrors);
