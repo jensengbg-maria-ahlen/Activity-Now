@@ -1,4 +1,8 @@
 # Activity Today
+
+https://activity-today-bc757.web.app/
+
+
 is an app where you can look what activites you can go on this month and you can create your own activities!
 You can follow your favorite activities, like if you like going to the movies you can get a notification every time someone postes a movie activity!
 
